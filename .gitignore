@@ -6,13 +6,17 @@ Desktop.ini
 *.bak
 *~
 
-# Private & Drafts
+# Private & Drafts (Strict Wards for Public Repo)
 private/
+private/*
+/private/
+/private/*
 credentials/
 *credentials*.json
 *token*.json
 token.json
 .env
+.env.*
 
 # Large media
 *.mp4
