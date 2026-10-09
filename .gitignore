@@ -1,0 +1,21 @@
+# OS & Editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*.bak
+*~
+
+# Private & Drafts
+private/
+credentials/
+*credentials*.json
+*token*.json
+token.json
+.env
+
+# Large media
+*.mp4
+*.mov
+*.mkv
+*.raw

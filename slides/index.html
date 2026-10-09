@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Jams: Thought to Thing in 48 Hours | GeekGirlCon 2026</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --slide-bg: #111827;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border: rgba(56, 189, 248, 0.25);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --cyan: #38bdf8;
+      --magenta: #ec4899;
+      --gold: #f59e0b;
+      --emerald: #10b981;
+      --purple: #a855f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Presentation Canvas (16:9 Aspect Ratio) */
+    #slide-viewport {
+      width: 90vw;
+      max-width: 1400px;
+      height: calc(90vw * 9 / 16);
+      max-height: 787px;
+      background: var(--slide-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Slide Elements */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 3.5rem 4rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 2;
+    }
+
+    /* Typography */
+    .slide-eyebrow {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--magenta);
+      margin-bottom: 0.75rem;
+    }
+
+    .slide-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 30%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 1.35rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      max-width: 900px;
+    }
+
+    /* Grid Layouts for Content */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--cyan);
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* Footer & Controls */
+    #deck-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(9, 13, 22, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.85rem;
+      color: var(--muted);
+      z-index: 10;
+    }
+
+    .progress-bar-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    #progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Keybind Hint Overlay */
+    #keybind-hint {
+      display: flex;
+      gap: 1rem;
+    }
+
+    kbd {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+      font-size: 0.75rem;
+      color: var(--cyan);
+    }
+
+    /* Presenter Notes Modal */
+    #presenter-modal {
+      display: none;
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      width: 400px;
+      max-height: 250px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--magenta);
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    #presenter-modal h4 {
+      color: var(--magenta);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="slide-viewport">
+    <div class="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+
+    <!-- SLIDE 1: Title -->
+    <section class="slide active" data-notes="Welcome attendees! Introduce UpLiftVR, GeekGirlCon heritage, and our thesis: anyone can build a game in 48 hours.">
+      <div class="slide-eyebrow">GeekGirlCon 2026 • Seattle Indies Panel</div>
+      <h1 class="slide-title">Thought to Thing in 48 Hours</h1>
+      <p class="slide-subtitle">Demystifying Game Jams, Scope Discipline, and Rapid Creative Prototyping</p>
+      <div style="margin-top: 1rem; color: var(--cyan); font-weight: 600;">
+        Presented by Magus Wulf • UpLiftVR Studios / VRMakerDome
+      </div>
+    </section>
+
+    <!-- SLIDE 2: What is a Game Jam? -->
+    <section class="slide" data-notes="Explain the difference between a multi-year project and a jam. Jams are freedom from perfectionism.">
+      <div class="slide-eyebrow">The 48-Hour Crucible</div>
+      <h2 class="slide-title">Why Game Jams?</h2>
+      <p class="slide-subtitle">Game jams are not hackathons. They are creative alchemical crucibles where constraints become your greatest superpower.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="color:var(--cyan);">⏱️ Extreme Velocity</h3>
+          <p>From a blank canvas to a fully playable game in 48 hours. No room for second-guessing.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">🛡️ License to Fail</h3>
+          <p>If the idea flops, you invested two days, not two years. The stakes are delightfully zero.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">💎 The 'Unfinished Gem'</h3>
+          <p>Many beloved indie hits—Celeste, Superhot, Surgeon Simulator—were born in 48-hour jams.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: The Golden Rule: 1 Atomic Verb -->
+    <section class="slide" data-notes="Focus on Scope. Hours 0-4 must distill the core verb: jump, rotate, thrust, swap. Avoid MMORPG syndrome!">
+      <div class="slide-eyebrow">Scope Discipline</div>
+      <h2 class="slide-title">The One Atomic Verb</h2>
+      <p class="slide-subtitle">The number one reason first-time jammers don't submit is scope creep. Win the jam in Hour 4 by ruthless distillation.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--rose);">❌ The Scope Trap</h3>
+          <p>“My game is an open-world RPG with branching narrative trees, 4 classes, crafting, and multiplayer.”</p>
+          <div style="margin-top:0.75rem; color:#f87171; font-size:0.85rem;">Result: Exhaustion, missing assets, zero submission.</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--emerald);">✅ The Atomic Loop</h3>
+          <p>“My game is about adjusting thruster angle for 10 seconds against lunar gravity.”</p>
+          <div style="margin-top:0.75rem; color:#34d399; font-size:0.85rem;">Result: Playable in 6 hours, polished in 30, submitted with joy.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Interactive Social Experiment -->
+    <section class="slide" data-notes="Engage the audience! We roll or draw 3 words from attendees: a theme, a constraint, and a mechanic.">
+      <div class="slide-eyebrow">Live Experiment</div>
+      <h2 class="slide-title">Audience Social Experiment</h2>
+      <p class="slide-subtitle">Let's design a 48-hour game together right now in 5 minutes using 3 random audience prompts.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="color:var(--purple);">1. The Theme</h3>
+          <p>What is the emotional vibe or prompt? (e.g. "Ten Seconds", "Parallel Worlds", "Tiny Machines")</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--cyan);">2. The Constraint</h3>
+          <p>What can you NOT do? (e.g. "No text", "Single button only", "Zero gravity")</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">3. The Core Verb</h3>
+          <p>What is the single physical action the player performs? (e.g. "Magnetize", "Rewind", "Tilt")</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Conclusion & Resources -->
+    <section class="slide" data-notes="Point attendees to local Seattle communities (Seattle Indies), online jams (itch.io, Ludum Dare), and UpLiftVR booth.">
+      <div class="slide-eyebrow">Your Next Step</div>
+      <h2 class="slide-title">Cross the Threshold</h2>
+      <p class="slide-subtitle">You don't need permission to make games. You just need 48 hours and the courage to make something wonderfully weird.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--cyan);">🤝 Communities & Jams</h3>
+          <p>• <strong>Seattle Indies:</strong> Local community, monthly jams & socials.<br>
+          • <strong>Ludum Dare:</strong> World's premier 48h solo jam.<br>
+          • <strong>Itch.io Jams:</strong> Hundreds of low-pressure themed jams weekly.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">🥽 Visit the UpLiftVR Booth</h3>
+          <p>Come try <em>Maiden Flight</em> and <em>High Desert Eclipse</em> in the Seattle Indies gaming hall, meet the team, and let's talk game design!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Controls -->
+    <footer id="deck-footer">
+      <div>GeekGirlCon 2026 • UpLiftVR Studios</div>
+      <div id="keybind-hint">
+        <span><kbd>←</kbd> <kbd>→</kbd> Navigate</span>
+        <span><kbd>F</kbd> Fullscreen</span>
+        <span><kbd>P</kbd> Presenter Notes</span>
+      </div>
+      <div id="slide-counter">1 / 5</div>
+    </footer>
+  </div>
+
+  <!-- Presenter Notes Window -->
+  <div id="presenter-modal">
+    <h4><span>🎙️ Speaker Notes</span> <span id="timer-display">00:00</span></h4>
+    <div id="notes-content">Loading notes...</div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progress-bar');
+    const counter = document.getElementById('slide-counter');
+    const notesModal = document.getElementById('presenter-modal');
+    const notesContent = document.getElementById('notes-content');
+    const timerDisplay = document.getElementById('timer-display');
+    let currentIndex = 0;
+    let timerInterval = null;
+    let secondsElapsed = 0;
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= slides.length) index = slides.length - 1;
+      currentIndex = index;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentIndex);
+      });
+
+      const progress = ((currentIndex + 1) / slides.length) * 100;
+      progressBar.style.width = `${progress}%`;
+      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+
+      const activeSlide = slides[currentIndex];
+      notesContent.textContent = activeSlide.getAttribute('data-notes') || 'No speaker notes for this slide.';
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function togglePresenterNotes() {
+      const isVisible = notesModal.style.display === 'block';
+      notesModal.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible && !timerInterval) {
+        timerInterval = setInterval(() => {
+          secondsElapsed++;
+          const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+          const secs = String(secondsElapsed % 60).padStart(2, '0');
+          timerDisplay.textContent = `${mins}:${secs}`;
+        }, 1000);
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowRight':
+        case ' ':
+        case 'PageDown':
+          e.preventDefault();
+          updateSlide(currentIndex + 1);
+          break;
+        case 'ArrowLeft':
+        case 'PageUp':
+          e.preventDefault();
+          updateSlide(currentIndex - 1);
+          break;
+        case 'f':
+        case 'F':
+          toggleFullscreen();
+          break;
+        case 'p':
+        case 'P':
+          togglePresenterNotes();
+          break;
+      }
+    });
+
+    // Initial render
+    updateSlide(0);
+  </script>
+</body>
+</html>
