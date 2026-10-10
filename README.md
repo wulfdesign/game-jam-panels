@@ -3,9 +3,9 @@
 > **Event:** GeekGirlCon 2026 • Seattle Convention Center Arch Building  
 > **Session:** Sunday, Oct 25, 2026 @ 1:30 PM (45-Minute Panel) • Room 'America'  
 > **Moderator:** Larry James (UpLiftVR Studios / Wulf Design Studios)  
-> **Panelists:** Tim Cullings (Seattle Indies), Heather Coles (Orbicular), Renee Gittins (Stumbling Cat)  
+> **Panelists:** Tim Cullings (Seattle Indies), Heather Coles (Orbicular), Renee Gittins (Stumbling Cat), Evie Powell, PhD (Niantic)  
 > **Production Port:** `3026` (Clean Public Slide Deck)  
-> **Status:** 🧪 Ready for QA • **Version:** `v0.2.0`  
+> **Status:** 🧪 Ready for QA • **Version:** `v0.2.1`  
 
 ---
 
