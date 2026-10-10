@@ -177,32 +177,36 @@
     .badge-purple { background: rgba(168, 85, 247, 0.15); border: 1px solid var(--purple); color: var(--purple); }
     .badge-emerald { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--emerald); color: var(--emerald); }
 
-    /* Roster Profile Cards */
+    /* Roster Profile Cards with Headshots */
     .profile-card {
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(56, 189, 248, 0.3);
       border-radius: 12px;
       padding: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
     }
 
-    .profile-name {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: #fff;
+    .profile-headshot {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
     }
 
-    .profile-title {
-      font-size: 1.05rem;
-      color: var(--magenta);
-      font-weight: 600;
-      margin-bottom: 0.85rem;
+    .profile-bio-container {
+      flex: 1;
     }
 
     .profile-bio {
-      font-size: 1rem;
+      font-size: 0.98rem;
       line-height: 1.55;
       color: #cbd5e1;
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
     }
 
     .meta-list {
@@ -252,8 +256,8 @@
     }
 
     .qr-card img {
-      width: 140px;
-      height: 140px;
+      width: 135px;
+      height: 135px;
       background: #ffffff;
       padding: 6px;
       border-radius: 8px;
@@ -416,7 +420,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 80%;
-      max-width: 700px;
+      max-width: 750px;
       background: #0f172a;
       border: 2px solid var(--cyan);
       border-radius: 12px;
@@ -473,7 +477,7 @@
         </div>
         <div class="card" style="border-left: 4px solid var(--cyan);">
           <span class="badge badge-cyan">The Lineup</span>
-          <p><strong>Larry James</strong> (Mod • UpLiftVR) • <strong>Tim Cullings</strong> (Seattle Indies) • <strong>Heather Coles</strong> (Orbicular) • <strong>Renee Gittins</strong> (Stumbling Cat) • <strong>Evie Powell, PhD</strong> (Niantic)</p>
+          <p><strong>Larry James</strong> (Mod • UpLiftVR) • <strong>Tim Cullings</strong> (Seattle Indies) • <strong>Heather Coles</strong> (Orbicular) • <strong>Renee Gittins</strong> (Stumbling Cat) • <strong>Dr. Evie Powell</strong> (Niantic Spatial)</p>
         </div>
       </div>
     </div>
@@ -488,13 +492,15 @@
 
       <div class="grid-2">
         <div class="profile-card">
-          <span class="badge badge-cyan">Bio & Journey</span>
-          <p class="profile-bio">"Larry James is the creative force behind UpLiftVR Studios, where impossible-feeling moments become immersive VR experiences people don't forget. A fixture of Seattle's maker and XR community since founding the VRMakerDome, Larry builds worlds and welcomes anyone curious enough to ask how."</p>
-          <ul class="meta-list">
-            <li><strong>Pronouns:</strong> He/Him/His</li>
-            <li><strong>Current Title:</strong> Founder / Lead Developer</li>
-            <li><strong>Studio:</strong> Wulf Design Studios & UpLiftVR Studios</li>
-          </ul>
+          <img class="profile-headshot" src="assets/headshots/larry_james.jpg" alt="Larry James Headshot">
+          <div class="profile-bio-container">
+            <span class="badge badge-cyan">Bio & Journey</span>
+            <p class="profile-bio">"Larry James is the creative force behind UpLiftVR Studios, where impossible-feeling moments become immersive VR experiences people don't forget. A fixture of Seattle's maker and XR community since founding the VRMakerDome, Larry builds worlds and welcomes anyone curious enough to ask how."</p>
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> He/Him</li>
+              <li><strong>Title:</strong> Founder / Lead Developer (Wulf Design / UpLiftVR)</li>
+            </ul>
+          </div>
         </div>
         <div class="card" style="justify-content: space-between;">
           <div>
@@ -546,13 +552,15 @@
 
       <div class="grid-2">
         <div class="profile-card">
-          <span class="badge badge-cyan">Bio & Journey</span>
-          <p class="profile-bio">"Tim Cullings (he/him) is a Seattle video games industry veteran and champion for game development and climate science. He is currently Executive Director for Seattle Indies, Board Treasurer of IGDA, and formerly Executive Director & Director of Operations at Global Game Jam. Prior to GGJ, Tim worked in Dev Ops and Enterprise Engineering at Oculus helping ship Rift through Quest 2."</p>
-          <ul class="meta-list">
-            <li><strong>Pronouns:</strong> He/Him/His</li>
-            <li><strong>Current Title:</strong> Executive Director - Seattle Indies</li>
-            <li><strong>Affiliations:</strong> IGDA Board, ex-Global Game Jam, ex-Oculus</li>
-          </ul>
+          <img class="profile-headshot" src="assets/headshots/tim_cullings.jpg" alt="Tim Cullings Headshot">
+          <div class="profile-bio-container">
+            <span class="badge badge-cyan">Bio & Journey</span>
+            <p class="profile-bio">"Tim Cullings (he/him) is a Seattle video games industry veteran and champion for game development and climate science. Executive Director for Seattle Indies, Board Treasurer of IGDA, and formerly Executive Director & Director of Operations at Global Game Jam. Prior to GGJ, Tim worked in Dev Ops and Enterprise Engineering at Oculus helping ship Rift through Quest 2."</p>
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> He/Him/His</li>
+              <li><strong>Title:</strong> Executive Director - Seattle Indies</li>
+            </ul>
+          </div>
         </div>
         <div class="card" style="justify-content: space-between;">
           <div>
@@ -604,13 +612,15 @@
 
       <div class="grid-2">
         <div class="profile-card">
-          <span class="badge badge-magenta">Bio & Journey</span>
-          <p class="profile-bio">"Heather Coles is a Seattle-based interaction designer and Creative Director at Orbicular. Her career began at a Student RND hackathon leading the team behind Monsantoware. A Cornish graduate with a curiosity for eye-tracking, accessibility, and immersive tech, she's a fixture at game jams as both mentor and maker."</p>
-          <ul class="meta-list">
-            <li><strong>Pronouns:</strong> She/Her</li>
-            <li><strong>Current Title:</strong> Creative Director & Interaction Designer</li>
-            <li><strong>Studio:</strong> Orbicular</li>
-          </ul>
+          <img class="profile-headshot" src="assets/headshots/heather_coles.jpg" alt="Heather Coles Headshot">
+          <div class="profile-bio-container">
+            <span class="badge badge-magenta">Bio & Journey</span>
+            <p class="profile-bio">"Heather Coles is a Seattle-based interaction designer and Creative Director at Orbicular. Her career began at a Student RND hackathon leading the team behind Monsantoware. A Cornish graduate with a curiosity for eye-tracking, accessibility, and immersive tech, she's a fixture at game jams as both mentor and maker."</p>
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> She/Her</li>
+              <li><strong>Studio:</strong> Orbicular</li>
+            </ul>
+          </div>
         </div>
         <div class="card" style="justify-content: space-between;">
           <div>
@@ -662,13 +672,15 @@
 
       <div class="grid-2">
         <div class="profile-card">
-          <span class="badge badge-purple">Bio & Journey</span>
-          <p class="profile-bio">"Renee leads Stumbling Cat, developers of Potions: A Curious Tale, and is a multi-disciplinary leader with expertise in operations, engineering, and creative direction. Formerly General Manager at Phoenix Labs Vancouver and Executive Director of the IGDA, she chairs the IGDA Alumni Board and is authoring 'The Bad Boss Witch Guide to Rule Your World'."</p>
-          <ul class="meta-list">
-            <li><strong>Pronouns:</strong> She/Her</li>
-            <li><strong>Current Title:</strong> Studio Head - Stumbling Cat</li>
-            <li><strong>Book:</strong> The Bad Boss Witch Guide to Rule Your World</li>
-          </ul>
+          <img class="profile-headshot" src="assets/headshots/renee_gittins.jpg" alt="Renee Gittins Headshot">
+          <div class="profile-bio-container">
+            <span class="badge badge-purple">Bio & Journey</span>
+            <p class="profile-bio">"Renee leads Stumbling Cat, developers of Potions: A Curious Tale, and is a multi-disciplinary leader with expertise in operations, engineering, and creative direction. Formerly General Manager at Phoenix Labs Vancouver and Executive Director of the IGDA, she chairs the IGDA Alumni Board and is authoring 'The Bad Boss Witch Guide to Rule Your World'."</p>
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> She/Her</li>
+              <li><strong>Studio:</strong> Stumbling Cat | <strong>Book:</strong> Bad Boss Witch Guide</li>
+            </ul>
+          </div>
         </div>
         <div class="card" style="justify-content: space-between;">
           <div>
@@ -713,28 +725,32 @@
     <!-- ========================================== -->
     <!-- SLIDE 10: Evie Powell, PhD - Spotlight     -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-10" data-notes="Spotlight Evie Powell, PhD. Evie is Senior Staff Engineer at Niantic Spatial and creator of Epic Snowday Adventure on Steam. Mention her pioneering work blending games and spatial augmented reality.">
+    <div class="slide" id="slide-10" data-notes="Spotlight Dr. Evie Powell. Evie has a Ph.D. in Pervasive Game Design and is Staff Software Engineer at Niantic Spatial. She has worked on Xbox One Kinect, Pokémon Go AR, Niantic Peridot, and indie titles like Epic Snowday Adventure on Steam. Hand mic over to Evie!">
       <div class="slide-eyebrow">Special Guest Spotlight • Niantic Spatial</div>
-      <h2 class="slide-title">Evie Powell, PhD</h2>
-      <p class="slide-subtitle">Senior Staff Engineer, Niantic Spatial, Inc. • XR Technologist • Indie Game Developer</p>
+      <h2 class="slide-title">Dr. Evie Powell</h2>
+      <p class="slide-subtitle">Staff Software Engineer, Niantic Spatial • Ph.D. Pervasive Game Design • Forever Games Enthusiast</p>
 
       <div class="grid-2">
         <div class="profile-card">
-          <span class="badge badge-cyan">Pioneering Spatial Computing</span>
-          <p class="profile-bio">"Evie Powell, PhD is a Senior Staff Engineer at Niantic Spatial, leading the technical frontier of augmented reality, spatial computing, and interactive play. A long-time indie innovator whose work merges cutting-edge spatial tech with approachable, whimsical game design."</p>
-          <ul class="meta-list">
-            <li><strong>Pronouns:</strong> She/Her</li>
-            <li><strong>Affiliation:</strong> Niantic Spatial, Inc.</li>
-            <li><strong>LinkedIn:</strong> linkedin.com/in/evie-powell-phd-b078b43/</li>
-          </ul>
+          <img class="profile-headshot" src="assets/headshots/evie_powell.jpg" alt="Dr. Evie Powell Headshot">
+          <div class="profile-bio-container">
+            <span class="badge badge-cyan">Pervasive Game Design & AR</span>
+            <p class="profile-bio">"Evie Powell has a Ph.D. in Pervasive Game Design (ask her what that means!). She has worked on games in industry (Xbox One Kinect, Niantic's Pokémon Go AR, Niantic Spatial's Peridot, and her own games) while specializing in AR/VR and natural user interfaces."</p>
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> She / Her</li>
+              <li><strong>Studio:</strong> Niantic Spatial / Independent Creator</li>
+            </ul>
+          </div>
         </div>
         <div class="card" style="justify-content: space-between;">
           <div>
-            <span class="badge badge-emerald">Featured Indie Title</span>
-            <h3>Epic Snowday Adventure</h3>
-            <p>A charming, action-packed indie adventure game celebrating winter snowday fun, available on Steam. Demonstrates how deep engineering roots translate directly into cozy indie joy.</p>
+            <span class="badge badge-emerald">Channels & Philosophy</span>
+            <p><strong>LinkedIn:</strong> linkedin.com/in/evie-powell-phd-b078b43/</p>
+            <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--emerald);">
+              <p style="font-size: 0.9rem; font-style: italic; color: #f1f5f9;">"Some of my most awesome outcomes came when I decided I wanted to learn something new rather than just win... Jams are fantastic learning sandboxes."</p>
+            </div>
           </div>
-          <a class="spotlight-link" href="https://store.steampowered.com/app/477190/Epic_Snowday_Adventure/" target="_blank">🌟 The Spotlight Link: Epic Snowday Adventure ↗</a>
+          <a class="spotlight-link" href="https://store.steampowered.com/app/477190/Epic_Snowday_Adventure/" target="_blank">🌟 Featured Project: Epic Snowday Adventure ↗</a>
         </div>
       </div>
     </div>
@@ -860,26 +876,31 @@
     <!-- ========================================== -->
     <!-- SLIDE 15: Memory Lane: First Jams          -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-15" data-notes="Trip down memory lane! Share our first jams. Mention SuperChurchFart64 for Ludum Dare 25 ('You Are The Villain') and Ten Seconds of Thrust. Ask Heather, Renee, and Tim to share the ridiculous names and wild setups of their first game jam projects.">
+    <div class="slide" id="slide-15" data-notes="Trip down memory lane! Share our first jams. Mention SuperChurchFart64 for Ludum Dare 25 ('You Are The Villain') and Ten Seconds of Thrust. Mention Renee's Ludum Dare 34 project Dryad, Heather's Monsantoware, and Evie's first Global Game Jam on Xbox Live Indie Games!">
       <div class="slide-eyebrow">Panelist Origins • Legacy Slides 12-13</div>
       <h2 class="slide-title">Our First Jams: The Beautiful Chaos</h2>
       <p class="slide-subtitle">Before shipped titles and studio leadership, we all started in 48-hour caffeine-fueled pandemonium.</p>
 
-      <div class="grid-3">
+      <div class="grid-4">
         <div class="card">
-          <span class="badge badge-magenta">Larry's Origin</span>
-          <h3>SuperChurchFart64 (LD25)</h3>
-          <p>Ludum Dare 25 theme: "You Are The Villain." Built an irreverent, hilarious prototype that proved game creation could be joyous, unpretentious, and completely wild.</p>
+          <span class="badge badge-magenta">Larry (LD25)</span>
+          <h3>SuperChurchFart64</h3>
+          <p>Theme: "You Are The Villain." Built an irreverent, hilarious prototype that proved game creation could be joyous, unpretentious, and completely wild.</p>
         </div>
         <div class="card">
-          <span class="badge badge-gold">Heather's Origin</span>
+          <span class="badge badge-gold">Heather</span>
           <h3>Monsantoware</h3>
           <p>A high-speed satirical micro-game hackathon project with Student RND that unlocked the realization that chaotic collaborative prototyping was a legitimate creative career path.</p>
         </div>
         <div class="card">
-          <span class="badge badge-cyan">Tim & Renee's Origins</span>
-          <h3>The Early Sprints</h3>
-          <p>Discovering that building games in 48 hours is less about technical perfection and more about discovering what mechanic makes your team laugh or lean in.</p>
+          <span class="badge badge-purple">Renee (LD34)</span>
+          <h3>Dryad</h3>
+          <p>Ludum Dare 34 compo project exploring character mechanics and nature motifs that sharpened core rapid prototyping skills.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-cyan">Evie (GGJ)</span>
+          <h3>Xbox Live Indie Game</h3>
+          <p>Global Game Jam sprint that ended up reviewed on Xbox Live Indie Games, proving a 48-hour jam project can find an audience anywhere!</p>
         </div>
       </div>
     </div>
@@ -887,7 +908,7 @@
     <!-- ========================================== -->
     <!-- SLIDE 16: Panel Question: Glorious Failure -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-16" data-notes="Panel question: The Glorious Failure. Invite each panelist to share their favorite jam disaster. Discuss why failing in a jam is the safest, most empowering learning environment in technology.">
+    <div class="slide" id="slide-16" data-notes="Panel question: The Glorious Failure. Invite each panelist to share their favorite jam disaster. Evie's 'Did You Murder Your Wife' urban legend where players stashed a body to reach a boat. Larry's Story Spinner card game print-and-play scramble. Discuss why failing in a jam is the safest, most empowering learning environment in technology.">
       <div class="slide-eyebrow">The Moderator's Question Vault • Question #1</div>
       <h2 class="slide-title">The "Glorious Failure": When Jams Go Sideways</h2>
       <p class="slide-subtitle">The greatest lessons in game development come from the catastrophic 2:00 AM disasters.</p>
@@ -896,12 +917,13 @@
         <div class="card" style="border-left: 4px solid var(--rose);">
           <span class="badge badge-magenta">Panelist Question</span>
           <h3 style="color: var(--rose);">"What is the jam where everything went completely wrong?"</h3>
-          <p>Tell us about the physics glitches that launched the player into outer space, the 3:00 AM Git merge nightmare, or the scope explosion that forced a radical pivot.</p>
+          <p>• <strong>Evie's Urban Legend:</strong> <em>"Did You Murder Your Wife"</em> (UNCC GGJ) — you had to stash a body to avoid police suspicion while escaping to a boat (you didn't actually murder your wife!). The project became a reddit urban legend!<br><br>
+          • <strong>Larry's Scramble:</strong> <em>Story Spinner</em> (GGJ 2015) — an over-scoped multiplayer card game that turned into a frantic print-and-play scramble 10 minutes before judging.</p>
         </div>
-        <div class="card">
+        <div class="card" style="border-left: 4px solid var(--cyan);">
           <span class="badge badge-cyan">The Takeaway</span>
           <h3>Why Game Jams Make Failure Safe</h3>
-          <p>In a commercial studio, failure costs thousands of dollars and months of work. In a game jam, failure only costs 48 hours—and gives you a hilarious story and an invaluable lesson you will never repeat.</p>
+          <p>In a commercial studio, failure costs thousands of dollars and months of work. In a game jam, failure only costs 48 hours—and leaves you with an unforgettable story and an invaluable lesson you will never repeat.</p>
         </div>
       </div>
     </div>
@@ -909,7 +931,7 @@
     <!-- ========================================== -->
     <!-- SLIDE 17: The Game Jam "Cheat Codes"        -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-17" data-notes="Discuss the Game Jam Cheat Codes. Introduce the Golden Rule: 'The One Atomic Verb'. Explain that if your game requires jumping, shooting, crafting, flying, and inventory management, you will not finish. Pick ONE verb and make it feel amazing. Also highlight the butcher knife scope cuts on Sunday morning.">
+    <div class="slide" id="slide-17" data-notes="Discuss the Game Jam Cheat Codes. Introduce the Golden Rule: 'The One Atomic Verb'. Evie's mindset hack: Treat jams as a sandbox to learn a new skill (Audio/Design) rather than just try to win, and actually sleep! Larry's scope butcher knife: Cut 50% Saturday night, cut 50% Sunday morning.">
       <div class="slide-eyebrow">Survival Guide • Question #2</div>
       <h2 class="slide-title">The Game Jam "Cheat Codes": Surviving the 48 Hours</h2>
       <p class="slide-subtitle">Tactics and psychological hacks from veteran developers to cross the finish line.</p>
@@ -920,15 +942,15 @@
           <h3>The "One Atomic Verb"</h3>
           <p>Don't build a massive RPG. Pick <strong>ONE</strong> single verb (<em>Jump</em>, <em>Brew</em>, <em>Rotate</em>, <em>Shout</em>, <em>Catch</em>) and polish the game feel until that one interaction feels magical.</p>
         </div>
-        <div class="card" style="border-top: 4px solid var(--rose);">
-          <span class="badge badge-magenta">The Butcher Knife</span>
-          <h3>Ruthless Scope Pruning</h3>
-          <p>Saturday night: cut 50% of your planned features. Sunday morning: cut 50% of what remains. A tiny game that is playable and finished beats an ambitious game with broken menus.</p>
+        <div class="card" style="border-top: 4px solid var(--cyan);">
+          <span class="badge badge-cyan">Evie's Mindset Hack</span>
+          <h3>Learn Rather Than Win</h3>
+          <p><em>"Some of my most awesome outcomes came when I decided to learn something new rather than win. If you're a coder, focus on audio or lead design. And actually sleep!"</em></p>
         </div>
-        <div class="card" style="border-top: 4px solid var(--emerald);">
-          <span class="badge badge-emerald">Human Maintenance</span>
-          <h3>Hydrate, Sleep, & Eat</h3>
-          <p>Sleep is not a sign of weakness—it's a debugging tool. Dehydrated, exhausted developers write bugs that take 6 hours to fix on Sunday afternoon. Take care of your crew.</p>
+        <div class="card" style="border-top: 4px solid var(--rose);">
+          <span class="badge badge-magenta">The Scope Butcher Knife</span>
+          <h3>Ruthless Pruning</h3>
+          <p>Saturday night: cut 50% of your planned features. Sunday morning: cut 50% of what remains. A tiny game that is playable and finished beats an ambitious broken menu.</p>
         </div>
       </div>
     </div>
@@ -936,7 +958,7 @@
     <!-- ========================================== -->
     <!-- SLIDE 18: The Butterfly Effect             -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-18" data-notes="Panel Question: The Butterfly Effect & Serendipity. What is the most unexpected or magical opportunity that entered your life purely because you entered a game jam? Let panelists share stories of jobs, co-founders, festival debuts, and friendships.">
+    <div class="slide" id="slide-18" data-notes="Panel Question: The Butterfly Effect & Serendipity. What is the most unexpected or magical opportunity that entered your life purely because you entered a game jam? Let panelists share stories of jobs, co-founders, festival debuts, and friendships. Evie: Seattle VR hackathons locked in friendships that launched her AR/VR career.">
       <div class="slide-eyebrow">Career Magic • Question #3</div>
       <h2 class="slide-title">The Butterfly Effect: Jam Serendipity</h2>
       <p class="slide-subtitle">How a chaotic 48-hour weekend prototype alters life paths, launches studios, and opens doors.</p>
@@ -945,9 +967,10 @@
         <div class="card" style="border-left: 4px solid var(--purple);">
           <span class="badge badge-purple">The Serendipity Factor</span>
           <h3 style="color: var(--purple);">"What magic happened because you entered a jam?"</h3>
-          <p>Have panelists share the unexpected job offers, festival selections (SIFF, KremFest), publishing conversations, or lifelong best friendships that trace directly back to a single weekend jam.</p>
+          <p>• <strong>Evie:</strong> <em>"The Seattle VR hackathons were where I locked in close friendships that really helped my career in AR/VR take off. Those connections led to incredible opportunities I benefit from to this day."</em><br><br>
+          • <strong>Larry:</strong> Prototyping in Ludum Dare and GGJ paved the way to SIFF VR-Zone showcases and founding UpLiftVR Studios.</p>
         </div>
-        <div class="card">
+        <div class="card" style="border-left: 4px solid var(--cyan);">
           <span class="badge badge-cyan">Community Gravity</span>
           <h3>The Unspoken Resume</h3>
           <p>Game developers don't look at degrees—they look at what you've shipped. Having two or three game jam projects on itch.io proves you can scope, collaborate, and cross the finish line.</p>
@@ -1078,18 +1101,18 @@
     <!-- ========================================== -->
     <!-- SLIDE 23: Open Q&A                         -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-23" data-notes="Open the floor for audience questions. Facilitate questions between Larry, Tim, Heather, Renee, and Evie.">
+    <div class="slide" id="slide-23" data-notes="Open the floor for audience questions. Facilitate questions between Larry, Tim, Heather, Renee, and Evie. Evie's question: 'Do you ever do hackathons as part of your day job?' Larry's topic: 'Projects that wouldn't fit the jam weekend that you later created outside of it.'">
       <div class="slide-eyebrow">Open Floor • Legacy Slide 42</div>
       <h2 class="slide-title">Questions & Answers</h2>
       <p class="slide-subtitle">Ask our panel anything about tools, team finding, imposter syndrome, or surviving the 48-hour crunch.</p>
 
       <div class="grid-2">
         <div class="card" style="border-left: 4px solid var(--cyan);">
-          <span class="badge badge-cyan">Topics to Ask About</span>
-          <p>• What free tools are best for complete beginners (Godot, Twine, Bitsy)?<br>
-          • How do you deal with team conflicts during a 48-hour jam?<br>
-          • How do you take a jam prototype and turn it into a full game?<br>
-          • How do you overcome the fear of putting your work online?</p>
+          <span class="badge badge-cyan">Featured Topics</span>
+          <p>• <strong>Evie's Question:</strong> Do you ever do hackathons as part of your day job? Do you recommend it?<br>
+          • <strong>Larry's Topic:</strong> Projects born from jam brainstorms that were finished outside the jam.<br>
+          • <strong>Free Tools:</strong> Godot, Twine, Bitsy, and Blender for complete beginners.<br>
+          • <strong>Imposter Syndrome:</strong> How to stop worrying about code and just make toys.</p>
         </div>
         <div class="card" style="border-left: 4px solid var(--magenta);">
           <span class="badge badge-magenta">Convention Next Stop</span>
@@ -1139,10 +1162,10 @@
           <a href="https://potionsacurioustale.com/" target="_blank">potionsacurioustale.com ↗</a>
         </div>
 
-        <!-- Evie Powell, PhD -->
+        <!-- Dr. Evie Powell -->
         <div class="qr-card">
-          <img src="assets/qr/qr_evie_snowday.png" alt="Evie Powell QR Code">
-          <h4>Evie Powell, PhD</h4>
+          <img src="assets/qr/qr_evie_snowday.png" alt="Dr. Evie Powell QR Code">
+          <h4>Dr. Evie Powell</h4>
           <p>Niantic / Epic Snowday</p>
           <a href="https://store.steampowered.com/app/477190/Epic_Snowday_Adventure/" target="_blank">Steam Showcase ↗</a>
         </div>
