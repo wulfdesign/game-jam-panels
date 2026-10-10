@@ -6,6 +6,11 @@ Desktop.ini
 *.bak
 *~
 
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Private & Drafts (Strict Wards for Public Repo)
 private/
 private/*
