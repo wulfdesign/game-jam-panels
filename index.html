@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Jams: Thought to Thing in 48 Hours | GeekGirlCon 2026</title>
+  <title>Game Jams: Your Gateway to Fun, Friends, Indie Game Dev, & XR Realities | GeekGirlCon 2026</title>
   <style>
     :root {
       --bg: #0b0f19;
       --slide-bg: #111827;
-      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-bg: rgba(30, 41, 59, 0.75);
       --border: rgba(56, 189, 248, 0.25);
       --text: #f8fafc;
       --muted: #94a3b8;
@@ -17,6 +17,7 @@
       --gold: #f59e0b;
       --emerald: #10b981;
       --purple: #a855f7;
+      --rose: #f43f5e;
     }
 
     * {
@@ -40,14 +41,14 @@
 
     /* Presentation Canvas (16:9 Aspect Ratio) */
     #slide-viewport {
-      width: 90vw;
-      max-width: 1400px;
-      height: calc(90vw * 9 / 16);
-      max-height: 787px;
+      width: 92vw;
+      max-width: 1440px;
+      height: calc(92vw * 9 / 16);
+      max-height: 810px;
       background: var(--slide-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -61,11 +62,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 3.5rem 4rem;
+      padding: 3rem 4rem 4.5rem 4rem;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      transform: translateY(8px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -80,66 +81,158 @@
 
     /* Typography */
     .slide-eyebrow {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--magenta);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .slide-title {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
       font-weight: 800;
       line-height: 1.15;
       color: var(--text);
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #fff 30%, var(--cyan) 100%);
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .slide-subtitle {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       color: var(--muted);
       line-height: 1.5;
-      margin-bottom: 2rem;
-      max-width: 900px;
+      margin-bottom: 1.75rem;
+      max-width: 1050px;
     }
 
-    /* Grid Layouts for Content */
+    /* Grids & Cards */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 1rem;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 1rem;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.5rem;
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.75rem;
+      padding: 1.5rem;
       backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
     }
 
     .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
       color: var(--cyan);
     }
 
     .card p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+
+    .badge-cyan { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--cyan); color: var(--cyan); }
+    .badge-magenta { background: rgba(236, 72, 153, 0.15); border: 1px solid var(--magenta); color: var(--magenta); }
+    .badge-gold { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold); color: var(--gold); }
+    .badge-purple { background: rgba(168, 85, 247, 0.15); border: 1px solid var(--purple); color: var(--purple); }
+    .badge-emerald { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--emerald); color: var(--emerald); }
+
+    /* Roster Profile Cards */
+    .profile-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    .profile-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .profile-title {
+      font-size: 1rem;
+      color: var(--magenta);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .profile-bio {
       font-size: 1rem;
       line-height: 1.6;
-      color: var(--muted);
+      color: #cbd5e1;
+      margin-bottom: 1.25rem;
+    }
+
+    .spotlight-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Interactive Experiment Elements */
+    .dice-box {
+      background: #0f172a;
+      border: 2px dashed var(--gold);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .dice-title {
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .dice-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      min-height: 2rem;
     }
 
     /* Footer & Controls */
@@ -148,12 +241,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 1rem 2rem;
+      padding: 0.85rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(9, 13, 22, 0.85);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(9, 13, 22, 0.9);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 0.85rem;
       color: var(--muted);
       z-index: 10;
@@ -164,49 +257,49 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.1);
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     #progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--cyan), var(--magenta));
       width: 0%;
-      transition: width 0.3s ease;
+      transition: width 0.25s ease;
     }
 
-    /* Keybind Hint Overlay */
     #keybind-hint {
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     kbd {
       background: #1e293b;
       border: 1px solid #334155;
       border-radius: 4px;
-      padding: 0.15rem 0.4rem;
+      padding: 0.15rem 0.45rem;
       font-size: 0.75rem;
       color: var(--cyan);
+      font-family: monospace;
     }
 
     /* Presenter Notes Modal */
     #presenter-modal {
       display: none;
       position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      width: 400px;
-      max-height: 250px;
-      background: rgba(15, 23, 42, 0.95);
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 440px;
+      max-height: 280px;
+      background: rgba(15, 23, 42, 0.96);
       border: 1px solid var(--magenta);
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
       z-index: 100;
       overflow-y: auto;
-      font-size: 0.9rem;
-      line-height: 1.5;
+      font-size: 0.92rem;
+      line-height: 1.55;
     }
 
     #presenter-modal h4 {
@@ -214,6 +307,14 @@
       margin-bottom: 0.5rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    #timer-display {
+      font-family: monospace;
+      color: var(--gold);
+      font-size: 1.1rem;
     }
   </style>
 </head>
@@ -224,105 +325,617 @@
       <div id="progress-bar"></div>
     </div>
 
-    <!-- SLIDE 1: Title -->
-    <section class="slide active" data-notes="Welcome attendees! Introduce UpLiftVR, GeekGirlCon heritage, and our thesis: anyone can build a game in 48 hours.">
-      <div class="slide-eyebrow">GeekGirlCon 2026 • Seattle Indies Panel</div>
-      <h1 class="slide-title">Thought to Thing in 48 Hours</h1>
-      <p class="slide-subtitle">Demystifying Game Jams, Scope Discipline, and Rapid Creative Prototyping</p>
-      <div style="margin-top: 1rem; color: var(--cyan); font-weight: 600;">
-        Presented by Magus Wulf • UpLiftVR Studios / VRMakerDome
+    <!-- ========================================== -->
+    <!-- SLIDE 1: Title & Key Details -->
+    <!-- ========================================== -->
+    <section class="slide active" data-notes="Welcome attendees to GeekGirlCon 2026! Acknowledge Seattle Indies and the con organizers. Introduce the panel theme: turning 'I have an idea' into a real, shipped experience in 48 hours without needing to be a coding genius.">
+      <div class="slide-eyebrow">GeekGirlCon 2026 • Room 'America' • Sunday, Oct 25 @ 1:30 PM</div>
+      <h1 class="slide-title">Game Jams: Your Gateway to Fun, Friends, Indie Game Dev, & XR Realities</h1>
+      <p class="slide-subtitle">Demystifying 48-hour game creation, the superpower of constraints, and the collaborative joy of making weird digital art together.</p>
+      <div style="display:flex; gap:1.5rem; align-items:center; margin-top:1rem;">
+        <span class="badge badge-magenta">45-Minute Panel</span>
+        <span class="badge badge-cyan">Seattle Indies Gaming Hall</span>
+        <span class="badge badge-emerald">Zero-Coding Friendly</span>
       </div>
     </section>
 
-    <!-- SLIDE 2: What is a Game Jam? -->
-    <section class="slide" data-notes="Explain the difference between a multi-year project and a jam. Jams are freedom from perfectionism.">
-      <div class="slide-eyebrow">The 48-Hour Crucible</div>
-      <h2 class="slide-title">Why Game Jams?</h2>
-      <p class="slide-subtitle">Game jams are not hackathons. They are creative alchemical crucibles where constraints become your greatest superpower.</p>
+    <!-- ========================================== -->
+    <!-- SLIDE 2: Meet the Crew -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Introduce the full lineup. We have studio founders, executive directors, creative directors, and industry advocates who have collectively shipped dozens of jam games, VR experiences, and commercial titles.">
+      <div class="slide-eyebrow">The Fellowship</div>
+      <h2 class="slide-title">Meet Your Panelists</h2>
+      <p class="slide-subtitle">A collective of Seattle indie developers, VR world-builders, and community champions forged in the trenches of 48-hour game jams.</p>
+      <div class="grid-4">
+        <div class="card">
+          <span class="badge badge-gold">Moderator</span>
+          <h3>Larry James</h3>
+          <p style="font-weight:600; color:#fff;">UpLiftVR / Wulf Design</p>
+          <p style="font-size:0.85rem; margin-top:0.4rem;">Creator of <em>Maiden Flight</em> & <em>High Desert Eclipse</em>. SIFF VR-Zone veteran.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-cyan">Panelist</span>
+          <h3>Tim Cullings</h3>
+          <p style="font-weight:600; color:#fff;">Seattle Indies</p>
+          <p style="font-size:0.85rem; margin-top:0.4rem;">Executive Director, IGDA Treasurer, former Global Game Jam & Oculus.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-magenta">Panelist</span>
+          <h3>Heather Coles</h3>
+          <p style="font-weight:600; color:#fff;">Orbicular</p>
+          <p style="font-size:0.85rem; margin-top:0.4rem;">Creative Director, interaction designer, <em>Tabby Tapper</em> & <em>Frankly Demonic</em>.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-purple">Panelist</span>
+          <h3>Renee Gittins</h3>
+          <p style="font-weight:600; color:#fff;">Stumbling Cat</p>
+          <p style="font-size:0.85rem; margin-top:0.4rem;">Studio Head (<em>Potions: A Curious Tale</em>), IGDA Alumni Chair, Author.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 3: Spotlight: Larry James -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Larry's intro: Founder of UpLiftVR Studios and VRMakerDome. Focuses on contemplative, non-violent, awe-inspiring VR. SIFF VR-Zone month-long residency.">
+      <div class="slide-eyebrow">Panelist Profile</div>
+      <div class="profile-card">
+        <div class="profile-name">Larry James</div>
+        <div class="profile-title">Founder / Lead Developer • UpLiftVR Studios / Wulf Design Studios</div>
+        <p class="profile-bio">
+          Larry James is the creative force behind UpLiftVR Studios, where impossible-feeling moments—a hot air balloon's first ascent, the eerie hush of a total solar eclipse—become immersive VR experiences people don't forget. His balloon ride <em>Maiden Flight</em> spent nearly a month in the 2018 SIFF VR Zone, earning praise from The Seattle Times and King 5 Evening Magazine. A fixture of Seattle's maker and XR community since founding VRMakerDome, Larry builds worlds—and welcomes anyone curious enough to ask how.
+        </p>
+        <div style="display:flex; gap:1rem; align-items:center;">
+          <a class="spotlight-link" href="https://upliftvr.itch.io/" target="_blank">🌟 Spotlight: upliftvr.itch.io</a>
+          <span style="color:var(--muted); font-size:0.9rem;">Bluesky: @wulfdesign.bsky.social</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 4: Spotlight: Tim Cullings -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Tim's intro: Champion for indie creators. Dev ops background at Oculus shipping Rift through Quest 2, leading Global Game Jam, now Executive Director at Seattle Indies.">
+      <div class="slide-eyebrow">Panelist Profile</div>
+      <div class="profile-card">
+        <div class="profile-name">Tim Cullings</div>
+        <div class="profile-title">Executive Director • Seattle Indies | Board Treasurer • IGDA</div>
+        <p class="profile-bio">
+          Tim Cullings (he/him) is a Seattle video games industry veteran and champion for game development and climate science. He is currently the Executive Director for Seattle Indies, Board Treasurer of IGDA, and formerly the Executive Director and Director of Operations at Global Game Jam. Prior to GGJ, Tim worked in DevOps and Enterprise Engineering at Oculus helping ship everything between Rift and Quest 2. Tim’s passion is empowering creators to create and be part of a supportive community of like-minded people.
+        </p>
+        <div style="display:flex; gap:1rem; align-items:center;">
+          <a class="spotlight-link" href="https://timcullings.carrd.co/" target="_blank">🌟 Spotlight: timcullings.carrd.co</a>
+          <span style="color:var(--muted); font-size:0.9rem;">Community: seattleindies.org</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 5: Spotlight: Heather Coles -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Heather's intro: Creative Director at Orbicular. Started at Student RND hackathon with Monsantoware. Works on fluid dynamics, eye-tracking, accessibility, smartwatches.">
+      <div class="slide-eyebrow">Panelist Profile</div>
+      <div class="profile-card">
+        <div class="profile-name">Heather Coles</div>
+        <div class="profile-title">Creative Director • Orbicular | Interaction Designer</div>
+        <p class="profile-bio">
+          Heather Coles is a Seattle-based interaction designer and Creative Director at Orbicular. Her career began at a Student RND hackathon leading the team behind <em>Monsantoware</em>. A Cornish College of the Arts graduate with a curiosity for eye-tracking, accessibility, and immersive tech, she’s a fixture at game jams as both mentor and maker with two games currently in development: <em>Tabby Tapper</em>, a casual clicker that utilizes fluid dynamics, and <em>Frankly Demonic</em>, a dress-up toy on smart watches.
+        </p>
+        <div style="display:flex; gap:1rem; align-items:center;">
+          <a class="spotlight-link" href="https://linktr.ee/heathercoles" target="_blank">🌟 Spotlight: linktr.ee/heathercoles</a>
+          <span style="color:var(--muted); font-size:0.9rem;">Bluesky: @heathercoles.bsky.social</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 6: Spotlight: Renee Gittins -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Renee's intro: Studio Head of Stumbling Cat (Potions: A Curious Tale). Former ED of IGDA, GM at Phoenix Labs Vancouver. Author of 'The Bad Boss Witch Guide'. Staunch diversity advocate.">
+      <div class="slide-eyebrow">Panelist Profile</div>
+      <div class="profile-card">
+        <div class="profile-name">Renee Gittins</div>
+        <div class="profile-title">Studio Head • Stumbling Cat | Chair • IGDA Alumni Board</div>
+        <p class="profile-bio">
+          Renee leads Stumbling Cat, developers of <em>Potions: A Curious Tale</em>, and is a multi-disciplinary leader with expertise in operations, engineering, and creative direction. Formerly the General Manager at Phoenix Labs - Vancouver and the Executive Director of the IGDA, she now serves as the Chair of the IGDA Alumni Board and is currently writing a book titled <em>"The Bad Boss Witch Guide to Rule Your World."</em> A staunch advocate for game developers, Renee consults for various organizations and vocally supports initiatives aimed at enhancing diversity within the gaming industry.
+        </p>
+        <div style="display:flex; gap:1rem; align-items:center;">
+          <a class="spotlight-link" href="https://potionsacurioustale.com/" target="_blank">🌟 Spotlight: potionsacurioustale.com</a>
+          <span style="color:var(--muted); font-size:0.9rem;">Bluesky: @rikukat.bsky.social</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 7: Act I: What IS a Game Jam? -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Set the stage: Game jams are not high-stress corporate hackathons. They are low-stakes creative sandboxes. 48 hours, a surprise theme, and freedom to experiment.">
+      <div class="slide-eyebrow">Act I • The 48-Hour Crucible</div>
+      <h2 class="slide-title">What IS a Game Jam?</h2>
+      <p class="slide-subtitle">A game jam is a celebratory gathering of creators who build a complete, playable game from scratch within a fixed deadline (typically 48 hours).</p>
       <div class="grid-3">
         <div class="card">
-          <h3 style="color:var(--cyan);">⏱️ Extreme Velocity</h3>
-          <p>From a blank canvas to a fully playable game in 48 hours. No room for second-guessing.</p>
+          <h3 style="color:var(--cyan);">⏱️ The Clock</h3>
+          <p>Strict time limits force decisions. You can't spend 6 months choosing an art style when you have 48 hours.</p>
         </div>
         <div class="card">
-          <h3 style="color:var(--magenta);">🛡️ License to Fail</h3>
-          <p>If the idea flops, you invested two days, not two years. The stakes are delightfully zero.</p>
+          <h3 style="color:var(--magenta);">🎲 The Theme</h3>
+          <p>A surprise prompt revealed at kickoff (e.g. "Ten Seconds", "Repair", "Running out of Space") sparks divergent thinking.</p>
         </div>
         <div class="card">
-          <h3 style="color:var(--gold);">💎 The 'Unfinished Gem'</h3>
-          <p>Many beloved indie hits—Celeste, Superhot, Surgeon Simulator—were born in 48-hour jams.</p>
+          <h3 style="color:var(--gold);">🛡️ License to Fail</h3>
+          <p>Zero commercial pressure. If the prototype flops, you spent a weekend having fun with friends—not years of savings.</p>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 3: The Golden Rule: 1 Atomic Verb -->
-    <section class="slide" data-notes="Focus on Scope. Hours 0-4 must distill the core verb: jump, rotate, thrust, swap. Avoid MMORPG syndrome!">
-      <div class="slide-eyebrow">Scope Discipline</div>
-      <h2 class="slide-title">The One Atomic Verb</h2>
-      <p class="slide-subtitle">The number one reason first-time jammers don't submit is scope creep. Win the jam in Hour 4 by ruthless distillation.</p>
+    <!-- ========================================== -->
+    <!-- SLIDE 8: The Triple-A Payoff -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Explain the Triple-A Payoff: Fun, Friends, and Craft. Why invest a weekend? Because you learn more in 48 hours of shipping than in 6 months of passive video tutorials.">
+      <div class="slide-eyebrow">The Philosophy</div>
+      <h2 class="slide-title">The "Triple-A" Payoff: Why Jam?</h2>
+      <p class="slide-subtitle">You don't need a multi-million dollar budget to get a Triple-A experience out of making games.</p>
+      <div class="grid-3">
+        <div class="card">
+          <span class="badge badge-cyan">Payoff 1</span>
+          <h3>🎉 Fun!</h3>
+          <p>Pure creative autonomy. Low stakes, high imagination. You get to make whatever wild, absurd idea pops into your head.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-magenta">Payoff 2</span>
+          <h3>🤝 Friends!</h3>
+          <p>The shared camaraderie of the jam trenches. Meeting artists, composers, and designers who become lifelong collaborators.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-emerald">Payoff 3</span>
+          <h3>🛠️ Craft!</h3>
+          <p>Accelerated skill mastery. You experience the complete development lifecycle: ideation, build, audio, testing, and shipping.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 9: Jam Roles: You Don't Need to Code! -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Crucial point for GeekGirlCon attendees: You do NOT have to be a software engineer to join a jam! Teams desperately need writers, artists, sound creators, and producers.">
+      <div class="slide-eyebrow">Team Dynamics</div>
+      <h2 class="slide-title">You DON'T Need to Know How to Code</h2>
+      <p class="slide-subtitle">A video game is a symphony of diverse arts. Jams thrive when cross-disciplinary storytellers bring their unique voices.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="color:var(--magenta);">🎨 Artists & Animators</h3>
+          <p>Visual mood, 2D sprites, 3D low-poly models, UI icons, and color palettes that bring the world to life.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--cyan);">🎵 Sound & Music</h3>
+          <p>Audio is 50% of game feel! Atmospheric pads, punchy sound effects, and musical cues drive immersion.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--purple);">📖 Writers & Loremasters</h3>
+          <p>Environmental storytelling, character dialogue, punchy item descriptions, and emotional beats.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">🕹️ Game Designers</h3>
+          <p>Defining player rules, balancing mechanics, tuning physics, and answering: <em>"What makes this loop fun?"</em></p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--emerald);">🧭 Producers & Glue</h3>
+          <p>Keeping scope ruthless, tracking milestones, ensuring the team eats and sleeps, and uploading the final build.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:#60a5fa;">💻 Coders & Scripters</h3>
+          <p>Gluing assets, physics, and gameplay logic together inside the game engine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 10: The Golden Rule: 1 Atomic Verb -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Scope discipline: The #1 killer of first-time jam games is MMORPG syndrome. If you can't describe your core gameplay in 1 atomic verb, you won't finish in 48 hours.">
+      <div class="slide-eyebrow">Act II • Scope Discipline</div>
+      <h2 class="slide-title">The Golden Rule: The One Atomic Verb</h2>
+      <p class="slide-subtitle">The difference between submitting a game and leaving in tears is ruthless scope distillation in Hour 4.</p>
+      <div class="grid-2">
+        <div class="card" style="border-color: rgba(244, 63, 94, 0.4);">
+          <span class="badge" style="background:rgba(244,63,94,0.15); border:1px solid var(--rose); color:var(--rose);">❌ The Scope Trap</span>
+          <h3 style="color:var(--rose);">The "Dream Game" Pitfall</h3>
+          <p><em>"My jam game is an open-world RPG with 4 branching narrative paths, dynamic weather, crafting, inventory, and online co-op."</em></p>
+          <div style="margin-top:1rem; font-size:0.9rem; color:#fca5a5;">
+            <strong>Outcome:</strong> Exhaustion by Sunday morning, 80% unfinished systems, zero playable build submitted.
+          </div>
+        </div>
+        <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
+          <span class="badge badge-emerald">✅ The Atomic Loop</span>
+          <h3 style="color:var(--emerald);">The One Atomic Verb</h3>
+          <p><em>"My game is about adjusting a thruster angle for 10 seconds against lunar gravity."</em> (or: <em>"Deflecting falling potions"</em>, <em>"Tapping ripples"</em>)</p>
+          <div style="margin-top:1rem; font-size:0.9rem; color:#6ee7b7;">
+            <strong>Outcome:</strong> Core mechanic playable by Saturday noon, full polish and sound by Sunday, joyful submission.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 11: Case Study: Ten Seconds of Thrust -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Larry talks about Ludum Dare 27 (Theme: 10 Seconds). Focused purely on a radial gravity simulation and solar flares. A complete solo game submitted on time.">
+      <div class="slide-eyebrow">Case Study • Solo Jam</div>
+      <h2 class="slide-title">Case Study: <em>Ten Seconds of Thrust</em></h2>
+      <p class="slide-subtitle">Ludum Dare 27 • Theme: "10 Seconds" • Prototyping orbital gravity and coronal mass ejections.</p>
       <div class="grid-2">
         <div class="card">
-          <h3 style="color:var(--rose);">❌ The Scope Trap</h3>
-          <p>“My game is an open-world RPG with branching narrative trees, 4 classes, crafting, and multiplayer.”</p>
-          <div style="margin-top:0.75rem; color:#f87171; font-size:0.85rem;">Result: Exhaustion, missing assets, zero submission.</div>
+          <h3 style="color:var(--gold);">🎯 The Single Constraint</h3>
+          <p>
+            You have exactly 10 seconds of fuel to slingshot a tiny probe around planetary gravity wells while avoiding solar flares.
+          </p>
+          <ul style="margin-top:0.75rem; padding-left:1.25rem; font-size:0.9rem; line-height:1.6; color:var(--muted);">
+            <li>Built in Flash/Canvas as a rapid prototype.</li>
+            <li>No sprawling levels; 1 screen, escalating planetary orbits.</li>
+            <li>Learned vector physics and radial math in 48 hours.</li>
+          </ul>
         </div>
         <div class="card">
-          <h3 style="color:var(--emerald);">✅ The Atomic Loop</h3>
-          <p>“My game is about adjusting thruster angle for 10 seconds against lunar gravity.”</p>
-          <div style="margin-top:0.75rem; color:#34d399; font-size:0.85rem;">Result: Playable in 6 hours, polished in 30, submitted with joy.</div>
+          <h3 style="color:var(--cyan);">💡 The Lesson</h3>
+          <p>
+            When mechanics are atomic, emergent gameplay happens naturally. Attendees loved the tactile tension of running out of fuel with 1 second remaining.
+          </p>
+          <div style="margin-top:1rem; padding:0.75rem; background:rgba(0,0,0,0.3); border-radius:8px; border:1px solid rgba(56,189,248,0.2);">
+            <strong style="color:var(--cyan);">Jam Mantra:</strong> Build the smallest possible toy that is fun to play with for 30 seconds.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 4: Interactive Social Experiment -->
-    <section class="slide" data-notes="Engage the audience! We roll or draw 3 words from attendees: a theme, a constraint, and a mechanic.">
-      <div class="slide-eyebrow">Live Experiment</div>
-      <h2 class="slide-title">Audience Social Experiment</h2>
-      <p class="slide-subtitle">Let's design a 48-hour game together right now in 5 minutes using 3 random audience prompts.</p>
+    <!-- ========================================== -->
+    <!-- SLIDE 12: Battle Scars & Glorious Failures -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Panel discussion prompt: What is your proudest failure or biggest pivot during a jam? Why is failing in a jam a badge of honor?">
+      <div class="slide-eyebrow">Act III • The Crucible</div>
+      <h2 class="slide-title">Glorious Failures & The 2:00 AM Pivot</h2>
+      <p class="slide-subtitle">Every veteran game jammer has a graveyard of broken builds, hilarious physics bugs, and midnight scope panic.</p>
       <div class="grid-3">
         <div class="card">
-          <h3 style="color:var(--purple);">1. The Theme</h3>
-          <p>What is the emotional vibe or prompt? (e.g. "Ten Seconds", "Parallel Worlds", "Tiny Machines")</p>
+          <h3 style="color:var(--rose);">💥 Physics Gone Wild</h3>
+          <p>When an accidental decimal point turns your cozy tea-pouring simulation into a high-velocity orbital particle cannon.</p>
         </div>
         <div class="card">
-          <h3 style="color:var(--cyan);">2. The Constraint</h3>
-          <p>What can you NOT do? (e.g. "No text", "Single button only", "Zero gravity")</p>
+          <h3 style="color:var(--gold);">✂️ The Midnight Amputation</h3>
+          <p>Realizing 12 hours before deadline that the dialogue engine is dead. Cutting 90% of the game to ship 1 perfect screen.</p>
         </div>
         <div class="card">
-          <h3 style="color:var(--gold);">3. The Core Verb</h3>
-          <p>What is the single physical action the player performs? (e.g. "Magnetize", "Rewind", "Tilt")</p>
+          <h3 style="color:var(--emerald);">💎 The Accidental Feature</h3>
+          <p>Famous games like <em>Celeste</em>, <em>Superhot</em>, and <em>Surgeon Simulator</em> were born from weird jam glitches embraced as core mechanics.</p>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 5: Conclusion & Resources -->
-    <section class="slide" data-notes="Point attendees to local Seattle communities (Seattle Indies), online jams (itch.io, Ludum Dare), and UpLiftVR booth.">
-      <div class="slide-eyebrow">Your Next Step</div>
+    <!-- ========================================== -->
+    <!-- SLIDE 13: The Butterfly Effect & Serendipity -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Ask panelists to share a serendipitous moment. Meeting a co-founder, landing an unexpected job at Oculus/Valve, or finding a publisher purely from a weekend jam connection.">
+      <div class="slide-eyebrow">The Human Network</div>
+      <h2 class="slide-title">The Butterfly Effect: Serendipity in the Jam Trenches</h2>
+      <p class="slide-subtitle">How a chaotic 48-hour weekend blossoms into lifelong friendships, studio co-founders, and surprise career leaps.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--cyan);">🌱 The Jam as an Interview</h3>
+          <p>
+            You can learn more about how someone communicates under pressure, solves problems, and treats teammates in a 48-hour jam than in 10 formal interviews.
+          </p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--purple);">✨ Serendipitous Connections</h3>
+          <p>
+            Studios have been funded, international speaking tours launched, and unexpected industry mentors discovered—all because creators decided to show up and make a game together.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 14: The Game Jam "Cheat Codes" -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Tactical advice for surviving 48 hours: Sleep 8 hours, use sound effects libraries, pre-make templates, and stop coding 3 hours before deadline to allow build time.">
+      <div class="slide-eyebrow">Tactical Survival Guide</div>
+      <h2 class="slide-title">The Game Jam "Cheat Codes"</h2>
+      <p class="slide-subtitle">Veteran rules of thumb to guarantee you submit a game with a smile on your face Sunday evening.</p>
+      <div class="grid-4">
+        <div class="card">
+          <span class="badge badge-rose">Rule 1</span>
+          <h3>💤 Sleep 8 Hours</h3>
+          <p>Exhaustion writes bugs. An alert dev builds in 2 hours what a sleep-deprived dev breaks in 8.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-gold">Rule 2</span>
+          <h3>📦 Use Templates</h3>
+          <p>Never build character controllers from scratch. Use UE5, Unity, Godot, or Twine starter kits.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-cyan">Rule 3</span>
+          <h3>🔊 Audio Early</h3>
+          <p>Add sound effects by Saturday night. Audio instantly makes even primitive grey-box prototypes feel alive.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-emerald">Rule 4</span>
+          <h3>🛑 3-Hour Freeze</h3>
+          <p>Pencils down 3 hours before deadline. Building, packaging, uploading, and store page writeups always take longer!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 15: Act IV: Stepping into XR Realities -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Transition to VR/XR in game jams. Why build in 3D/VR? You can make presence and scale the core mechanic. UpLiftVR's philosophy: non-violent awe.">
+      <div class="slide-eyebrow">Act IV • Immersive Worlds</div>
+      <h2 class="slide-title">Stepping into XR: Virtual & Spatial Realities</h2>
+      <p class="slide-subtitle">Bringing 48-hour rapid prototyping into 6DoF virtual space: scale, presence, and non-violent wonder.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="color:var(--cyan);">🥽 Presence Over Pixels</h3>
+          <p>In XR, the player doesn't watch a screen; they are inside the screen. Scale and proximity do the emotional heavy lifting.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">🎈 Contemplative Worlds</h3>
+          <p>Moving beyond shooter and horror tropes to craft meditative, profound spaces: balloon ascents and celestial eclipses.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--emerald);">⚡ Fast Prototyping</h3>
+          <p>Modern game engines give you 6DoF hand tracking and spatial audio out of the box in minutes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 16: The VR Dev Toolkit -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="What hardware/software do you actually need? Unreal Engine 5 is free. Meta Quest 2/3/3S with a standard USB-C data cable.">
+      <div class="slide-eyebrow">Hardware & Engine</div>
+      <h2 class="slide-title">The Indie VR Dev Toolkit</h2>
+      <p class="slide-subtitle">Everything you need to build and deploy your first virtual reality prototype is accessible and free to start.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="color:var(--cyan);">🎮 Unreal Engine 5.4+</h3>
+          <p>Free for indies. Includes visual scripting (Blueprints), Lumen dynamic lighting, and Epic's complete VR Template.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">🥽 Meta Quest 2 / 3 / 3S</h3>
+          <p>Standalone Android-based VR headsets with inside-out 6DoF tracking and hand tracking support.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--emerald);">🔌 USB-C 3.0 Cable</h3>
+          <p>Connects headset to PC for real-time editor VR Preview and 1-click APK deployment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 17: UE5.4 to Quest Fast-Track -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="High-level summary of the 42-slide guide: Install UE5.4, configure Android Studio Flamingo & JDK 17, enable Meta XR plugin, set Project Settings to API 34/29, hit Package APK.">
+      <div class="slide-eyebrow">Technical Pipeline</div>
+      <h2 class="slide-title">Unreal Engine to Meta Quest: The 5-Step Pipeline</h2>
+      <p class="slide-subtitle">From a blank template to standing inside your virtual world on a standalone headset.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--cyan);">1. Engine & Android Foundation</h3>
+          <p>Unreal Engine 5.4 + Android Studio Flamingo + JDK 17.0.10. Configure <code>JAVA_HOME</code> and run <code>SetupAndroid.bat</code>.</p>
+          <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);">Epic recommends Android SDK 34 and NDK 25.1 for Quest OS compatibility.</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">2. Meta XR Plugin Integration</h3>
+          <p>Drop <code>MetaXR</code> and <code>MetaXRPlatform</code> plugins into your project's <code>Plugins/</code> folder. Set OpenXR runtime and P3 Color Space.</p>
+          <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);">Enables foveated rendering, hand tracking, and Quest 3 controllers natively.</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">3. Project Settings Alignment</h3>
+          <p>Minimum SDK: <code>29</code>, Target SDK: <code>32</code> (or <code>34</code>). Enable <em>"Package game data inside .apk"</em> and set orientation to Landscape.</p>
+          <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);">Converts standard Unreal project into a standalone Android package.</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--emerald);">4. 1-Click Launch & Play</h3>
+          <p>Connect Quest with USB-C, enable Developer Mode via mobile app, and hit <strong>"Launch"</strong> in the Unreal viewport toolbar!</p>
+          <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);">Standalone APK installs directly to Quest Unknown Sources in seconds.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 18: UpLiftVR Case Studies: Maiden Flight & Eclipse -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Show how UpLiftVR took simple jam prototypes into SIFF and festivals. Maiden Flight balloon ride; High Desert Eclipse celestial experience.">
+      <div class="slide-eyebrow">Case Study • UpLiftVR Studios</div>
+      <h2 class="slide-title">From Jam Prototype to Festival Showcase</h2>
+      <p class="slide-subtitle">How constrained making grew into celebrated immersive festival installations.</p>
+      <div class="grid-2">
+        <div class="card">
+          <span class="badge badge-magenta">SIFF VR-Zone Centerpiece</span>
+          <h3>🎈 UpLiftVR <em>Maiden Flight</em></h3>
+          <p>
+            A whimsical hot air balloon ascent over lush stylized landscapes. Featured for a month straight at the 2018 Seattle International Film Festival VR-Zone, profiled in The Seattle Times and King 5 Evening Magazine.
+          </p>
+          <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--cyan);">
+            Focus: Zero-nausea physics, gentle elevation, universal accessibility for all ages.
+          </div>
+        </div>
+        <div class="card">
+          <span class="badge badge-gold">Celestial Immersion</span>
+          <h3>🌑 <em>High Desert Eclipse</em></h3>
+          <p>
+            An intimate celestial encounter capturing the profound, eerie hush of a total solar eclipse in the high desert. Built for standalone Meta Quest with spatial 3D audio.
+          </p>
+          <div style="margin-top:0.75rem; font-size:0.85rem; color:var(--gold);">
+            Focus: Atmospheric presence, dynamic day-to-night lighting, contemplative wonder.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 19: Act V: The Social Experiment -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Time for the live social experiment! Tell the audience: We are going to design a complete 48-hour game together in 5 minutes right now using 3 random audience prompts.">
+      <div class="slide-eyebrow">Act V • Live Interactive Experiment</div>
+      <h2 class="slide-title">The Audience Social Experiment</h2>
+      <p class="slide-subtitle">Let's prove the power of constraints right now. We will design a complete 48-hour game together in 5 minutes.</p>
+      <div class="grid-3">
+        <div class="dice-box">
+          <div class="dice-title">🎲 1. The Theme</div>
+          <div class="dice-value" id="theme-display">Waiting for Audience...</div>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">Shout out a vibe, place, or concept!</p>
+        </div>
+        <div class="dice-box">
+          <div class="dice-title">🚫 2. The Hard Constraint</div>
+          <div class="dice-value" id="constraint-display">Waiting for Audience...</div>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">What can the player NOT do?</p>
+        </div>
+        <div class="dice-box">
+          <div class="dice-title">⚡ 3. The One Atomic Verb</div>
+          <div class="dice-value" id="verb-display">Waiting for Audience...</div>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">Single physical input action!</p>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem; text-align:center;">
+        <button onclick="rollAudiencePrompt()" style="background:linear-gradient(135deg, var(--cyan), var(--magenta)); border:none; color:#0b0f19; font-weight:bold; padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer; font-size:1rem;">
+          🎲 Roll Random Prompts (Backup Generator)
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 20: Synthesizing the Pitch -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Panelists brainstorm together: What is the 30-second elevator pitch? How do we split roles? How do we find the fun in hour 4?">
+      <div class="slide-eyebrow">Live Rapid Jam</div>
+      <h2 class="slide-title">Instant Pitch: What is the Game?</h2>
+      <p class="slide-subtitle">Watch the panelists break down the audience's 3 prompts into a feasible 48-hour prototype.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="color:var(--cyan);">1. The 30-Second Elevator Pitch</h3>
+          <p>What is the player doing on screen? What creates the immediate tension or delight?</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">2. The Sunday MVP</h3>
+          <p>What is the absolute bare minimum version that can be submitted if everything goes wrong?</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">3. Dividing the Craft</h3>
+          <p>Who takes sound? Who draws the mood board? Who builds the physics collider?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 21: Where to Jam: Local & Global Hubs -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Point attendees to local Seattle resources: Seattle Indies, Global Game Jam, Ludum Dare, and itch.io. Invite them to join local Discord and meetups.">
+      <div class="slide-eyebrow">Act VI • Your Launchpad</div>
+      <h2 class="slide-title">Where to Jam: Community Launchpads</h2>
+      <p class="slide-subtitle">You are never alone. Vibrant local and global communities are ready to welcome you with open arms.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--cyan);">🌲 Seattle Indies (Local)</h3>
+          <p>The beating heart of the Pacific Northwest game dev scene. Hosts monthly socials, showcase nights, beginner-friendly jams, and active Discord.</p>
+          <div style="margin-top:0.75rem; color:var(--cyan); font-weight:bold;">seattleindies.org</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">🌐 Global Game Jam (Worldwide)</h3>
+          <p>The world's largest synchronized game jam event every January. Physical sites in Seattle and virtual options globally.</p>
+          <div style="margin-top:0.75rem; color:var(--magenta); font-weight:bold;">globalgamejam.org</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--gold);">⚔️ Ludum Dare (Solo / Team)</h3>
+          <p>The legendary online jam running for over 20 years. 48-hour Compo (solo from scratch) or 72-hour Jam (teams).</p>
+          <div style="margin-top:0.75rem; color:var(--gold); font-weight:bold;">ldjam.com</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--purple);">🕹️ Itch.io Game Jams (Weekly)</h3>
+          <p>Hundreds of low-pressure, micro-themed jams happening every week. Perfect for dipping your toes into making digital art.</p>
+          <div style="margin-top:0.75rem; color:var(--purple); font-weight:bold;">itch.io/jams</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 22: Visit UpLiftVR at GeekGirlCon -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Invite attendees down to the gaming hall. Try Maiden Flight and High Desert Eclipse in VR! Meet the team.">
+      <div class="slide-eyebrow">Exhibition Floor</div>
+      <h2 class="slide-title">Visit UpLiftVR in the Gaming Hall!</h2>
+      <p class="slide-subtitle">Come experience <em>Maiden Flight</em> and <em>High Desert Eclipse</em> in person today and tomorrow.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:var(--magenta);">📍 Location & Hours</h3>
+          <p>• <strong>Room:</strong> Skagit Lower Level / 3rd Floor (Seattle Indies Game Room)<br>
+          • <strong>Dates:</strong> Saturday Oct 24 & Sunday Oct 25, 2026<br>
+          • <strong>Booth:</strong> UpLiftVR Studios / VRMakerDome</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--cyan);">🥽 Hands-On VR Demos</h3>
+          <p>• Experience gentle hot air balloon flight in Meta Quest 3.<br>
+          • Step into celestial twilight in <em>High Desert Eclipse</em>.<br>
+          • Ask questions about Unreal Engine 5 and XR development!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 23: Q&A & Conversation -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Open the floor to attendee Q&A! Encourage questions from first-timers, artists, non-coders, and curious students.">
+      <div class="slide-eyebrow">Open Floor</div>
+      <h2 class="slide-title">Questions & Answers</h2>
+      <p class="slide-subtitle">Ask our panelists anything about first jams, surviving crunch, game engines, team dynamics, or VR world-building!</p>
+      <div class="grid-4">
+        <div class="card">
+          <h3 style="color:var(--gold);">Larry James</h3>
+          <p>UpLiftVR / Wulf Design</p>
+          <p style="font-size:0.8rem; margin-top:0.5rem; color:var(--cyan);">wulfdesign.github.io</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--cyan);">Tim Cullings</h3>
+          <p>Seattle Indies / IGDA</p>
+          <p style="font-size:0.8rem; margin-top:0.5rem; color:var(--cyan);">timcullings.carrd.co</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--magenta);">Heather Coles</h3>
+          <p>Orbicular</p>
+          <p style="font-size:0.8rem; margin-top:0.5rem; color:var(--cyan);">linktr.ee/heathercoles</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--purple);">Renee Gittins</h3>
+          <p>Stumbling Cat</p>
+          <p style="font-size:0.8rem; margin-top:0.5rem; color:var(--cyan);">potionsacurioustale.com</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 24: Conclusion & Your Quest Awaits -->
+    <!-- ========================================== -->
+    <section class="slide" data-notes="Final inspiring closing words: You don't need permission to make games. Pick a weekend, grab a friend, choose 1 atomic verb, and build your world.">
+      <div class="slide-eyebrow">Your Quest Awaits</div>
       <h2 class="slide-title">Cross the Threshold</h2>
-      <p class="slide-subtitle">You don't need permission to make games. You just need 48 hours and the courage to make something wonderfully weird.</p>
-      <div class="grid-2">
-        <div class="card">
-          <h3 style="color:var(--cyan);">🤝 Communities & Jams</h3>
-          <p>• <strong>Seattle Indies:</strong> Local community, monthly jams & socials.<br>
-          • <strong>Ludum Dare:</strong> World's premier 48h solo jam.<br>
-          • <strong>Itch.io Jams:</strong> Hundreds of low-pressure themed jams weekly.</p>
-        </div>
-        <div class="card">
-          <h3 style="color:var(--magenta);">🥽 Visit the UpLiftVR Booth</h3>
-          <p>Come try <em>Maiden Flight</em> and <em>High Desert Eclipse</em> in the Seattle Indies gaming hall, meet the team, and let's talk game design!</p>
-        </div>
+      <p class="slide-subtitle">You don't need permission. You don't need a degree. You just need 48 hours and the courage to make something wonderfully weird.</p>
+      <div class="card" style="text-align:center; padding:2.5rem; background:linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95)); border-color:var(--magenta);">
+        <h3 style="font-size:1.8rem; color:#fff; margin-bottom:1rem;">See You at the Next Jam! 🚀✨</h3>
+        <p style="font-size:1.15rem; color:var(--cyan); max-width:700px; margin:0 auto;">
+          Thank you for joining us at GeekGirlCon 2026. Keep in touch, share your prototypes, and come say hello in the Seattle Indies gaming hall!
+        </p>
       </div>
     </section>
 
     <!-- Footer Controls -->
     <footer id="deck-footer">
-      <div>GeekGirlCon 2026 • UpLiftVR Studios</div>
+      <div>GeekGirlCon 2026 • Game Jams Panel • UpLiftVR Studios</div>
       <div id="keybind-hint">
         <span><kbd>←</kbd> <kbd>→</kbd> Navigate</span>
         <span><kbd>F</kbd> Fullscreen</span>
-        <span><kbd>P</kbd> Presenter Notes</span>
+        <span><kbd>P</kbd> Speaker Notes</span>
       </div>
-      <div id="slide-counter">1 / 5</div>
+      <div id="slide-counter">1 / 24</div>
     </footer>
   </div>
 
@@ -379,6 +992,21 @@
           timerDisplay.textContent = `${mins}:${secs}`;
         }, 1000);
       }
+    }
+
+    // Social experiment random generator
+    const themes = ["Shadow Puppets", "Subterranean Secrets", "Clockwork Garden", "Underwater Telegraph", "Neon Archaeology", "Cozy Apocalypse"];
+    const constraints = ["Only 1 Button", "No Text or Numbers", "Black & White Only", "Gravity Inverts Every 5s", "Sound Cues Only", "Player Cannot Stop Moving"];
+    const verbs = ["Deflect", "Inflate", "Magnetize", "Rewind", "Slingshot", "Echo", "Harvest", "Tether"];
+
+    function rollAudiencePrompt() {
+      const t = themes[Math.floor(Math.random() * themes.length)];
+      const c = constraints[Math.floor(Math.random() * constraints.length)];
+      const v = verbs[Math.floor(Math.random() * verbs.length)];
+
+      document.getElementById('theme-display').textContent = t;
+      document.getElementById('constraint-display').textContent = c;
+      document.getElementById('verb-display').textContent = v;
     }
 
     window.addEventListener('keydown', (e) => {

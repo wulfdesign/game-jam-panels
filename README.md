@@ -1,50 +1,62 @@
-# 🎮 Game Jams Panel Discussion & Presentation (GeekGirlCon 2026)
+# 🎮 Game Jams: Your Gateway to Fun, Friends, Indie Game Dev, & XR Realities
 
-> **Event:** GeekGirlCon 2026  
-> **Topic:** Game Jams, Rapid Prototyping & Agile Software Craftsmanship  
-> **Speaker / Panelist:** Magus Wulf (UpLiftVR / Wulf Design Studios)  
-> **Heritage:** Evolved from GeekFest West 2025 presentation & 2026 Gemini WebUI planning sessions  
-> **Status:** 🛠️ Pre-Flight Slide Deck Authoring  
-> **Alchemical Familiar:** 🐈 Hermes & 🎭 The Narrator  
+> **Event:** GeekGirlCon 2026 • Seattle Convention Center Arch Building  
+> **Session:** Sunday, Oct 25, 2026 @ 1:30 PM (45-Minute Panel) • Room 'America'  
+> **Moderator:** Larry James (UpLiftVR Studios / Wulf Design Studios)  
+> **Panelists:** Tim Cullings (Seattle Indies), Heather Coles (Orbicular), Renee Gittins (Stumbling Cat)  
+> **Production Port:** `3026` (Clean Public Slide Deck)  
+> **Status:** 🧪 Ready for QA • **Version:** `v0.2.0`  
 
 ---
 
 ## 🎯 Panel Vision & Core Themes
 
-This panel discussion demystifies the game jam and rapid prototyping process, showing developers, artists, and creators of all skill levels how to go from **Thought to Thing** in 48 hours or less:
+Game jams are one of the best-kept secrets in creative technology—and one of the most welcoming on-ramps into game and XR development. This panel pulls back the curtain on what game jams actually are, why they work, and how they provide a direct pathway from *"I have an idea"* to shipped, festival-featured experiences:
 
 1. **The 48-Hour Prototyping Crucible:**
    - Scope discipline: Distilling a game to a single atomic verb or core mechanic within the first 4 hours.
-   - Managing exhaustion, scope creep, and the dreaded "Hour 36 Panic".
-2. **Modern Toolchains & AI Acceleration:**
-   - Shifting from heavy manual 3D pipelines to mathematical shaders, procedural canvas engines, and rapid asset generation.
-   - Using AI agents as collaborative familiar companions (ideation, state machines, math verification) without losing human creative authorship.
-3. **Inclusive Game Development & Lowering the Barrier:**
-   - Encouraging women and non-traditional creators to enter game development through lightweight web/HTML5 jams (e.g. Ludum Dare, itch.io jams).
-   - Building community, finding game jam teams, and celebrating the "unfinished gem".
-4. **Interactive Audience Social Experiment:**
-   - Live participatory element engaging attendees during the session (ideation mechanics, collaborative theme rolling, and live problem-solving).
+   - Managing exhaustion, avoiding MMORPG syndrome, and embracing the "License to Fail".
+2. **Inclusive Game Development & Lowering the Barrier:**
+   - Why you DON'T need to be a programmer: roles for artists, narrative writers, audio composers, and producers.
+   - Finding your jam crew through welcoming communities like Seattle Indies.
+3. **The Butterfly Effect & Serendipity:**
+   - How weekend jams turn into lifelong friendships, studio co-founders, and surprise career opportunities.
+4. **Virtual & Spatial Realities in Jams:**
+   - Unreal Engine 5.4 + Meta Quest 3 rapid development pipeline.
+   - Non-violent, contemplative XR case studies: *Maiden Flight* (SIFF VR-Zone) and *High Desert Eclipse*.
+5. **Live Audience Interactive Social Experiment:**
+   - Designing a 48-hour game live on stage in 5 minutes using 3 random audience prompts (Theme, Constraint, Atomic Verb).
 
 ---
 
-## 📁 Repository Structure
+## 📁 Repository Structure (KremFest-XR Architecture)
 
 ```text
 projects/game-jams/panels/
-├── README.md               # Panel vision, themes, and background
-├── tasks.md                # Slide deck authoring, rehearsal, and delivery tasks
-├── docs/                   # Planning notes, Google Doc exports & legacy chats
-│   └── (Markdown & chat transcripts)
-└── slides/                 # Local offline presentation deck (HTML5/CSS3)
-    ├── index.html          # Browser-based presenter deck with keyboard control
-    ├── assets/             # High-res diagrams, screenshots & photos
-    └── speaker_notes.md    # Talking points and rehearsal timing script
+├── README.md               # Public presentation overview & lineup
+├── .gitignore              # Wards private/ vault and backups from public git
+├── index.html              # Clean 24-slide production HTML5 presentation (Port 3026)
+├── server.py               # Production multi-threaded server (Port 3026)
+├── serve.bat               # Windows launcher
+└── private/                # Untracked offline vault (Operator Dev Studio & Docs)
+    ├── dev_dashboard/      # Operator Dev Studio & 45m rehearsal stopwatch (Port 3027)
+    ├── dev_site/           # Active WIP slide canvas
+    ├── docs/               # Ingested 33k Google Doc & 42-slide raw guide
+    ├── tasks.md            # Speaker notes & rehearsal checklist
+    ├── devlog.md           # Private versioned changelog
+    ├── promote_to_production.py # 1-Click push from dev_site to public root
+    └── server.py           # Private Dev Server (Port 3027)
 ```
 
 ---
 
-## 🎤 Historical Lineage & Continuity
+## 🚀 Running the Presentation
 
-* **GeekFest West 2025 Presentation:** Original slide framework and presentation notes created during the 2025 campaign.
-* **Gemini WebUI Early 2026 Planning:** Initial conversion of the presentation into an interactive panel and social experiment format.
-* **Google Doc Reference:** *"Game Jam Panel & Social Experiment"* (`1g8dFZ-jodZN536i-BTljZhOB8LvqgLWZOnJk_B7Ffp0`).
+```bash
+# Launch public presentation deck (Port 3026)
+serve.bat
+
+# Or run via Python directly:
+python server.py
+```
+Open `http://localhost:3026/` in any browser. Press `F` for fullscreen, `P` for presenter notes and rehearsal stopwatch, and `←` / `→` or `Space` to navigate.
