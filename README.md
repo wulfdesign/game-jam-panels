@@ -5,7 +5,7 @@
 > **Moderator:** Larry James (UpLiftVR Studios / Wulf Design Studios)  
 > **Panelists:** Tim Cullings (Seattle Indies), Heather Coles (Orbicular), Renee Gittins (Stumbling Cat), Evie Powell, PhD (Niantic)  
 > **Production Port:** `3026` (Clean Public Slide Deck)  
-> **Status:** 🧪 Ready for QA • **Version:** `v0.2.2`  
+> **Status:** 🧪 Ready for QA • **Version:** `v0.2.3`  
 
 ---
 
