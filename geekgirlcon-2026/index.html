@@ -1,0 +1,3788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Jams: Your Gateway to Fun, Friends, Indie Game Dev Magic, & XR Realities (GeekGirlCon 2026)</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border: rgba(56, 189, 248, 0.25);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --cyan: #38bdf8;
+      --magenta: #ec4899;
+      --gold: #f59e0b;
+      --purple: #a855f7;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Presentation Screen Container */
+    #deck-container {
+      width: 95vw;
+      height: 90vh;
+      max-width: 1600px;
+      max-height: 900px;
+      background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Slide Elements */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 2.75rem 3.5rem 4.5rem 3.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      transform: translateY(8px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 2;
+    }
+
+    /* Slide 1 Background & Glassmorphic Staging */
+    #slide-1 {
+      background: url('../assets/slides/slide_01_bg.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-1 .title-glass-box {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 1.15rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-1 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.12em;
+    }
+
+    #slide-1 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.45rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-1 .title-glass-box .slide-subtitle {
+      font-size: 1.1rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    #slide-1 .bottom-glass-row {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 1.15rem;
+      align-items: stretch;
+      margin-top: auto;
+    }
+
+    #slide-1 .glass-card {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 0.75rem 1.15rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #slide-1 .mission-card {
+      border-left: 4px solid var(--magenta);
+    }
+
+    #slide-1 .mission-card p {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      margin-top: 0.35rem;
+    }
+
+    #slide-1 .lineup-card {
+      border-left: 4px solid var(--cyan);
+      padding: 0.65rem 1rem 0.75rem 1rem;
+    }
+
+    #slide-1 .lineup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.45rem;
+    }
+
+    #slide-1 .lineup-header .badge {
+      margin-bottom: 0;
+    }
+
+    #slide-1 .lineup-subhead {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    #slide-1 .lineup-roster {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.65rem;
+    }
+
+    #slide-1 .lineup-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.35rem;
+      background: rgba(0, 0, 0, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 0.5rem 0.4rem 0.45rem 0.4rem;
+      transition: all 0.2s ease;
+      min-width: 0;
+    }
+
+    #slide-1 .lineup-person:hover {
+      background: rgba(30, 41, 59, 0.75);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    #slide-1 .lineup-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2.5px solid var(--cyan);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    #slide-1 .lineup-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #slide-1 .lineup-name {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #f8fafc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    #slide-1 .lineup-role {
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      margin-top: 1px;
+    }
+
+    /* Slide 2 Background with Larry James Kremfest XR Floor Photo */
+    #slide-2 {
+      background: url('../assets/slides/larry_kremfest_bg.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-2 .title-glass-box {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-2 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-2 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-2 .title-glass-box .slide-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-2 .profile-grid {
+      margin-top: auto;
+    }
+
+    #slide-2 .profile-card {
+      background: rgba(0, 0, 0, 0.50);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-2 .card {
+      background: rgba(0, 0, 0, 0.50);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(236, 72, 153, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    /* Slide 3 Background with Unreal Fellowship / StellarD Graphic */
+    #slide-3 {
+      background: url('../assets/slides/slide_03_bg.png?v=20261014_rev2') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-3 .title-glass-box {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-3 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-3 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-3 .title-glass-box .slide-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-3 .grid-3 {
+      margin-top: auto;
+    }
+
+    #slide-3 .card {
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    /* Slide 4 Background with Tim Cullings Event / Speaking Photo */
+    #slide-4 {
+      background: url('../assets/slides/slide_04_bg.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-4 .title-glass-box {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-4 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-4 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-4 .title-glass-box .slide-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-4 .profile-grid {
+      margin-top: auto;
+    }
+
+    #slide-4 .profile-card {
+      background: rgba(0, 0, 0, 0.50);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(16, 185, 129, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-4 .card {
+      background: rgba(0, 0, 0, 0.50);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    /* Slide 5 Background with Seattle Indies / Global Game Jam Community Floor */
+    #slide-5 {
+      background: url('../assets/slides/slide_05_bg.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-5 .title-glass-box {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-5 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-5 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-5 .title-glass-box .slide-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-5 .grid-3 {
+      margin-top: auto;
+    }
+
+    #slide-5 .card {
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(16, 185, 129, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-5 .card-logo-box-bleed {
+      background: radial-gradient(circle at center, rgba(30, 41, 59, 0.55) 0%, rgba(15, 23, 42, 0.75) 100%);
+    }
+
+    /* Slide 15 Background with RPG Jam Overworld Village */
+    #slide-15 {
+      background: url('../assets/slides/slide_15_bg.png?v=20261014') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-15 .title-glass-box {
+      background: rgba(0, 0, 0, 0.48);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-15 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-15 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-15 .title-glass-box .slide-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-15 .grid-4 {
+      margin-top: auto;
+    }
+
+    #slide-15 .card {
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-15 .card:nth-child(1) {
+      border-top: 2px solid var(--magenta);
+    }
+
+    #slide-15 .card:nth-child(2) {
+      border-top: 2px solid var(--gold);
+    }
+
+    #slide-15 .card:nth-child(3) {
+      border-top: 2px solid var(--purple);
+    }
+
+    #slide-15 .card:nth-child(4) {
+      border-top: 2px solid var(--emerald);
+    }
+
+    #slide-15 .card-emoji-box {
+      height: 115px;
+      background: radial-gradient(circle at center, rgba(30, 41, 59, 0.45) 0%, rgba(15, 23, 42, 0.70) 100%);
+      backdrop-filter: blur(4px);
+    }
+
+    #slide-15 .card-emoji-box .emoji-icons {
+      font-size: 2.4rem;
+    }
+
+    /* Typography */
+    .slide-eyebrow {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--magenta);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Deck-Wide Solid & Opaque Headings (Zero Transparency) */
+    h1, h2, h3, h4, .slide-title, .slide-eyebrow, .card h3 {
+      -webkit-text-fill-color: initial;
+      background: none;
+      opacity: 1 !important;
+    }
+
+    .slide-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .slide-subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 1.25rem;
+      max-width: 1200px;
+    }
+
+    /* Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 0.4rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.15rem;
+      margin-top: 0.4rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.4rem;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.4rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--cyan);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.6rem;
+      width: fit-content;
+    }
+
+    .badge-cyan { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--cyan); color: var(--cyan); }
+    .badge-magenta { background: rgba(236, 72, 153, 0.15); border: 1px solid var(--magenta); color: var(--magenta); }
+    .badge-gold { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold); color: var(--gold); }
+    .badge-purple { background: rgba(168, 85, 247, 0.15); border: 1px solid var(--purple); color: var(--purple); }
+    .badge-emerald { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--emerald); color: var(--emerald); }
+
+    /* Roster Profile Cards with Enlarged Zero-Crop Headshots (Slides 2, 4, 6, 8, 10) */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 1.25rem;
+      margin-top: 0.4rem;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      display: flex;
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .profile-headshot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 260px;
+    }
+
+    .profile-headshot {
+      width: 260px;
+      height: 260px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.25);
+      background: rgba(15, 23, 42, 0.8);
+      display: block;
+    }
+
+    /* Calibrated Headshot Border Colors and Focal Centers per Panelist */
+    #slide-2 .profile-headshot { border-color: var(--cyan); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.35); }
+    #slide-4 .profile-headshot { border-color: var(--emerald); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(16, 185, 129, 0.35); object-position: center 15%; }
+    #slide-6 .profile-headshot { border-color: var(--magenta); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(236, 72, 153, 0.35); }
+    #slide-8 .profile-headshot { border-color: var(--purple); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(168, 85, 247, 0.35); object-position: center 12%; }
+    #slide-10 .profile-headshot { border-color: var(--gold); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 16px rgba(245, 158, 11, 0.35); object-position: 65% center; }
+
+    .profile-headshot-col .meta-list {
+      margin-top: 0.75rem;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .profile-bio-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-bio {
+      font-size: 1.02rem;
+      line-height: 1.58;
+      color: #e2e8f0;
+      margin-top: 0.35rem;
+      margin-bottom: 0.85rem;
+      font-style: italic;
+    }
+
+    .meta-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .meta-list li strong {
+      color: #f8fafc;
+    }
+
+    .spotlight-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 0.85rem;
+      width: fit-content;
+    }
+
+    .spotlight-link:hover {
+      background: rgba(56, 189, 248, 0.3);
+      color: #ffffff;
+    }
+
+    
+    /* ======================================================== */
+    /* Media Cards - Design Principle 101: Full-Width Bleed & Prominent Height */
+    /* ======================================================== */
+    .card-bleed {
+      padding: 0 !important;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-banner-bleed {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .card-logo-box-bleed {
+      width: 100%;
+      height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-logo-box-bleed img {
+      max-height: 200px;
+      max-width: 90%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.65));
+    }
+
+    /* Visual Emoji Showcase Header Boxes (Slides 5, 7, 12, 13, 15, 18, 19, 20) */
+    .card-emoji-box {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: radial-gradient(circle at center, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-emoji-box .emoji-icons {
+      font-size: 2.8rem;
+      line-height: 1.1;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.65));
+      letter-spacing: 0.12em;
+    }
+
+    .card-emoji-box .emoji-sub {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Slide 9: Renee Gittins (Potions Art & Large Phoenix Labs / IGDA Alignment) */
+    #slide-9 .card-logo-box-bleed {
+      height: 320px;
+      padding: 1rem 1.5rem;
+    }
+
+    #slide-9 .card-logo-box-bleed img {
+      max-height: 240px;
+      max-width: 92%;
+    }
+
+    /* Slide 11: Dr. Evie Powell (Melody / Snow Day & Large SIFF Logo Alignment) */
+    #slide-11 .card-logo-box-bleed {
+      height: 225px;
+      padding: 1rem 1.5rem;
+    }
+
+    #slide-11 .card-logo-box-bleed img {
+      max-height: 165px;
+      max-width: 85%;
+      width: auto;
+    }
+
+    /* Slide 16: First Jams (4-Column Layout - SCF64, Dryad, Xbox, Monsantoware) */
+    .grid-4 .card-banner-bleed {
+      width: 100%;
+      height: 230px;
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .grid-4 .card-logo-box-bleed {
+      height: 230px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .grid-4 .card-logo-box-bleed img {
+      max-height: 215px;
+      max-width: 95%;
+      width: auto;
+      height: auto;
+    }
+
+    #slide-16 .card-logo-box-bleed img[src*="Xbox"] {
+      max-height: 185px;
+      width: 88%;
+      max-width: 95%;
+    }
+
+    #slide-16 .card-logo-box-bleed img[src*="Monsantoware"] {
+      height: 92%;
+      max-height: 215px;
+      width: auto;
+    }
+
+    .card-bleed-body {
+      padding: 1.2rem 1.35rem 1.35rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Slide 17 full-width bottom image */
+    .card-bleed-bottom-img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.45);
+      display: block;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 0 0 11px 11px;
+      box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Preserved fallback classes */
+    .card-banner {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 0.65rem;
+      background: rgba(0, 0, 0, 0.45);
+      display: block;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-logo-box {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 8px;
+      margin-bottom: 0.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.5rem 0.75rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-logo-box img {
+      max-height: 180px;
+      max-width: 95%;
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+    }
+
+    .game-thumb {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      margin-top: 0.65rem;
+      background: rgba(0, 0, 0, 0.45);
+      display: block;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .thumb-caption {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+      text-align: center;
+    }
+
+    /* On-Stage Moderator Question Banners (From Intake Form Section 3) */
+    .slide-question-banner {
+      background: rgba(30, 41, 59, 0.75);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    }
+
+    .slide-question-banner .q-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .slide-question-banner .q-text {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    /* QR Card Elements (Slide 26) */
+    .qr-card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 0.75rem 0.55rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .qr-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    .qr-card .qr-avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.4rem;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .qr-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #ffffff !important;
+      margin-bottom: 0.15rem;
+      white-space: nowrap;
+    }
+
+    .qr-card p {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      line-height: 1.25;
+      min-height: 2.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-card .qr-img,
+    .qr-card img:not(.qr-avatar) {
+      width: 112px;
+      height: 112px;
+      background: #ffffff;
+      padding: 5px;
+      border-radius: 8px;
+      margin-bottom: 0.45rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .qr-card a {
+      font-size: 0.70rem;
+      color: var(--cyan);
+      text-decoration: none;
+      word-break: break-all;
+      line-height: 1.25;
+    }
+
+    .qr-card a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+
+    /* Slide 26: Closing Panel Connect & QR Showcase */
+    #slide-26 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    .slide26-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .slide26-title-col {
+      flex: 1;
+      max-width: 900px;
+    }
+
+    .slide26-title-col .slide-title {
+      font-size: 2.25rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .slide26-title-col .slide-subtitle {
+      font-size: 1.05rem;
+      margin-bottom: 0;
+    }
+
+    /* Upper-Right Panel Deck QR Card */
+    .deck-qr-card {
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      border-top: 3px solid var(--gold);
+      border-radius: 14px;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(245, 158, 11, 0.15);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .deck-qr-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+
+    .deck-avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3.5px solid var(--gold);
+      box-shadow: 0 0 18px rgba(245, 158, 11, 0.5);
+      flex-shrink: 0;
+    }
+
+    .deck-qr-img {
+      width: 125px;
+      height: 125px;
+      background: #ffffff;
+      padding: 6px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* Middle Blank Area (Reserved for future image) */
+    .slide26-middle-space {
+      flex: 1;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Bottom Row: 5 Panelist QR Cards (Enlarged Profile Images & High-Legibility Typography) */
+    .slide26-panelists-grid {
+      margin-top: auto;
+      gap: 1.15rem;
+    }
+
+    .slide26-panelists-grid .qr-card {
+      padding: 1.1rem 0.85rem 0.95rem 0.85rem;
+      border-radius: 14px;
+    }
+
+    .slide26-panelists-grid .qr-avatar {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 0.55rem;
+      border-width: 3px;
+    }
+
+    .slide26-panelists-grid h4 {
+      font-size: 1.22rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.01em;
+    }
+
+    .slide26-panelists-grid p {
+      font-size: 0.90rem;
+      color: #e2e8f0;
+      line-height: 1.35;
+      margin-bottom: 0.55rem;
+      min-height: 2.4em;
+    }
+
+    .slide26-panelists-grid .qr-img {
+      width: 125px;
+      height: 125px;
+      padding: 6px;
+      border-radius: 8px;
+      margin-bottom: 0.55rem;
+    }
+
+    .slide26-panelists-grid a {
+      font-size: 0.86rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    /* Interactive Experiment Elements */
+    .spark-box {
+      background: #0f172a;
+      border: 2px dashed var(--gold);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .spark-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+
+    .spark-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      min-height: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .experiment-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, #ea580c 100%);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.75rem;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .experiment-btn:hover {
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+    }
+
+    /* Tarot / Crew Cards */
+    .crew-card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .crew-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .crew-card h3 {
+      font-size: 1.15rem;
+      color: var(--purple);
+      margin-bottom: 0.35rem;
+    }
+
+    .crew-card p {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    /* ======================================================== */
+    /* Interactive Tarot Deck System (Slide 22)                  */
+    /* ======================================================== */
+    #slide-22 .slide-subtitle {
+      margin-bottom: 0.65rem;
+    }
+
+    .tarot-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.15rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.45rem;
+      min-height: auto;
+    }
+
+    .tarot-column {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 0.75rem 0.95rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .tarot-col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tarot-col-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    .cat-save-btn {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-left: auto;
+      margin-right: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f8fafc;
+    }
+
+    .cat-save-btn:hover {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: var(--gold);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+    }
+
+    .draw-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .draw-label {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 0.15rem;
+      font-weight: 700;
+    }
+
+    .draw-card-btn {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      padding: 0.25rem 0.65rem;
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f8fafc;
+    }
+
+    .draw-card-btn:hover:not(.disabled) {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: var(--cyan);
+      transform: scale(1.1);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    .draw-card-btn.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      filter: grayscale(0.6);
+    }
+
+    .draw-counter {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #94a3b8;
+      padding: 0.15rem 0.45rem;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tarot-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+      justify-content: flex-start;
+    }
+
+    .tarot-card {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border: 1.5px solid rgba(168, 85, 247, 0.35);
+      border-radius: 12px;
+      padding: 0.7rem 0.95rem;
+      min-height: 116px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    .tarot-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .tarot-card.selected {
+      background: linear-gradient(145deg, rgba(88, 28, 135, 0.5) 0%, rgba(30, 27, 75, 0.9) 100%);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), inset 0 0 14px rgba(245, 158, 11, 0.18);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .tarot-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+      padding-right: 32px;
+    }
+
+    .tarot-card-source {
+      font-family: serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+      background: rgba(245, 158, 11, 0.15);
+      padding: 0.18rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      max-width: 75%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tarot-badge {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .tarot-card-content {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex: 1;
+    }
+
+    .tarot-card-emoji-hero {
+      font-size: 2.5rem;
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.09) 0%, rgba(0, 0, 0, 0.55) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+      flex-shrink: 0;
+    }
+
+    .tarot-card.selected .tarot-card-emoji-hero {
+      border-color: rgba(245, 158, 11, 0.5);
+      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 14px rgba(245, 158, 11, 0.35);
+    }
+
+    .tarot-card-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tarot-card-name {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.2rem;
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tarot-card.selected .tarot-card-name {
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+    }
+
+    .tarot-card-flavor {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .tarot-corner-btn {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.55rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 5;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+      border: none;
+      outline: none;
+    }
+
+    .tarot-corner-btn.corner-discard {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #cbd5e1;
+    }
+
+    .tarot-corner-btn.corner-discard:hover {
+      background: rgba(244, 63, 94, 0.9);
+      border-color: var(--rose);
+      color: #ffffff;
+      transform: scale(1.15);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.6);
+    }
+
+    .tarot-corner-btn.corner-selected {
+      background: var(--gold);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #0b0f19;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.85);
+    }
+
+    .tarot-corner-btn.corner-selected:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 1);
+    }
+
+    .tarot-corner-btn.corner-locked {
+      background: var(--emerald);
+      border: 1.5px solid #a7f3d0;
+      color: #0b0f19;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.9);
+    }
+
+    .tarot-corner-btn.corner-locked:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 1);
+    }
+
+    .tarot-card.locked {
+      border-color: var(--emerald) !important;
+      background: linear-gradient(145deg, rgba(6, 78, 59, 0.45) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.45), inset 0 0 14px rgba(16, 185, 129, 0.15) !important;
+    }
+
+    .tarot-toast {
+      position: absolute;
+      bottom: 5.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1.5px solid var(--gold);
+      color: #ffffff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.4);
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .tarot-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-5px);
+    }
+
+    .pitch-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .tarot-mini-card-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 41, 59, 0.85);
+      border: 1.5px solid rgba(245, 158, 11, 0.45);
+      border-radius: 10px;
+      padding: 0.35rem 0.85rem;
+      min-width: 95px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      user-select: none;
+    }
+
+    .tarot-mini-card-btn:hover {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: var(--cyan);
+      box-shadow: 0 6px 16px rgba(56, 189, 248, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .tarot-mini-card-btn:active {
+      transform: translateY(1px);
+    }
+
+    .mini-card-icon {
+      font-size: 1.35rem;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .mini-card-text {
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #f8fafc;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pitch-synthesis-bar {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1.5px solid rgba(245, 158, 11, 0.45);
+      border-radius: 12px;
+      padding: 0.55rem 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 4px 22px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.15);
+      margin-top: 0.35rem;
+    }
+
+    .pitch-text {
+      font-size: 0.98rem;
+      line-height: 1.4;
+      color: #f1f5f9;
+      flex: 1;
+    }
+
+    .pitch-tag {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      margin: 0 0.2rem;
+    }
+
+    .pitch-tag-theme { background: rgba(168, 85, 247, 0.25); color: #d8b4fe; border: 1px solid var(--purple); }
+    .pitch-tag-verb { background: rgba(56, 189, 248, 0.25); color: #7dd3fc; border: 1px solid var(--cyan); }
+    .pitch-tag-twist { background: rgba(236, 72, 153, 0.25); color: #f472b6; border: 1px solid var(--magenta); }
+
+    /* Controls Bar */
+    .controls-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3.5rem;
+      background: rgba(11, 15, 25, 0.95);
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.5rem;
+      z-index: 10;
+    }
+
+    .nav-btn {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .nav-btn:hover {
+      background: var(--cyan);
+      color: #0b0f19;
+    }
+
+    .counter-pill {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    .timer-pill {
+      font-family: monospace;
+      font-size: 1rem;
+      color: var(--gold);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    /* Speaker Notes Modal */
+    #notes-modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 750px;
+      background: #0f172a;
+      border: 2px solid var(--cyan);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      display: none;
+      z-index: 100;
+    }
+
+    #notes-modal.active { display: block; }
+
+    #notes-modal h3 {
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #notes-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--rose);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="deck-container">
+
+    <!-- ========================================== -->
+    <!-- SLIDE 1: Title Slide                       -->
+    <!-- ========================================== -->
+    <div class="slide active" id="slide-1" data-notes="Welcome everyone to GeekGirlCon 2026! We're thrilled to be in Room 'America'. Introduce the panel: Game Jams as the most welcoming, high-impact on-ramp into creative tech, indie game dev, and XR. State that today is not about code or gatekeeping—it's about the creative journey, making friends, and finding the fun.">
+      
+      <!-- Top Title Group in Glass Effect Box -->
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">GeekGirlCon 2026 • Room 'America' • Sunday, Oct 25 @ 1:30 PM</div>
+        <h1 class="slide-title">Game Jams: Your Gateway to Fun, Friends, Indie Game Dev Magic, & XR Realities</h1>
+        <p class="slide-subtitle">From 48-hour prototype chaos to shipped games, festival showcases, and lifelong creative alliances.</p>
+      </div>
+      
+      <!-- Bottom Row: The Mission (Left) & The Lineup with Headshots (Right) -->
+      <div class="bottom-glass-row">
+        <!-- Left: The Mission -->
+        <div class="glass-card mission-card">
+          <span class="badge badge-magenta">The Mission</span>
+          <p>Demystify game jams, uncover the human connections forged in the crunch, and give you the confidence and toolkit to make your first game.</p>
+        </div>
+        
+        <!-- Right: The Lineup with Headshots -->
+        <div class="glass-card lineup-card">
+          <div class="lineup-header">
+            <span class="badge badge-cyan">The Lineup</span>
+            <span class="lineup-subhead">5 Industry Veterans & Community Leaders</span>
+          </div>
+          <div class="lineup-roster">
+            <div class="lineup-person">
+              <img class="lineup-avatar" style="border-color: var(--cyan); box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);" src="../assets/headshots/larry_james.jpg" alt="Larry James">
+              <div class="lineup-info">
+                <div class="lineup-name">Larry James</div>
+                <div class="lineup-role">Mod • UpLiftVR</div>
+              </div>
+            </div>
+            <div class="lineup-person">
+              <img class="lineup-avatar" style="border-color: var(--emerald); box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);" src="../assets/headshots/tim_cullings_framed.jpg" alt="Tim Cullings">
+              <div class="lineup-info">
+                <div class="lineup-name">Tim Cullings</div>
+                <div class="lineup-role">Seattle Indies</div>
+              </div>
+            </div>
+            <div class="lineup-person">
+              <img class="lineup-avatar" style="border-color: var(--magenta); box-shadow: 0 0 10px rgba(236, 72, 153, 0.4);" src="../assets/headshots/heather_coles.jpg" alt="Heather Coles">
+              <div class="lineup-info">
+                <div class="lineup-name">Heather Coles</div>
+                <div class="lineup-role">Orbicular</div>
+              </div>
+            </div>
+            <div class="lineup-person">
+              <img class="lineup-avatar" style="border-color: var(--purple); box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);" src="../assets/headshots/renee_gittins_framed.jpg" alt="Renee Gittins">
+              <div class="lineup-info">
+                <div class="lineup-name">Renee Gittins</div>
+                <div class="lineup-role">Stumbling Cat</div>
+              </div>
+            </div>
+            <div class="lineup-person">
+              <img class="lineup-avatar" style="border-color: var(--gold); box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);" src="../assets/headshots/evie_powell_framed.jpg" alt="Dr. Evie Powell">
+              <div class="lineup-info">
+                <div class="lineup-name">Dr. Evie Powell</div>
+                <div class="lineup-role">Niantic Spatial</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 2: Larry James - Profile             -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-2" data-notes="Introduce myself as moderator. I'm Larry James, founder of UpLiftVR Studios and Wulf Design Studios. Establish credibility upfront: our immersive VR work spanning from whimsical hot air balloon flights to total solar eclipses, SIFF VR-Zone acclaim, King 5 Evening Magazine features, and founding the VRMakerDome to bring room-scale VR to PNW festivals since 2016.">
+      
+      <!-- Top Title Group in Glass Effect Box -->
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">Meet Your Moderator • UpLiftVR Studios / Wulf Design Studios</div>
+        <h2 class="slide-title">Who is this guy...?! | Larry James</h2>
+        <p class="slide-subtitle">Founder & Lead Developer • UpLiftVR Studios & Wulf Design Studios • VRMakerDome</p>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-headshot-col">
+            <img class="profile-headshot" src="../assets/headshots/larry_james.jpg" alt="Larry James Headshot">
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> He/Him</li>
+              <li><strong>Title:</strong> Founder & Lead Developer</li>
+              <li><strong>Studio:</strong> UpLiftVR / Wulf Design</li>
+            </ul>
+          </div>
+          <div class="profile-bio-container">
+            <span class="badge badge-cyan">Moderator Bio</span>
+            <p class="profile-bio">"Larry James is the creative force behind UpLiftVR Studios, where impossible-feeling moments — a hot air balloon's first ascent, the eerie hush of a total solar eclipse — become immersive VR experiences people don't forget. His balloon ride &quot;Maiden Flight&quot; spent nearly a month in the 2018 SIFF VR Zone, earning praise from The Seattle Times and a feature on King 5's Evening Magazine. A fixture of Seattle's maker and XR community since founding the VRMakerDome, Larry builds worlds — and welcomes anyone curious enough to ask how."</p>
+          </div>
+        </div>
+        <div class="card" style="justify-content: space-between;">
+          <div>
+            <span class="badge badge-magenta">Studio Leadership & Acclaim</span>
+            <p><strong>Website & Portfolio Hub:</strong> <a href="https://wulfdesign.github.io/" target="_blank" style="color: var(--cyan); text-decoration: none;">https://wulfdesign.github.io/</a></p>
+            <div style="margin-top: 0.75rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--gold);">
+              <p style="font-size: 0.85rem; color: #f1f5f9; line-height: 1.5;">
+                <strong>Creative Passions:</strong><br>
+                Crafting Experiences • Unreal Engine • Virtual Production / 360 Film • TTRPGs • Three.js & WebXR
+              </p>
+            </div>
+            <div style="margin-top: 0.75rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--emerald);">
+              <p style="font-size: 0.85rem; color: #f1f5f9; line-height: 1.5;">
+                <strong>Today's Goal:</strong><br>
+                Help you get started on your Game Dev journey — from thought to thing!
+              </p>
+            </div>
+          </div>
+          <a class="spotlight-link" href="https://wulfdesign.github.io/" target="_blank">🌟 The Spotlight Link: wulfdesign.github.io</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 3: Larry James - Body of Work        -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-3" data-notes="Walk through my body of work. Talk about UpLiftVR Maiden Flight—how it spent nearly a month at SIFF VR-Zone in 2018 and made the Seattle Times and King 5. Talk about High Desert Eclipse at KremFest. And highlight the VRMakerDome—a community dome that brought room-scale VR to festivals starting back in 2016, putting headsets on first-timers.">
+      
+      <!-- Top Title Group in Glass Effect Box -->
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">UpLiftVR Studios & VRMakerDome Showcase</div>
+        <h2 class="slide-title">Larry James: Crafting Impossible-Feeling Moments</h2>
+        <p class="slide-subtitle">Festival installations, celestial simulations, and community room-scale XR.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/maiden_flight_2026.jpg" alt="UpLiftVR Maiden Flight Balloon Ride">
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">SIFF VR-Zone Acclaim</span>
+            <h3>UpLiftVR 'Maiden Flight'</h3>
+            <p>A whimsical, semi-interactive VR hot air balloon ascent. Spent nearly a month in the 2018 SIFF VR-Zone, earned praise in <em>The Seattle Times</em>, and was featured on King 5's <em>Evening Magazine</em>.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/high_desert_eclipse_2026.jpg" alt="High Desert Eclipse">
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Celestial Total Totality</span>
+            <h3>High Desert Eclipse</h3>
+            <p>A meditative virtual reality experience capturing the eerie, breathless hush of a total solar eclipse. Debuted at KremFest Music Festival and optimized for standalone Meta Quest.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/VRMakerDome_Card_Logo.png" alt="VRMakerDome Logo">
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">Community Substrate</span>
+            <h3>The VRMakerDome (Since 2016)</h3>
+            <p>A mobile room-scale XR dome bringing virtual reality directly to public festivals, makers, and first-time flyers across the Pacific Northwest long before consumer headsets were everywhere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ========================================== -->
+    <!-- SLIDE 4: Tim Cullings - Profile            -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-4" data-notes="Introduce Tim Cullings. Tim is the Executive Director of Seattle Indies, Board Treasurer of IGDA, and previously led operations and served as ED for Global Game Jam. He's also an Oculus veteran who worked in Dev Ops shipping everything between Rift and Quest 2. Hand mic over to Tim for a brief greeting.">
+      
+      <!-- Top Title Group in Glass Effect Box -->
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">Meet Your Panelist • Seattle Indies & IGDA</div>
+        <h2 class="slide-title">Tim Cullings</h2>
+        <p class="slide-subtitle">Executive Director, Seattle Indies • Board Treasurer, IGDA • Former GGJ & Oculus</p>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-headshot-col">
+            <img class="profile-headshot" src="../assets/headshots/tim_cullings_framed.jpg" alt="Tim Cullings Headshot">
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> He/Him/His</li>
+              <li><strong>Title:</strong> Executive Director</li>
+              <li><strong>Org:</strong> Seattle Indies / IGDA</li>
+            </ul>
+          </div>
+          <div class="profile-bio-container">
+            <span class="badge badge-cyan">Intake Bio</span>
+            <p class="profile-bio">"Tim Cullings(he/him) is a Seattle video games industry veteran and champion for game development and climate science. He is currently the Executive Director for Seattle Indies, Board Treasurer of IGDA, and formerly the Executive Director and Director of Operations at Global Game Jam. Prior to GGJ Tim worked in Dev Ops and Enterprise Engineering at Oculus helping ship everything between Rift and Quest 2. Tim’s passion is empowering and enabling creators to create and be a part of a supportive community of like-minded people."</p>
+          </div>
+        </div>
+        <div class="card" style="justify-content: space-between;">
+          <div>
+            <span class="badge badge-emerald">Verified Links & Affiliations</span>
+            <p><strong>Connect / Follow:</strong> <a href="https://www.linkedin.com/in/timcullings/" target="_blank" style="color: var(--cyan); text-decoration: none;">linkedin.com/in/timcullings</a><br><strong>Spotlight Hub:</strong> <a href="https://timcullings.carrd.co/" target="_blank" style="color: var(--cyan); text-decoration: none;">timcullings.carrd.co</a></p>
+            <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--emerald);">
+              <p style="font-size: 0.9rem; color: #f1f5f9;"><strong>Community Leadership:</strong> Executive Director at Seattle Indies, organizing regional game jams, developer meetups, playtests, and the Seattle Indies Expo (SIX).</p>
+            </div>
+          </div>
+          <a class="spotlight-link" href="https://timcullings.carrd.co/" target="_blank">🌟 The Spotlight Link: timcullings.carrd.co</a>
+        </div>
+      </div>
+    </div>
+
+        <!-- ========================================== -->
+    <!-- SLIDE 5: Tim Cullings - Body of Work       -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-5" data-notes="Highlight Tim's body of work: Seattle Indies community leadership, Global Game Jam worldwide operations, and climate science gaming. Seattle Indies powers the very game hall outside our door this weekend.">
+      
+      <!-- Top Title Group in Glass Effect Box -->
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">Seattle Indies & Global Game Jam</div>
+        <h2 class="slide-title">Tim Cullings: Community Building & Global Impact</h2>
+        <p class="slide-subtitle">From 100+ nations in Global Game Jam to local indie incubation right here in Seattle.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/Seattle-Indies-banner-1500-600x337.png" alt="Seattle Indies Community">
+          <div class="card-bleed-body">
+            <span class="badge badge-emerald">Local Ecosystem</span>
+            <h3>Seattle Indies Community</h3>
+            <p>Nurturing thousands of Pacific Northwest creators through regular game jams, socials, playtests, the Seattle Indies Expo (SIX), and operating the GeekGirlCon Gaming Hall right downstairs!</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(56, 189, 248, 0.3);">
+            <img src="../assets/games/GGJ00_Logo_Light.png" alt="Global Game Jam Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Worldwide Jams</span>
+            <h3>Global Game Jam (GGJ)</h3>
+            <p>Directed worldwide operations for the planet's largest simultaneous game creation event, uniting tens of thousands of developers across over 100 countries every January.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(245, 158, 11, 0.3); flex-direction: column; gap: 0.5rem;">
+            <div style="font-size: 3.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));">🌍 ✕ 🥽</div>
+            <div style="font-size: 0.88rem; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase;">Climate Science & Oculus XR</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">Tech & Purpose</span>
+            <h3>Climate Games & XR Hardware</h3>
+            <p>Advocating for games tackling climate science while leveraging deep enterprise Dev Ops background from the pioneer days of Oculus Rift and Quest 2 hardware.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ========================================== -->
+    <!-- SLIDE 6: Heather Coles - Profile           -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-6" data-notes="Introduce Heather Coles. Heather is Creative Director at Orbicular, interaction designer, and Cornish College of the Arts graduate. Her career began at a Student RND hackathon with Monsantoware. She is a fixture at game jams as both mentor and maker. Hand mic over to Heather.">
+      <div class="slide-eyebrow">Meet Your Panelist • Orbicular</div>
+      <h2 class="slide-title">Heather Coles</h2>
+      <p class="slide-subtitle">Creative Director, Orbicular • Interaction Designer • Cornish College of the Arts</p>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-headshot-col">
+            <img class="profile-headshot" src="../assets/headshots/heather_coles.jpg" alt="Heather Coles Headshot">
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> She/Her</li>
+              <li><strong>Title:</strong> Creative Director</li>
+              <li><strong>Studio:</strong> Orbicular</li>
+            </ul>
+          </div>
+          <div class="profile-bio-container">
+            <span class="badge badge-magenta">Intake Bio</span>
+            <p class="profile-bio">"Heather Coles is a Seattle-based interaction designer and Creative Director at Orbicular. Her career began at a Student RND hackathon leading the team behind Monsantoware. A Cornish College of the Arts graduate with a curiosity for eye-tracking, accessibility, and immersive tech, she’s a fixture at game jams as both mentor and maker with two games currently in development: Tabby Tapper, a casual clicker that utilizes fluid dynamics and Frankly Demonic, a dress-up toy on smart watches."</p>
+          </div>
+        </div>
+        <div class="card" style="justify-content: space-between;">
+          <div>
+            <span class="badge badge-purple">Verified Links & Active Projects</span>
+            <p><strong>Connect / Follow:</strong> <a href="https://bsky.app/profile/heathercoles.bsky.social" target="_blank" style="color: var(--cyan); text-decoration: none;">@heathercoles.bsky.social</a><br><strong>Spotlight Hub:</strong> <a href="https://linktr.ee/heathercoles" target="_blank" style="color: var(--cyan); text-decoration: none;">linktr.ee/heathercoles</a></p>
+            <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--purple);">
+              <p style="font-size: 0.9rem; color: #f1f5f9;"><strong>In Development (From Bio):</strong><br>• <em>Tabby Tapper</em> — casual clicker utilizing fluid dynamics<br>• <em>Frankly Demonic</em> — dress-up toy designed for smart watches</p>
+            </div>
+          </div>
+          <a class="spotlight-link" href="https://linktr.ee/heathercoles" target="_blank">🌟 The Spotlight Link: linktr.ee/heathercoles</a>
+        </div>
+      </div>
+    </div>
+
+        <!-- ========================================== -->
+    <!-- SLIDE 7: Heather Coles - Body of Work      -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-7" data-notes="Highlight Heather's body of work: Creative direction at Orbicular, Cornish interaction design, Tabby Tapper with fluid dynamics, Frankly Demonic for smartwatches, and assistive tech / eye-tracking interactions.">
+      <div class="slide-eyebrow">Orbicular Games & Tactile Systems</div>
+      <h2 class="slide-title">Heather Coles: Tactile Interactions & Playful Tech</h2>
+      <p class="slide-subtitle">Smartwatch toys, casual clickers, and inclusive interface design.</p>
+
+      <div class="grid-3">
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(168, 85, 247, 0.3);">
+            <img src="../assets/games/Heather-Coles-Logo_HAC_stroke1cpWEB-p-1600.png" alt="Heather Coles Orbicular Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Orbicular Creative Direction</span>
+            <h3>Interactive Systems & Playful Tech</h3>
+            <p>Creative Director at Orbicular and Cornish College of the Arts graduate, crafting delightful, tactile interactions across emerging platforms, playful toys, and wearable tech.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(56, 189, 248, 0.3); flex-direction: column; gap: 0.5rem;">
+            <div style="font-size: 3.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));">🐾 💧 ⌚ 😈</div>
+            <div style="font-size: 0.88rem; font-weight: 800; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase;">Fluid Dynamics & Wearables</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Active Development</span>
+            <h3>Tabby Tapper & Frankly Demonic</h3>
+            <p><em>Tabby Tapper</em>: a casual clicker powered by real-time fluid dynamics. <em>Frankly Demonic</em>: an inventive, playful dress-up toy designed expressly for smartwatches.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(236, 72, 153, 0.3);">
+            <img src="../assets/games/HAC_new_bringht_rainbow_site_eye_graphic5cpWEB-p-1080.png" alt="Novel Input & Eye Tracking Graphic">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">Accessibility</span>
+            <h3>Eye-Tracking & Novel Input</h3>
+            <p>Pioneering interactions leveraging eye-tracking, accessibility mechanics, and tactile feedback to ensure games are welcoming and playable for all audiences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ========================================== -->
+    <!-- SLIDE 8: Renee Gittins - Profile           -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-8" data-notes="Introduce Renee Gittins. Renee leads Stumbling Cat, developers of Potions: A Curious Tale. Former GM of Phoenix Labs Vancouver, former Executive Director of the IGDA, Chair of the IGDA Alumni Board, and author of 'The Bad Boss Witch Guide to Rule Your World'. Hand mic over to Renee.">
+      <div class="slide-eyebrow">Meet Your Panelist • Stumbling Cat</div>
+      <h2 class="slide-title">Renee Gittins</h2>
+      <p class="slide-subtitle">Studio Head, Stumbling Cat • Former IGDA Executive Director • Author & Advocate</p>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-headshot-col">
+            <img class="profile-headshot" src="../assets/headshots/renee_gittins_framed.jpg" alt="Renee Gittins Headshot">
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> She/Her</li>
+              <li><strong>Title:</strong> Studio Head, Stumbling Cat</li>
+              <li><strong>Role:</strong> Author & Former IGDA ED</li>
+            </ul>
+          </div>
+          <div class="profile-bio-container">
+            <span class="badge badge-purple">Intake Bio</span>
+            <p class="profile-bio">"Renee leads Stumbling Cat, developers of Potions: A Curious Tale, and is a multi-disciplinary leader with expertise in engineering, product design, and creative direction. Formerly the GM of Phoenix Labs Vancouver and Executive Director of the IGDA, she is the Chair of the IGDA Alumni Board and is authoring &quot;The Bad Boss Witch Guide to Rule Your World&quot;."</p>
+          </div>
+        </div>
+        <div class="card" style="justify-content: space-between;">
+          <div>
+            <span class="badge badge-rose">Studio Leadership & Acclaim</span>
+            <p><strong>Connect / Follow:</strong> <a href="https://linktr.ee/rikukat" target="_blank" style="color: var(--cyan); text-decoration: none;">linktr.ee/rikukat</a> (@rikukat)<br><strong>Spotlight Website:</strong> <a href="https://potionsacurioustale.com/" target="_blank" style="color: var(--cyan); text-decoration: none;">potionsacurioustale.com</a></p>
+            <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--rose);">
+              <p style="font-size: 0.9rem; color: #f1f5f9; line-height: 1.55;">
+                <strong>Commercial Release & Leadership:</strong><br>
+                • <em>Potions: A Curious Tale</em>: Adventure RPG shipped across Steam and consoles.<br>
+                • <em>Industry Leadership</em>: Former GM of Phoenix Labs Vancouver, Former Executive Director of the IGDA, and Chair of the IGDA Alumni Board.<br>
+                • <em>Author</em>: <em>The Bad Boss Witch Guide to Rule Your World</em>.
+              </p>
+            </div>
+          </div>
+          <a class="spotlight-link" href="https://potionsacurioustale.com/" target="_blank">🌟 The Spotlight Link: potionsacurioustale.com</a>
+        </div>
+      </div>
+    </div>
+
+        <!-- ========================================== -->
+    <!-- SLIDE 9: Renee Gittins - Body of Work      -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-9" data-notes="Highlight Renee's body of work: Commercial release of Potions: A Curious Tale shipping on Steam and consoles, studio management as former GM of Phoenix Labs Vancouver, and global developer advocacy as former Executive Director of the IGDA and Chair of the IGDA Alumni Board.">
+      <div class="slide-eyebrow">Stumbling Cat & Global Game Dev Advocacy</div>
+      <h2 class="slide-title">Renee Gittins: Commercial Indie Dev & Industry Leadership</h2>
+      <p class="slide-subtitle">Shipped titles, studio management at Phoenix Labs, and global developer advocacy.</p>
+
+      <div class="grid-3">
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/PotionsACuriousTaleKeyArt.png" alt="Potions: A Curious Tale Key Art">
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Shipped Release</span>
+            <h3>Potions: A Curious Tale</h3>
+            <p>An adventure RPG where wits and potion crafting overcome brute combat. Shipped across Steam and consoles, proving that thoughtful, non-violent mechanics can captivate audiences worldwide.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(16, 185, 129, 0.3);">
+            <img src="../assets/games/Pheoenix-Labs_FULLCOLOR_WHITE.png" alt="Phoenix Labs Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-emerald">Executive Management</span>
+            <h3>Studio Leadership & Phoenix Labs</h3>
+            <p>Former GM of Phoenix Labs Vancouver; multi-disciplinary studio leader with deep technical and design expertise spanning engineering, product design, and creative direction.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(244, 63, 94, 0.3);">
+            <img src="../assets/games/IGDA_Short_RGB-White-01.png" alt="IGDA Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-rose">Global Advocacy & Literature</span>
+            <h3>IGDA Leadership & Author</h3>
+            <p>Championed developers worldwide as Executive Director of the IGDA, current Chair of the IGDA Alumni Board, and author of <em>The Bad Boss Witch Guide to Rule Your World</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 10: Evie Powell, PhD - Profile       -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-10" data-notes="Spotlight Dr. Evie Powell. Evie has a Ph.D. in Pervasive Game Design and is Staff Software Engineer at Niantic Spatial. She has worked on Xbox One Kinect, Pokémon Go AR, Niantic Spatial's Peridot, and her own games. Hand mic over to Evie!">
+      <div class="slide-eyebrow">Special Guest Spotlight • Niantic Spatial</div>
+      <h2 class="slide-title">Dr. Evie Powell</h2>
+      <p class="slide-subtitle">Staff Software Engineer, Niantic Spatial • Ph.D. Pervasive Game Design • Forever Games Enthusiast</p>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-headshot-col">
+            <img class="profile-headshot" src="../assets/headshots/evie_powell_framed.jpg" alt="Dr. Evie Powell Headshot">
+            <ul class="meta-list">
+              <li><strong>Pronouns:</strong> She/Her</li>
+              <li><strong>Title:</strong> Staff Software Engineer</li>
+              <li><strong>Org:</strong> Niantic Spatial / Forever Games</li>
+            </ul>
+          </div>
+          <div class="profile-bio-container">
+            <span class="badge badge-cyan">Intake Bio</span>
+            <p class="profile-bio">"Evie Powell has a Ph.D. in Pervasive Game Design (ask her what that means!). She has worked on games in industry (Xbox One Kinect, Niantic's Pokémon Go AR, Niantic Spatial's Peridot, and her own games) while specializing in AR/VR and natural user interfaces."</p>
+          </div>
+        </div>
+        <div class="card" style="justify-content: space-between;">
+          <div>
+            <span class="badge badge-emerald">Spatial Computing & Pervasive Design</span>
+            <p><strong>Connect / Follow:</strong> <a href="https://www.linkedin.com/in/evie-powell-phd-b078b43/" target="_blank" style="color: var(--cyan); text-decoration: none;">linkedin.com/in/evie-powell-phd</a><br><strong>GeekWire Spotlight:</strong> <a href="https://www.geekwire.com/2018/evie-powell-phd-2/" target="_blank" style="color: var(--cyan); text-decoration: none;">Geek of the Week: Evie Powell</a></p>
+            <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--emerald);">
+              <p style="font-size: 0.9rem; color: #f1f5f9; line-height: 1.55;">
+                <strong>Engineering & Academic Authority:</strong><br>
+                • <em>AAA & Spatial Engineering:</em> Xbox One Kinect, Niantic's <em>Pokémon Go AR</em>, and Niantic Spatial's <em>Peridot</em>.<br>
+                • <em>Academic Background:</em> Ph.D. in Pervasive Game Design, specializing in AR/VR and natural user interfaces.<br>
+                • <em>Independent Creator:</em> Developing original games as a lifelong "Forever Games Enthusiast."
+              </p>
+            </div>
+          </div>
+          <a class="spotlight-link" href="https://www.geekwire.com/2018/evie-powell-phd-2/" target="_blank">🌟 GeekWire Feature: Evie Powell</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 11: Evie Powell, PhD - Body of Work  -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-11" data-notes="Highlight Evie's body of work: Beyond her Ph.D. in Pervasive Game Design and engineering on Kinect, Pokémon GO AR, and Niantic Peridot, Evie is a prolific creator who shipped 'Melody' and 'Epic Snowday Adventure' on Steam, and exhibited groundbreaking work in the SIFF VR-Zone alongside our community!">
+      <div class="slide-eyebrow">Shipped Games & Spatial Computing Showcase</div>
+      <h2 class="slide-title">Dr. Evie Powell: Shipped Titles & Pervasive Play</h2>
+      <p class="slide-subtitle">Commercial Steam releases, festival VR showcases, and cutting-edge spatial engineering.</p>
+
+      <div class="grid-3">
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/Melody.jpg" alt="Melody Steam Release">
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Steam Commercial Release</span>
+            <h3>Melody</h3>
+            <p>Musical narrative puzzle adventure on Steam. Interactive world exploration driven by rhythm, music puzzles, and expressive visual storytelling. <br><a href="https://store.steampowered.com/app/471200/Melody/" target="_blank" style="color: var(--cyan); font-size: 0.82rem; font-weight: bold;">View on Steam</a></p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/Epic-Snowday-Adventure.jpg" alt="Epic Snowday Adventure Steam Release">
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Family & Motion Play</span>
+            <h3>Epic Snowday Adventure</h3>
+            <p>Physics-driven winter party game on Steam built for joyful local multiplayer, playful mini-games, and accessible family play. <br><a href="https://store.steampowered.com/app/477190/Epic_Snowday_Adventure/" target="_blank" style="color: var(--cyan); font-size: 0.82rem; font-weight: bold;">View on Steam</a></p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(56, 189, 248, 0.3);">
+            <img src="../assets/games/siff-blue.png" alt="SIFF Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-emerald">SIFF VR-Zone & GeekWire</span>
+            <h3>Spatial Computing & Shared Play</h3>
+            <p>Exhibited in the SIFF VR-Zone; featured as GeekWire's "Geek of the Week" for turning virtual reality into accessible, shared social reality. <br><a href="https://www.geekwire.com/2018/evie-powell-phd-2/" target="_blank" style="color: var(--cyan); font-size: 0.82rem; font-weight: bold;">Read GeekWire Profile</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 12: What IS a Game Jam?              -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-12" data-notes="Now let's demystify game jams for the room. What IS a game jam? It is a hackathon for games. It's time-limited (typically 48 hours). It has a surprise theme. But the most important part: the motto is 'Find the Fun'—not perfection. It's about building a Minimal Viable Product (MVP).">
+      <div class="slide-eyebrow">The Quest of the Day • Demystifying the Crucible</div>
+      <h2 class="slide-title">What IS a Game Jam?</h2>
+      <p class="slide-subtitle">Not an endurance grind or a cutthroat hackathon—a weekend celebration of rapid creative prototyping.</p>
+
+      <div class="grid-4">
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(56, 189, 248, 0.3);">
+            <div class="emoji-icons">⏱️ ⚡ ⏳</div>
+            <div class="emoji-sub" style="color: var(--cyan);">48-Hour Sprint</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Time Window</span>
+            <h3>Time-Limited</h3>
+            <p>A fixed, short window that cures analysis paralysis and forces you to finish what you start.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(236, 72, 153, 0.3);">
+            <div class="emoji-icons">🎲 💡 🔮</div>
+            <div class="emoji-sub" style="color: var(--magenta);">Creative Spark</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">Surprise Prompt</span>
+            <h3>Themed Constraints</h3>
+            <p>A surprise prompt revealed at kickoff that levels the playing field and sparks weird ideas.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(245, 158, 11, 0.3);">
+            <div class="emoji-icons">🎮 🥳 🌈</div>
+            <div class="emoji-sub" style="color: var(--gold);">Pure Play</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">Core Philosophy</span>
+            <h3>"Find the Fun"</h3>
+            <p>Zero pressure for commercial polish. The only goal is discovering a playful, delightful interaction.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(16, 185, 129, 0.3);">
+            <div class="emoji-icons">🔬 📦 🎯</div>
+            <div class="emoji-sub" style="color: var(--emerald);">Radical MVP</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-emerald">Scope Discipline</span>
+            <h3>Atomic Scope</h3>
+            <p>Strip away the 100-page design doc. Build the simplest playable toy that proves the concept.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 13: The Triple-A Payoff              -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-13" data-notes="Explain the Triple-A Payoff from our original deck: Fun, Friends, Craft. Fun because there are no commercial stakes. Friends because you bond in the trenches. Craft because you turn thoughts into tangible things faster than any tutorial series.">
+      <div class="slide-eyebrow">The Core Philosophy • Why Jam?</div>
+      <h2 class="slide-title">Triple-A Payoff: Why Jam?</h2>
+      <p class="slide-subtitle">Forget AAA budgets—game jams provide the true Triple-A creative reward: Fun, Friends, Craft.</p>
+
+      <div class="grid-3">
+        <div class="card card-bleed" style="border-top: 4px solid var(--magenta);">
+          <div class="card-emoji-box" style="height: 150px; border-bottom-color: rgba(236, 72, 153, 0.3);">
+            <div class="emoji-icons" style="font-size: 3.2rem;">🎪 🎈 ✨ 🕹️</div>
+            <div class="emoji-sub" style="color: var(--magenta);">Zero Stakes Freedom</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">🎉 1. FUN !</span>
+            <h3>Zero Stakes Freedom</h3>
+            <p>Low stakes & high creativity. Total permission to experiment with wild ideas and experience the thrill of play.</p>
+          </div>
+        </div>
+        <div class="card card-bleed" style="border-top: 4px solid var(--cyan);">
+          <div class="card-emoji-box" style="height: 150px; border-bottom-color: rgba(56, 189, 248, 0.3);">
+            <div class="emoji-icons" style="font-size: 3.2rem;">🤝 👥 🛡️ 💖</div>
+            <div class="emoji-sub" style="color: var(--cyan);">The Trench Fellowship</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">🤝 2. FRIENDS !</span>
+            <h3>The Trench Fellowship</h3>
+            <p>Meet other creators and build a team. Collaborating under tight constraints forges deep, lasting alliances.</p>
+          </div>
+        </div>
+        <div class="card card-bleed" style="border-top: 4px solid var(--gold);">
+          <div class="card-emoji-box" style="height: 150px; border-bottom-color: rgba(245, 158, 11, 0.3);">
+            <div class="emoji-icons" style="font-size: 3.2rem;">🛠️ 🎨 💻 🚀</div>
+            <div class="emoji-sub" style="color: var(--gold);">From Thought to Thing</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">🛠️ 3. CRAFT !</span>
+            <h3>From Thought to Thing</h3>
+            <p>Learn new skills fast and build a real portfolio. You turn thoughts into tangible playable games in a single weekend.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 14: Finding Your First Jam           -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-14" data-notes="Walk through where to find your first jam. itch.io/jams hosts hundreds of online jams every month. Global Game Jam is the big annual January in-person event. Mention Seattle Indies hosts regional sites. Pro-tip: start small!">
+      <div class="slide-eyebrow">Getting Started • Where Do Jams Live?</div>
+      <h2 class="slide-title">Find Your First Jam</h2>
+      <p class="slide-subtitle">Pro-tip: Start with a small online jam to get your feet wet!</p>
+
+      <div class="grid-3">
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(244, 63, 94, 0.3);">
+            <img src="../assets/games/itchio-logo-white.png" alt="itch.io Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Online Central</span>
+            <h3>itch.io / jams</h3>
+            <p>The largest calendar in indie gaming. Browse hundreds of community jams every month—from 3-hour micro jams to relaxed month-long narrative jams.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(16, 185, 129, 0.3);">
+            <img src="../assets/games/GGJ00_Logo_Light.png" alt="Global Game Jam Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-emerald">Worldwide Event</span>
+            <h3>Global Game Jam (GGJ)</h3>
+            <p>The world's premier simultaneous jam every January across 100+ nations. Seattle Indies hosts premier regional sites right here in town!</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(88, 101, 242, 0.4);">
+            <img src="../assets/games/Discord-Logo-Blurple.png" alt="Discord Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Beginner Friendly</span>
+            <h3>Cozy & Themed Jams</h3>
+            <p>Look for beginner-focused tags like <em>Twine Jam</em>, <em>Bitsy Jam</em>, <em>Game Boy Jam</em>, or jams with dedicated beginner discord channels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 15: Jam Team Roles                   -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-15" data-notes="Stress this strongly: You do NOT need to know how to code! A jam team needs artists, writers, audio designers, project managers, and producers. In fact, teams with no programmers often make some of the most memorable tabletop or narrative games!">
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">Team Assembly • Every Discipline Matters</div>
+        <h2 class="slide-title">Jam Team Roles: The Crew</h2>
+        <p class="slide-subtitle">You do NOT need to know how to code! A game is an entire creative universe.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(236, 72, 153, 0.3);">
+            <div class="emoji-icons">🎨 🖌️ ✨ 👾</div>
+            <div class="emoji-sub" style="color: var(--magenta);">Visuals & Animation</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">Visuals</span>
+            <h3>Artists & Animators</h3>
+            <p>Establish mood, palette, 2D sprites, 3D models, UI buttons, and visual feedback that makes the world pop.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(245, 158, 11, 0.3);">
+            <div class="emoji-icons">🎧 🎹 🔊 🎶</div>
+            <div class="emoji-sub" style="color: var(--gold);">Atmosphere & Foley</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">Atmosphere</span>
+            <h3>Audio & Foley</h3>
+            <p>Compose catchy soundtrack loops, crunchy sound effects, and ambient soundscapes that carry half the emotion.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(168, 85, 247, 0.3);">
+            <div class="emoji-icons">📜 🖋️ 🗺️ 🎲</div>
+            <div class="emoji-sub" style="color: var(--purple);">Worldbuilding & Design</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Worldbuilding</span>
+            <h3>Writers & Designers</h3>
+            <p>Craft snappy dialogue, compelling lore, game rules, puzzle setups, and the player's emotional journey.</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-emoji-box" style="border-bottom-color: rgba(16, 185, 129, 0.3);">
+            <div class="emoji-icons">🧭 ⏱️ 🍕 ☕</div>
+            <div class="emoji-sub" style="color: var(--emerald);">Scope, Clock & Snacks</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-emerald">Glue</span>
+            <h3>Producers & Morale</h3>
+            <p>Enforce scope, keep the clock, resolve design impasses, and make sure everyone drinks water and gets rest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 16: Memory Lane: First Jams          -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-16" data-notes="MODERATOR QUESTION 1 (The Origin Story): 'Take us back to your very first game jam. What did you make, and what was the biggest takeaway? Did that specific weekend help solidify your desire to pursue game dev?' Verified first jams: Larry's SuperChurchFart64 (LD25), Renee's Dryad (LD34), Evie's GGJ Xbox Live Indie Game, Heather's Monsantoware.">
+      <div class="slide-eyebrow">Panelist Origins • Ground-Truth First Jams</div>
+      <h2 class="slide-title">Our First Jams: The Beautiful Chaos</h2>
+      <p class="slide-subtitle">Before shipped titles and studio leadership, we all started in 48-hour prototype pandemonium.</p>
+
+      <div class="slide-question-banner">
+        <span class="q-badge">💬 Question 1 • Origin Story</span>
+        <span class="q-text">"Take us back to your very first game jam. What did you make, and what was the biggest takeaway? Did that specific weekend help solidify your desire to pursue game dev?"</span>
+      </div>
+
+      <div class="grid-4">
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/larry_scf64_shot2.png" alt="SuperChurchFart64 Screenshot">
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">Larry (LD25)</span>
+            <h3>SuperChurchFart64</h3>
+            <p>Theme: "You Are The Villain." Prototype aka "Crop Duster" created for Ludum Dare 25.</p>
+            <p style="font-size: 0.72rem; color: #94a3b8; margin-top: auto; padding-top: 0.4rem;">Repo: github.com/Aquatarkus/LudumDare25</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <img class="card-banner-bleed" src="../assets/games/renee_dryad_screenshot2.jpg" alt="Dryad Screenshot">
+          <div class="card-bleed-body">
+            <span class="badge badge-purple">Renee (LD34)</span>
+            <h3>Dryad</h3>
+            <p>Ludum Dare 34 solo compo project exploring nature spirit mechanics.</p>
+            <p style="font-size: 0.72rem; color: #94a3b8; margin-top: auto; padding-top: 0.4rem;">ludumdare.com/compo/ludum-dare-34</p>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(56, 189, 248, 0.3);">
+            <img src="../assets/games/Xbox-Live-indie-games-program.png" alt="Xbox Live Indie Games Program Logo">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Evie (GGJ)</span>
+            <h3>Xbox Live Indie Game</h3>
+            <p>Global Game Jam sprint that ended up published and reviewed on Xbox Live Indie Games!</p>
+            <div style="background: rgba(0,0,0,0.3); padding: 0.4rem 0.5rem; border-radius: 6px; margin-top: auto; font-size: 0.75rem; color: var(--cyan);">
+              📺 Reviewed on YouTube (1:40 - 2:15)<br><a href="https://www.youtube.com/watch?v=27is6DkGvF4" target="_blank" style="color: var(--cyan); word-break: break-all;">youtu.be/27is6DkGvF4</a>
+            </div>
+          </div>
+        </div>
+        <div class="card card-bleed">
+          <div class="card-logo-box-bleed" style="border-color: rgba(245, 158, 11, 0.3);">
+            <img src="../assets/games/HAC_Monsantoware_original.png" alt="Monsantoware Original Game Art">
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">Heather (From Bio)</span>
+            <h3>Monsantoware</h3>
+            <p>Career began leading the team behind this satirical micro-game at a Student RND hackathon.</p>
+            <div style="background: rgba(0,0,0,0.3); padding: 0.4rem 0.5rem; border-radius: 6px; margin-top: auto; font-size: 0.75rem; color: #cbd5e1;">
+              🌱 Sparked her path into interaction design & mentorship!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 17: Other Jams & The 9th Wall        -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-17" data-notes="MODERATOR QUESTION 2 (The Crucible / Failing Forward): 'We've all had jams where the scope crept, the engine crashed, or the game just wasn't fun. Tell us about your hardest game jam. Was it a glorious failure, and what was the most valuable thing you learned from a jam that didn't go as planned?' Evie's 'Did You Murder Your Wife' UNCC GGJ urban legend; Larry's Tale Spinner / Story Spinner (GGJ 2015) print scramble and LD27 Ten Seconds of Thrust.">
+      <div class="slide-eyebrow">The 9th Wall • When Jams Go Sideways</div>
+      <h2 class="slide-title">Other Jams & The 9th Wall: The "Glorious Failure"</h2>
+      <p class="slide-subtitle">The greatest lessons in game development come from the catastrophic 2:00 AM disasters.</p>
+
+      <div class="slide-question-banner">
+        <span class="q-badge">💬 Question 2 • The Crucible</span>
+        <span class="q-text">"We've all had jams where the scope crept, the engine crashed, or the game just wasn't fun. Tell us about your hardest game jam. Was it a glorious failure, and what was the most valuable thing you learned from a jam that didn't go as planned?"</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card card-bleed" style="border-left: 4px solid var(--rose);">
+          <div class="card-bleed-body" style="padding-bottom: 0;">
+            <span class="badge badge-magenta">Intake Submissions & Lore</span>
+            <h3 style="color: var(--rose);">"What is the jam where everything went completely sideways?"</h3>
+            <p>• <strong>Dr. Evie Powell (UNCC GGJ):</strong> <em>"Did you murder your wife"</em> — a game where you had to stash a body in a variety of places so the police wouldn't suspect you while you got to a boat (you didn't murder your wife btw). It became a reddit urban legend in their local subreddit when someone saw the postmortem on the projector outside of the venue!<br><br>
+            • <strong>Larry James (GGJ 2015 & LD27):</strong> <em>Tale Spinner</em> — A network multiplayer card game that ran out of runway and turned into a frantic print-and-play paper card scramble 10 minutes before judging! And <em>Ten Seconds of Thrust</em> (LD27 solo gravity simulation).</p>
+          </div>
+          <img class="card-bleed-bottom-img" src="../assets/games/larry_story_spinner_upload.png" alt="Story Spinner / Tale Spinner Cards">
+        </div>
+        <div class="card" style="border-left: 4px solid var(--cyan);">
+          <span class="badge badge-cyan">The Takeaway</span>
+          <h3>Why Game Jams Make Failure Safe</h3>
+          <p>In commercial development, failure costs budgets, contracts, and years of stress. In a game jam, failure costs only 48 hours—and leaves you with an unforgettable war story and an invaluable lesson you will carry for the rest of your career.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 18: The Butterfly Effect & Fellowship -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-18" data-notes="MODERATOR QUESTIONS 3 & 4 (The Fellowship & The Butterfly Effect): 'Game jams are high-pressure, but they also act as amazing networking events. Can you talk about a connection, friendship, or relationship you formed in the trenches of a jam that still impacts your life today? Can you share a serendipitous moment—a surprise job offer, wild collaboration, or random opportunity—purely because of a connection you made at a game jam?' Evie's Seattle VR hackathon career springboard; Larry's Ludum Dare to SIFF VR-Zone and UpLiftVR.">
+      <div class="slide-eyebrow">Career Magic • Section 2 Submissions</div>
+      <h2 class="slide-title">The Fellowship & The Butterfly Effect: Jam Serendipity</h2>
+      <p class="slide-subtitle">How a chaotic 48-hour weekend prototype alters life paths, launches studios, and opens doors.</p>
+
+      <div class="grid-2">
+        <div class="card card-bleed" style="border-left: 4px solid var(--purple);">
+          <div class="card-emoji-box" style="height: 90px; border-bottom: 1px solid rgba(168, 85, 247, 0.3);">
+            <div class="emoji-icons" style="font-size: 2.3rem;">🤝 🍕 🏕️ 💬</div>
+            <div class="emoji-sub" style="color: var(--purple); font-size: 0.78rem;">Bonds Forged in the Crunch</div>
+          </div>
+          <div class="card-bleed-body">
+            <div class="slide-question-banner" style="margin-bottom: 0.75rem; background: rgba(168, 85, 247, 0.15); border-left-color: var(--purple);">
+              <span class="q-badge" style="background: rgba(168, 85, 247, 0.25); color: #d8b4fe; border-color: var(--purple);">💬 Question 3 • The Fellowship</span>
+              <span class="q-text" style="font-size: 0.88rem;">"Can you talk about a connection, friendship, or relationship you formed in the trenches of a jam that still impacts your life today?"</span>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.55;">• <strong>Dr. Evie Powell:</strong> <em>"The Seattle VR hackathons were where I made a lot of friends that really helped my career in AR/VR take off! And the connections from those jams are still serving me today!"</em><br><br>
+            • <strong>Larry James:</strong> Prototyping in Ludum Dare and GGJ paved the way to SIFF VR-Zone month-long festival showcases and founding UpLiftVR Studios.<br><br>
+            • <strong>Tim & Heather:</strong> Meeting lifelong co-creators at 2:00 AM over cold pizza.</p>
+          </div>
+        </div>
+        <div class="card card-bleed" style="border-left: 4px solid var(--cyan);">
+          <div class="card-emoji-box" style="height: 90px; border-bottom: 1px solid rgba(56, 189, 248, 0.3);">
+            <div class="emoji-icons" style="font-size: 2.3rem;">🦋 🚪 💼 🌟</div>
+            <div class="emoji-sub" style="color: var(--cyan); font-size: 0.78rem;">Surprise Opportunities & Shipped Games</div>
+          </div>
+          <div class="card-bleed-body">
+            <div class="slide-question-banner" style="margin-bottom: 0.75rem; background: rgba(56, 189, 248, 0.15); border-left-color: var(--cyan);">
+              <span class="q-badge" style="background: rgba(56, 189, 248, 0.25); color: #7dd3fc; border-color: var(--cyan);">💬 Question 4 • The Butterfly Effect</span>
+              <span class="q-text" style="font-size: 0.88rem;">"Can you share a serendipitous moment—a surprise job offer, wild collaboration, or random opportunity—purely because of a jam connection?"</span>
+            </div>
+            <h3 style="color: var(--cyan); margin-top: 0.25rem;">The Unspoken Resume</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.4rem;">
+              Game developers don't look at credentials—they look at what you have actually shipped. Having two or three game jam projects on itch.io or GitHub proves you can collaborate, execute under constraints, and ship a real game.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 19: Let's Shape the Discussion       -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-19" data-notes="MODERATOR QUESTION 5 (The 'Cheat Code'): 'When the clock is ticking and you only have 48 hours to create something, what is your ultimate \'cheat code\' to cross the finish line? Is it specific software, a design trick, or just knowing what features to brutally cut?' Dr. Evie Powell's intake hack: 'Learn something new rather than just win; take breaks and sleep!' Open floor for Larry, Tim, Heather, and Renee.">
+      <div class="slide-eyebrow">Survival Guide • Authentic Panelist Hacks</div>
+      <h2 class="slide-title">Let's Shape the Discussion: 48-Hour Cheat Codes</h2>
+      <p class="slide-subtitle">Tactics and psychological hacks from veteran developers to cross the finish line.</p>
+
+      <div class="slide-question-banner">
+        <span class="q-badge">💬 Question 5 • 48-Hour Cheat Codes</span>
+        <span class="q-text">"When the clock is ticking and you only have 48 hours to create something, what is your ultimate 'cheat code' to cross the finish line? Is it specific software, a design trick, or knowing what features to brutally cut?"</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card card-bleed" style="border-top: 4px solid var(--cyan); justify-content: space-between;">
+          <div class="card-emoji-box" style="height: 85px; border-bottom: 1px solid rgba(56, 189, 248, 0.3);">
+            <div class="emoji-icons" style="font-size: 2.2rem;">🧠 🛌 🧘‍♀️ 📚</div>
+            <div class="emoji-sub" style="color: var(--cyan); font-size: 0.78rem;">Sleep, Rest & Learning Over Winning</div>
+          </div>
+          <div class="card-bleed-body" style="display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
+            <div>
+              <span class="badge badge-cyan">Dr. Evie Powell's Mindset Hack</span>
+              <h3>Learn Rather Than Win</h3>
+              <p style="font-size: 1rem; line-height: 1.6; font-style: italic; color: #f1f5f9; margin-top: 0.5rem;">
+                "Some of my most awesome outcomes came when I decided I wanted to learn something new rather than just win. E.g., if you're a software engineer, do sound design or lead designer. Jams are great sandboxes to learn. Also take breaks and sleep!"
+              </p>
+            </div>
+            <div style="font-size: 0.8rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.6rem; margin-top: 1rem;">
+              📌 <em>Verbatim from Intake: Section 2 (Your Jam Cheat Code)</em>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-bleed" style="border-top: 4px solid var(--magenta); justify-content: space-between;">
+          <div class="card-emoji-box" style="height: 85px; border-bottom: 1px solid rgba(236, 72, 153, 0.3);">
+            <div class="emoji-icons" style="font-size: 2.2rem;">⚡ ✂️ 🧰 🚀</div>
+            <div class="emoji-sub" style="color: var(--magenta); font-size: 0.78rem;">Atomic Verbs & Scope Cuts</div>
+          </div>
+          <div class="card-bleed-body" style="display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
+            <div>
+              <span class="badge badge-magenta">Live Panel Cheat Codes</span>
+              <h3>What Is Your 48-Hour Secret Weapon?</h3>
+              <p style="font-size: 0.95rem; line-height: 1.6; color: #cbd5e1; margin-top: 0.5rem;">
+                When Sunday afternoon arrives and the submission clock is ticking down, what is your go-to tool, engine shortcut, or mindset hack to cross the finish line?
+              </p>
+              <ul style="margin-top: 0.85rem; padding-left: 1.25rem; font-size: 0.9rem; color: #94a3b8; line-height: 1.7;">
+                <li><strong>Larry James</strong> (UpLiftVR Studios: HTML5 Canvas, Three.js, Blueprints)</li>
+                <li><strong>Tim Cullings</strong> (Seattle Indies: Scope cuts, game feel over complexity)</li>
+                <li><strong>Heather Coles</strong> (Orbicular: Fluid dynamics, simple physical toy feel)</li>
+                <li><strong>Renee Gittins</strong> (Stumbling Cat: Paper prototyping, non-violent core verbs)</li>
+              </ul>
+            </div>
+            <div style="background: rgba(0,0,0,0.3); padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.85rem; color: var(--gold); border-left: 3px solid var(--gold); margin-top: 0.85rem;">
+              🎙️ <em>The panel shares live scope advice, team management tips, and technical shortcuts.</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 20: Session Zero Intermission        -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-20" data-notes="Extra credit time! Replaces the old 22-slide technical XR guide. Run the 5-10 minute Live Game Jam Session Zero experiment. Challenge the audience: If you had 48 hours next weekend, who would you build with? Let's pre-form teams in Room 'America'!">
+      <div class="slide-eyebrow">Extra Credit Interactive • 5-Minute Drill</div>
+      <h2 class="slide-title">Intermission: Game Jam Session Zero</h2>
+      <p class="slide-subtitle">What if you walked out of Room 'America' today with your next game jam crew already assembled?</p>
+
+      <div class="grid-3">
+        <div class="card card-bleed" style="border-top: 4px solid var(--cyan);">
+          <div class="card-emoji-box" style="height: 145px; border-bottom-color: rgba(56, 189, 248, 0.3);">
+            <div class="emoji-icons" style="font-size: 3.2rem;">🎴 🦸‍♀️ 🏷️</div>
+            <div class="emoji-sub" style="color: var(--cyan);">Claim Your Superpower</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-cyan">Step 1</span>
+            <h3>Claim Your Card</h3>
+            <p>Identify your primary superpower using our Jam Crew roles (Code, Art, Audio, Narrative, or Producer).</p>
+          </div>
+        </div>
+        <div class="card card-bleed" style="border-top: 4px solid var(--gold);">
+          <div class="card-emoji-box" style="height: 145px; border-bottom-color: rgba(245, 158, 11, 0.3);">
+            <div class="emoji-icons" style="font-size: 3.2rem;">🔮 🎲 ⚡</div>
+            <div class="emoji-sub" style="color: var(--gold);">Roll The Spark</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-gold">Step 2</span>
+            <h3>Roll the Spark</h3>
+            <p>Take our 3-prompt random seed (Theme + Verb + Bizarre Twist) on the next slide as your game's creative spark.</p>
+          </div>
+        </div>
+        <div class="card card-bleed" style="border-top: 4px solid var(--magenta);">
+          <div class="card-emoji-box" style="height: 145px; border-bottom-color: rgba(236, 72, 153, 0.3);">
+            <div class="emoji-icons" style="font-size: 3.2rem;">🗣️ 🤝 🚀</div>
+            <div class="emoji-sub" style="color: var(--magenta);">Pitch & Form A Crew</div>
+          </div>
+          <div class="card-bleed-body">
+            <span class="badge badge-magenta">Step 3</span>
+            <h3>60-Second Match</h3>
+            <p>Find someone nearby with a complementary role and pitch your 1-sentence game concept to them!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 21: The Proxy Tarot & Jam Crew Roles  -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-21" data-notes="Introduce the Proxy Tarot / Jam Crew Roles. Walk through the 5 archetypes: Code Wizard, Visual Alchemist, Audio Bard, World Architect, Guild Guide. Ask audience members to raise their hands or look at their proxy cards.">
+      <div class="slide-eyebrow">Card Mechanics • Discover Your Superpower</div>
+      <h2 class="slide-title">What is Your Jam Card? The Proxy Tarot</h2>
+      <p class="slide-subtitle">Every legendary game jam team needs a balance of archetypes.</p>
+
+      <div class="grid-5">
+        <div class="crew-card">
+          <div class="icon">💻</div>
+          <h3>Code Wizard</h3>
+          <p>Logic, physics, movement, turning bugs into features.</p>
+        </div>
+        <div class="crew-card">
+          <div class="icon">🎨</div>
+          <h3>Visual Alchemist</h3>
+          <p>Color palettes, 2D sprites, UI, 3D models, visual flair.</p>
+        </div>
+        <div class="crew-card">
+          <div class="icon">🎵</div>
+          <h3>Audio Bard</h3>
+          <p>Banging beats, crunchy sound effects, atmospheric tension.</p>
+        </div>
+        <div class="crew-card">
+          <div class="icon">📜</div>
+          <h3>World Architect</h3>
+          <p>Story, lore, game rules, dialogue, player choices.</p>
+        </div>
+        <div class="crew-card">
+          <div class="icon">🧭</div>
+          <h3>Guild Guide</h3>
+          <p>Scope wrangler, keeper of the clock, snacks, team cheer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 22: The Proxy Tarot Prompt Matrix    -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-22" data-notes="Interactive Tarot Deck System! Draw real Tarot cards (Major Arcana, suit pip & court cards across all 3 categories) translated into authentic game jam themes, atomic action verbs, and bizarre diversifiers. Presenter and audience can draw 1-3 cards per category, click to combine them, and watch the pitch synthesize in real time. Have the audience turn to their neighbors and pitch!">
+      <div class="slide-eyebrow">Audience Brainstorm • The Proxy Tarot Deck</div>
+      <h2 class="slide-title">Interactive Tarot: Spark a 48-Hour Game</h2>
+      <p class="slide-subtitle">Draw real Tarot cards (Major Arcana & Suits across all categories) translated into authentic game jam themes, core action verbs, and bizarre diversifiers. Click cards to select & combine into a pitch! • <a href="https://wulfdesign.github.io/game-jam-panels/" target="_blank" style="color: var(--cyan); text-decoration: none; font-weight: 600;">wulfdesign.github.io/game-jam-panels/</a></p>
+
+      <div class="tarot-stage">
+        <!-- Column 1: Themes -->
+        <div class="tarot-column" style="border-color: rgba(168, 85, 247, 0.4);">
+          <div class="tarot-col-header">
+            <div class="tarot-col-title" style="color: var(--purple);">🔮 1. World Theme</div>
+            <button class="cat-save-btn" title="Save Theme cards to disk" onclick="saveCategoryToDisk('theme')">💾</button>
+            <div class="draw-controls">
+              <span class="draw-label">Draw:</span>
+              <button class="draw-card-btn" id="draw-btn-theme" title="Draw Card" onclick="drawAdditionalCard('theme')">🎴</button>
+              <span class="draw-counter" id="draw-count-theme">1/3</span>
+            </div>
+          </div>
+          <div class="tarot-cards-container" id="container-theme"></div>
+        </div>
+
+        <!-- Column 2: Action Verbs -->
+        <div class="tarot-column" style="border-color: rgba(56, 189, 248, 0.4);">
+          <div class="tarot-col-header">
+            <div class="tarot-col-title" style="color: var(--cyan);">⚡ 2. Action Verb</div>
+            <button class="cat-save-btn" title="Save Action Verb cards to disk" onclick="saveCategoryToDisk('verb')">💾</button>
+            <div class="draw-controls">
+              <span class="draw-label">Draw:</span>
+              <button class="draw-card-btn" id="draw-btn-verb" title="Draw Card" onclick="drawAdditionalCard('verb')">🎴</button>
+              <span class="draw-counter" id="draw-count-verb">1/3</span>
+            </div>
+          </div>
+          <div class="tarot-cards-container" id="container-verb"></div>
+        </div>
+
+        <!-- Column 3: Diversifiers -->
+        <div class="tarot-column" style="border-color: rgba(236, 72, 153, 0.4);">
+          <div class="tarot-col-header">
+            <div class="tarot-col-title" style="color: var(--magenta);">🌀 3. Bizarre Twist</div>
+            <button class="cat-save-btn" title="Save Twist cards to disk" onclick="saveCategoryToDisk('twist')">💾</button>
+            <div class="draw-controls">
+              <span class="draw-label">Draw:</span>
+              <button class="draw-card-btn" id="draw-btn-twist" title="Draw Card" onclick="drawAdditionalCard('twist')">🎴</button>
+              <span class="draw-counter" id="draw-count-twist">1/3</span>
+            </div>
+          </div>
+          <div class="tarot-cards-container" id="container-twist"></div>
+        </div>
+      </div>
+
+      <!-- Live Synthesis & Roll Bar -->
+      <div class="pitch-synthesis-bar">
+        <div class="pitch-text" id="pitch-readout">
+          ✨ <strong>Synthesized Pitch:</strong> <span style="color: #94a3b8;">Select cards above to build your pitch...</span>
+        </div>
+        <div class="pitch-actions">
+          <button class="tarot-mini-card-btn" onclick="dealAllTarot()" title="Reshuffle all unlocked cards">
+            <div class="mini-card-icon">🎴</div>
+            <div class="mini-card-text">
+              <span>Deal / Reshuffle</span>
+              <span>All Decks</span>
+            </div>
+          </button>
+          <button class="tarot-mini-card-btn" onclick="saveAllTarotToDisk()" title="Save complete pitch and card details to disk">
+            <div class="mini-card-icon">💾</div>
+            <div class="mini-card-text">
+              <span>Save</span>
+              <span>Pitch</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="tarot-toast" id="tarot-toast"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 23: We Did It! 3 Games Formed        -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-23" data-notes="Celebrate the pitches! Highlight Larry's Slide 19: We Did It! We founded a Game Jam Team. Emphasize that free tools (Godot, Twine, Bitsy, Unity, Unreal) make game dev accessible to everyone. Start simple for your first game!">
+      <div class="slide-eyebrow">Experiment Wrap-Up • Congratulations!</div>
+      <h2 class="slide-title">We Did It! 3 Games Formed</h2>
+      <p class="slide-subtitle">You just accomplished what commercial studios take months to brainstorm.</p>
+
+      <div class="grid-3">
+        <div class="card" style="border-top: 4px solid var(--emerald);">
+          <span class="badge badge-emerald">Free & Accessible</span>
+          <h3>Basic Tools Are Free</h3>
+          <p>Godot, Twine, Bitsy, Unity, Unreal, and Three.js are free and accessible. You don't need a massive workstation to start building.</p>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--gold);">
+          <span class="badge badge-gold">Atomic Scope</span>
+          <h3>Start Simple</h3>
+          <p>Focus on a single, joyful mechanic for your first game. A tiny, delightful 2-minute prototype beats an unfinished open-world dream.</p>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--cyan);">
+          <span class="badge badge-cyan">Team or Solo</span>
+          <h3>Your Crew Awaits</h3>
+          <p>Whether you jam solo to learn new skills or team up with your new friends from Room 'America', you now have the blueprint to ship!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 24: What Have You Been Working On?   -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-24" data-notes="MODERATOR SPOTLIGHT & ROUND-ROBIN (Larry's Topic: Projects Born Out of Jams): 'What have you been working on lately that is maybe new or old and that you are excited about? Especially projects that were thought of because of the game jam but wouldn't fit into the weekend and you later created outside of the jam!' Larry shares Artemis: The Free Return (Lunar-Flyby-XR) and The Game Master Project (playtested at GeekFest West). Then round-robin lightning round for Tim, Heather, Renee, and Evie!">
+      <div class="slide-eyebrow">Round-Robin Spotlight • What's On Your Desk?</div>
+      <h2 class="slide-title">What Have You Been Working On Lately?</h2>
+      <p class="slide-subtitle">From Newtonian orbital mechanics to tabletop RPG systems—what is exciting you right now?</p>
+
+      <div class="slide-question-banner">
+        <span class="q-badge">💬 Moderator Topic & Round-Robin</span>
+        <span class="q-text">"What projects were thought of because of the game jam that wouldn't fit into the weekend and you later created outside of the jam? What is the fire that keeps you going when life gets in the way?"</span>
+      </div>
+
+      <div class="grid-2">
+        <!-- Left: Larry's Spotlight -->
+        <div class="card" style="border-left: 4px solid var(--magenta); justify-content: space-between;">
+          <div>
+            <span class="badge badge-magenta">Larry James (UpLiftVR / Wulf Design)</span>
+            <h3 style="color: var(--cyan); margin-top: 0.25rem;">Artemis: The Free Return & Game Master</h3>
+            
+            <div style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--cyan);">
+              <h4 style="font-size: 0.95rem; color: var(--cyan); margin-bottom: 0.25rem;">🚀 Artemis: The Free Return (Lunar-Flyby-XR)</h4>
+              <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
+                A real-time WebXR Newtonian cislunar simulation putting everyday people in the commander's seat for an unscripted lunar slingshot and atmospheric reentry.
+              </p>
+              <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.35rem;">
+                <strong>Showcased at:</strong> Greenwood Art Walk • SLICE • SIM Pre-PAX Showcase • KremFest XR • Seattle Space Week
+              </p>
+            </div>
+
+            <div style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--gold);">
+              <h4 style="font-size: 0.95rem; color: var(--gold); margin-bottom: 0.25rem;">🎲 The Game Master Project</h4>
+              <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
+                Bridging tabletop RPG storytelling with interactive digital game systems. Playtested at <strong>GeekFest West</strong> this summer—and the tabletop party dynamic is what inspired today's Session Zero experiment!
+              </p>
+            </div>
+          </div>
+          <div style="font-size: 0.75rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.75rem;">
+            🔗 <em>Explore on wulfdesign.github.io</em>
+          </div>
+        </div>
+
+        <!-- Right: Panel Round-Robin -->
+        <div class="card" style="border-left: 4px solid var(--cyan); justify-content: space-between;">
+          <div>
+            <span class="badge badge-cyan">Panel Lightning Round</span>
+            <h3 style="color: var(--gold); margin-top: 0.25rem;">"What project is keeping you up at night?"</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5; color: #cbd5e1; margin-top: 0.5rem;">
+              Whether it's an indie game in active development, a new tech stack, or an old passion project resurrected:
+            </p>
+
+            <ul style="margin-top: 0.75rem; padding-left: 1.25rem; font-size: 0.88rem; color: #f1f5f9; line-height: 1.8;">
+              <li><strong>Tim Cullings</strong> (Seattle Indies community initiatives, climate science in games)</li>
+              <li><strong>Heather Coles</strong> (Orbicular: <em>Tabby Tapper</em> fluid dynamics, <em>Frankly Demonic</em> smartwatch toy)</li>
+              <li><strong>Renee Gittins</strong> (Stumbling Cat: <em>Potions: A Curious Tale</em>, <em>Bad Boss Witch Guide</em>)</li>
+              <li><strong>Dr. Evie Powell</strong> (Niantic Spatial, pervasive gaming, natural user interfaces)</li>
+            </ul>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.82rem; color: var(--emerald); border-left: 3px solid var(--emerald); margin-top: 0.85rem;">
+            🎙️ <em>Live open floor: 1–2 minutes per panelist to highlight their current creative horizon.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 25: Your Quest Awaits & Q&A          -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-25" data-notes="MODERATOR QUESTION 6 (The Mindset / Audience Advice) & OPEN Q&A: 'For someone sitting in the audience right now who is terrified they aren't \'skilled enough\' to join a jam team this weekend, what is your advice to them?' Open audience Q&A. Panelist seed topics: Larry's topic on jam brainstorms finished outside the jam; Evie's question on hackathons as part of day jobs; Evie's topic on event execution and taking time to see other people's work.">
+      <div class="slide-eyebrow">Next Steps & Open Floor • Section 3 Vault</div>
+      <h2 class="slide-title">Your Quest Awaits: Resources & Q&A</h2>
+      <p class="slide-subtitle">Ask our panel anything about game jams, creative tech, team dynamics, or overcoming imposter syndrome.</p>
+
+      <div class="slide-question-banner">
+        <span class="q-badge">💬 Question 6 • Audience Advice</span>
+        <span class="q-text">"For someone sitting in the audience right now who is terrified they aren't 'skilled enough' to join a jam team this weekend, what is your advice to them?"</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-left: 4px solid var(--cyan);">
+          <span class="badge badge-cyan">Intake Submitted Topics (Section 3)</span>
+          <p style="margin-bottom: 0.75rem;">• <strong>Dr. Evie Powell's Question:</strong><br><span style="color: #f1f5f9; font-style: italic;">"Do you ever do hackathons or game jams as part of your career job? Do you recommend it?"</span></p>
+          <p style="margin-bottom: 0.75rem;">• <strong>Dr. Evie Powell's Event Topic:</strong><br><span style="color: #f1f5f9; font-style: italic;">"Was there anything about game jams that you think could have been better? Something that could change about event execution to make them more appealing? (e.g. how hard it is to pull away to check out other people's work!)"</span></p>
+          <p style="margin-bottom: 0.75rem;">• <strong>Larry James's Topic:</strong><br><span style="color: #f1f5f9; font-style: italic;">"The projects that were thought of because of the game jam but wouldn't fit into the weekend or team that later went back and created them outside of the jam."</span></p>
+          <div style="background: rgba(0,0,0,0.3); padding: 0.6rem 0.8rem; border-radius: 6px; border-left: 3px solid var(--gold); margin-top: 0.5rem;">
+            <p style="font-size: 0.85rem; color: var(--gold);"><strong>Larry's Closing Challenge to the Room:</strong><br><em>"How many of you will come to a Game Jam in the next year and create a game—even if it's a mini-game or outside a jam?"</em></p>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--magenta);">
+          <span class="badge badge-magenta">Convention Next Stop</span>
+          <p>Visit the <strong>Seattle Indies Gaming Hall</strong> downstairs in the Skagit Lower Level / 3rd Floor!<br><br>Play local Pacific Northwest indie games, meet the developers, and experience <strong>UpLiftVR</strong> firsthand!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 26: Thank You & Connect With Panel   -->
+    <!-- ========================================== -->
+    <div class="slide" id="slide-26" data-notes="Closing slide with all panelists and optical QR codes. Invite everyone to scan the codes, follow our panelists, and check out their games. Thank GeekGirlCon, the organizers, and the audience for their time and energy!">
+      <!-- Top Row: Slide Title on Left & Panel Deck QR Card in Upper Right -->
+      <div class="slide26-top-row">
+        <div class="slide26-title-col">
+          <div class="slide-eyebrow">Connect with the Creators • Scan to Follow</div>
+          <h2 class="slide-title">Thank You! Connect With The Panel</h2>
+          <p class="slide-subtitle">Scan any QR code below to explore our projects, games, and communities!</p>
+        </div>
+
+        <!-- Upper-Right Panel Deck Card -->
+        <div class="deck-qr-card">
+          <div class="deck-qr-info">
+            <div style="display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.5rem;">
+              <img class="deck-avatar" src="../assets/slides/slide_01_bg.png" alt="Panel Deck Cover">
+              <div>
+                <h4 style="font-size: 1.25rem; color: #ffffff; font-weight: 800; line-height: 1.2;">This Panel Deck</h4>
+                <p style="font-size: 0.92rem; color: var(--gold); font-weight: 600;">Interactive Slides &amp; Resources</p>
+              </div>
+            </div>
+            <a href="https://wulfdesign.github.io/game-jam-panels/" target="_blank" style="font-size: 0.88rem; font-weight: 700; color: var(--cyan); text-decoration: none; word-break: break-all; line-height: 1.25;">wulfdesign.github.io/game-jam-panels/</a>
+          </div>
+          <img class="deck-qr-img" src="../assets/qr/qr_game_jam_panel.png" alt="Game Jam Panel Deck QR Code">
+        </div>
+      </div>
+
+      <!-- Blank Middle Space (Reserved for upcoming photo / graphic) -->
+      <div class="slide26-middle-space" id="slide26-image-space">
+        <!-- Reserved for user photo / image -->
+      </div>
+
+      <!-- Bottom Row: 5 Panelist QR Cards (Bigger) -->
+      <div class="grid-5 slide26-panelists-grid">
+        <!-- Larry James -->
+        <div class="qr-card" style="border-top: 3px solid var(--cyan);">
+          <img class="qr-avatar" src="../assets/headshots/larry_james.jpg" alt="Larry James" style="border-color: var(--cyan); box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);">
+          <h4>Larry James</h4>
+          <p>Wulf Design / UpLiftVR</p>
+          <img class="qr-img" src="../assets/qr/qr_larry_portfolio.png" alt="Larry James QR Code">
+          <a href="https://wulfdesign.github.io/?utm_source=game-jam-panels&utm_campaign=ggc26" target="_blank">wulfdesign.github.io</a>
+        </div>
+
+        <!-- Tim Cullings -->
+        <div class="qr-card" style="border-top: 3px solid var(--emerald);">
+          <img class="qr-avatar" src="../assets/headshots/tim_cullings_framed.jpg" alt="Tim Cullings" style="border-color: var(--emerald); box-shadow: 0 0 14px rgba(16, 185, 129, 0.45); object-position: center 15%;">
+          <h4>Tim Cullings</h4>
+          <p>Executive Director, Seattle Indies</p>
+          <img class="qr-img" src="../assets/qr/qr_tim_carrd.png" alt="Tim Cullings QR Code">
+          <a href="https://timcullings.carrd.co/?utm_source=game-jam-panels&utm_campaign=ggc26" target="_blank">timcullings.carrd.co</a>
+        </div>
+
+        <!-- Heather Coles -->
+        <div class="qr-card" style="border-top: 3px solid var(--magenta);">
+          <img class="qr-avatar" src="../assets/headshots/heather_coles.jpg" alt="Heather Coles" style="border-color: var(--magenta); box-shadow: 0 0 14px rgba(236, 72, 153, 0.45);">
+          <h4>Heather Coles</h4>
+          <p>Creative Director, Orbicular</p>
+          <img class="qr-img" src="../assets/qr/qr_heather_linktree.png" alt="Heather Coles QR Code">
+          <a href="https://linktr.ee/heathercoles?utm_source=game-jam-panels&utm_campaign=ggc26" target="_blank">linktr.ee/heathercoles</a>
+        </div>
+
+        <!-- Renee Gittins -->
+        <div class="qr-card" style="border-top: 3px solid var(--purple);">
+          <img class="qr-avatar" src="../assets/headshots/renee_gittins_framed.jpg" alt="Renee Gittins" style="border-color: var(--purple); box-shadow: 0 0 14px rgba(168, 85, 247, 0.45); object-position: center 12%;">
+          <h4>Renee Gittins</h4>
+          <p>Studio Head, Stumbling Cat</p>
+          <img class="qr-img" src="../assets/qr/qr_renee_potions.png" alt="Renee Gittins QR Code">
+          <a href="https://potionsacurioustale.com/?utm_source=game-jam-panels&utm_campaign=ggc26" target="_blank">potionsacurioustale.com</a>
+        </div>
+
+        <!-- Dr. Evie Powell -->
+        <div class="qr-card" style="border-top: 3px solid var(--gold);">
+          <img class="qr-avatar" src="../assets/headshots/evie_powell_framed.jpg" alt="Dr. Evie Powell" style="border-color: var(--gold); box-shadow: 0 0 14px rgba(245, 158, 11, 0.45); object-position: 65% center;">
+          <h4>Dr. Evie Powell</h4>
+          <p>Staff Software Engineer, Niantic</p>
+          <img class="qr-img" src="../assets/qr/qr_evie_linkedin.png" alt="Dr. Evie Powell QR Code">
+          <a href="https://www.linkedin.com/in/evie-powell-phd-b078b43/?utm_source=game-jam-panels&utm_campaign=ggc26" target="_blank">LinkedIn Profile</a>
+          <span style="font-size: 0.76rem; color: #cbd5e1; margin-top: 0.25rem;">(Project page TBA)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div>
+        <a href="../" class="nav-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; background: rgba(56, 189, 248, 0.15); border-color: var(--cyan); color: var(--cyan);">🏠 Panels Hub</a>
+        <button class="nav-btn" onclick="prevSlide()">◀ Prev (←)</button>
+        <button class="nav-btn" onclick="nextSlide()">Next (→) ▶</button>
+      </div>
+
+      <div class="counter-pill">
+        Slide <span id="current-slide-num">1</span> of <span id="total-slides-num">26</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div class="timer-pill" id="session-timer">⏱️ 00:00</div>
+        <button class="nav-btn" onclick="toggleNotes()">📝 Notes (N)</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Speaker Notes Modal -->
+  <div id="notes-modal">
+    <h3>
+      <span>🎙️ Presenter Script & Rehearsal Notes</span>
+      <button class="close-btn" onclick="toggleNotes()">✕</button>
+    </h3>
+    <div id="notes-content">Notes load here...</div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    const currentSlideNum = document.getElementById('current-slide-num');
+    const totalSlidesNum = document.getElementById('total-slides-num');
+    const notesModal = document.getElementById('notes-modal');
+    const notesContent = document.getElementById('notes-content');
+    const timerDisplay = document.getElementById('session-timer');
+
+    totalSlidesNum.textContent = totalSlides;
+
+    function parseHashAndSetSlide() {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (!hash) return false;
+
+      // 1. Check exact slide ID match (e.g. "slide-22")
+      const targetElem = document.getElementById(hash);
+      if (targetElem && targetElem.classList.contains('slide')) {
+        const foundIdx = Array.from(slides).indexOf(targetElem);
+        if (foundIdx !== -1) {
+          currentIndex = foundIdx;
+          return true;
+        }
+      }
+
+      // 2. Check numeric match (e.g. "22" or "slide22")
+      const numMatch = hash.match(/\d+/);
+      if (numMatch) {
+        const slideNum = parseInt(numMatch[0], 10);
+        if (slideNum >= 1 && slideNum <= totalSlides) {
+          currentIndex = slideNum - 1;
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    function updateDeck(updateHash = true) {
+      slides.forEach((s, idx) => {
+        if (idx === currentIndex) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+      currentSlideNum.textContent = currentIndex + 1;
+      
+      const activeSlide = slides[currentIndex];
+      notesContent.textContent = activeSlide.getAttribute('data-notes') || 'No speaker notes for this slide.';
+
+      if (updateHash && activeSlide && activeSlide.id) {
+        if (window.location.hash !== '#' + activeSlide.id) {
+          history.replaceState(null, '', '#' + activeSlide.id);
+        }
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateDeck();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateDeck();
+      }
+    }
+
+    function toggleNotes() {
+      notesModal.classList.toggle('active');
+    }
+
+    // Hash navigation listener (supports deep links and browser back/forward)
+    window.addEventListener('hashchange', () => {
+      if (parseHashAndSetSlide()) {
+        updateDeck(false);
+      }
+    });
+
+    // Keyboard Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      } else if (e.key === 'Escape') {
+        notesModal.classList.remove('active');
+      } else if (e.key === 'Home') {
+        currentIndex = 0;
+        updateDeck();
+      } else if (e.key === 'End') {
+        currentIndex = totalSlides - 1;
+        updateDeck();
+      }
+    });
+
+    // ==========================================
+    // Interactive Tarot Deck System Engine (Slide 22)
+    // ==========================================
+    const tarotThemes = [
+      // Major Arcana World Themes
+      { tarot: "0 • The Fool", emoji: "🃏", jam: "The Blank Slate", desc: "A leap of faith into the unknown with empty hands and beginner's eyes." },
+      { tarot: "I • The Magician", emoji: "🧙‍♂️", jam: "As Above, So Below", desc: "Harnessing the primal elements to transmute thought into physical reality." },
+      { tarot: "II • High Priestess", emoji: "🔮", jam: "Veil of Secrets", desc: "Hidden dimensions, whispers in the dark, and relying on pure intuition." },
+      { tarot: "III • The Empress", emoji: "👑", jam: "Wild Overgrowth", desc: "Untamed nature, flourishing flora, and ecosystems spiraling out of control." },
+      { tarot: "IV • The Emperor", emoji: "🏛️", jam: "Clockwork Order", desc: "Monolithic fortresses, rigid architectural law, and geometric rule." },
+      { tarot: "V • The Hierophant", emoji: "📿", jam: "Sacred Dogma", desc: "Ancient rites, forbidden orthodoxy, and traditions that must be obeyed." },
+      { tarot: "VI • The Lovers", emoji: "💕", jam: "Symbiotic Bond", desc: "Two inseparable souls navigating divergent realities and shared heartbeats." },
+      { tarot: "VII • The Chariot", emoji: "🏎️", jam: "Unstoppable Momentum", desc: "Opposing forces bound together at breakneck speed; no brakes allowed." },
+      { tarot: "VIII • Strength", emoji: "🦁", jam: "The Tamed Beast", desc: "Overcoming monstrous adversity through gentleness, patience, and non-violence." },
+      { tarot: "IX • The Hermit", emoji: "🕯️", jam: "Solitary Beacon", desc: "Isolation, desolate mountain heights, and navigating by a single lantern." },
+      { tarot: "X • Wheel of Fortune", emoji: "🎡", jam: "Cycles of Fate", desc: "Fickle cosmic fortune, turning tides, and rising from down below." },
+      { tarot: "XI • Justice", emoji: "⚖️", jam: "Karmic Equilibrium", desc: "Moral reciprocity, equal and opposite reactions, and cosmic balance." },
+      { tarot: "XII • The Hanged Man", emoji: "🙃", jam: "Inverted Perspective", desc: "Voluntary surrender of control; seeing the entire world upside-down." },
+      { tarot: "XIII • Death", emoji: "💀", jam: "Metamorphosis & Decay", desc: "The inevitable end of the old world fertilizing new life from the ashes." },
+      { tarot: "XIV • Temperance", emoji: "⚗️", jam: "Harmonic Alchemy", desc: "Pouring contrasting essences together to discover unexpected chemistry." },
+      { tarot: "XV • The Devil", emoji: "⛓️", jam: "Faustian Bargain", desc: "Addictive power, tempting curses, debt, and gilded cages." },
+      { tarot: "XVI • The Tower", emoji: "🏰", jam: "Cataclysmic Collapse", desc: "Sudden rupture: monolithic structures shatter; rebuilding from rubble." },
+      { tarot: "XVII • The Star", emoji: "⭐", jam: "A Spark of Hope", desc: "Stellar beacons, quiet renewal, and finding navigation after catastrophic storms." },
+      { tarot: "XVIII • The Moon", emoji: "🌙", jam: "Deceptive Illusions", desc: "Unreliable sensory reality, lunar madness, and predators lurking in shadows." },
+      { tarot: "XIX • The Sun", emoji: "☀️", jam: "Blinding Radiance", desc: "Scorching dawn, total transparency, and explosive vital energy." },
+      { tarot: "XX • Judgement", emoji: "📯", jam: "The Great Awakening", desc: "Echoes of past runs calling from the deep; final resurrection and reckoning." },
+      { tarot: "XXI • The World", emoji: "🌍", jam: "Micro-Cosmos", desc: "A self-contained sphere, spherical gravity, and infinite unbroken loops." },
+      // Minor Arcana & Suit Pip/Court World Themes
+      { tarot: "Ace of Cups", emoji: "🌊", jam: "The Flooded Realm", desc: "A sunken world submerged beneath emotional tides and lost ocean depths." },
+      { tarot: "Ten of Swords", emoji: "🗡️", jam: "The Bitter Betrayal", desc: "A fallen kingdom surviving in the harsh aftermath of total catastrophe." },
+      { tarot: "King of Pentacles", emoji: "🏰", jam: "The Gilded Vault", desc: "Monopolistic corporate empires, opulent greed, and mechanical wealth." },
+      { tarot: "Five of Pentacles", emoji: "❄️", jam: "The Frozen Outcast", desc: "Harsh blizzards, impoverished survival, and finding warmth in exile." },
+      { tarot: "Four of Wands", emoji: "🎪", jam: "The Harvest Festival", desc: "Raucous community celebrations, sacred rituals, and joyful sanctuary." },
+      { tarot: "Knight of Wands", emoji: "🔥", jam: "The Wild Frontier", desc: "Uncharted fiery badlands, runaway steam locomotives, and pioneer grit." },
+      { tarot: "Eight of Cups", emoji: "🚪", jam: "The Long Departure", desc: "Leaving behind everything you know to embark on an uncertain nocturnal pilgrimage." },
+      { tarot: "Page of Swords", emoji: "🦅", jam: "The Surveillance State", desc: "Watching shadows, carrier pigeon networks, and high-altitude espionage." },
+      { tarot: "Three of Pentacles", emoji: "🧱", jam: "Cathedral of Makers", desc: "Ancient guild artisan workshops constructing impossible monumental architecture." },
+      { tarot: "Nine of Swords", emoji: "😱", jam: "The Nightmare Realm", desc: "Psychological horror, sleepless hallucinations, and monsters spawned from guilt." }
+    ];
+
+    const tarotVerbs = [
+      // Suit Action Verbs
+      { tarot: "Knight of Swords", emoji: "🗡️", jam: "Dash & Pierce", desc: "Execute high-speed linear rushes that cut through barriers and hazards." },
+      { tarot: "Ace of Wands", emoji: "🔥", jam: "Spark & Ignite", desc: "Cast sudden flame arcs that trigger chain reactions in the environment." },
+      { tarot: "Two of Swords", emoji: "⚔️", jam: "Parry & Deflect", desc: "Time kinetic deflections to reflect hostile projectile momentum back." },
+      { tarot: "Ace of Cups", emoji: "🌊", jam: "Pour & Siphon", desc: "Drain fluid essences from containers and channel them into dry channels." },
+      { tarot: "Eight of Pentacles", emoji: "⚒️", jam: "Craft & Chisel", desc: "Forge and upgrade modular tools on the fly using gathered environmental scrap." },
+      { tarot: "Eight of Wands", emoji: "🏹", jam: "Ricochet Volley", desc: "Fire volleys of swift projectiles that bounce wildly off reflective geometry." },
+      { tarot: "Four of Pentacles", emoji: "⚓", jam: "Anchor & Pin", desc: "Drop immovable heavy weights to lock moving mechanisms and counterweights." },
+      { tarot: "Seven of Swords", emoji: "🥷", jam: "Sneak & Pilfer", desc: "Slip past detection in shadows to disarm traps and pick enemy pockets." },
+      { tarot: "Page of Cups", emoji: "🐬", jam: "Befriend & Charm", desc: "Sing gentle playful melodies to pacify wild creatures into obedient mounts." },
+      { tarot: "Ten of Wands", emoji: "🏋️", jam: "Carry Heavy Burden", desc: "Haul massive shifting cargo where physics mass dramatically alters inertia." },
+      { tarot: "Three of Pentacles", emoji: "🧱", jam: "Erect Scaffolds", desc: "Snap interlocking modular platforms into place under tight time pressure." },
+      { tarot: "Queen of Swords", emoji: "✂️", jam: "Sever & Decouple", desc: "Precisely cut ropes, vines, and energy conduits to trigger physics cascades." },
+      { tarot: "Six of Swords", emoji: "⛵", jam: "Ferry & Navigate", desc: "Steer fragile watercraft or air-rafts through treacherous misty hazards." },
+      { tarot: "King of Wands", emoji: "🪄", jam: "Command Minions", desc: "Direct squads of tiny elemental helpers with whistle calls and flags." },
+      { tarot: "Two of Cups", emoji: "🔗", jam: "Tether & Grapple", desc: "Cast elastic energy tethers that pull objects, allies, or walls together." },
+      { tarot: "Seven of Cups", emoji: "🎭", jam: "Shape-Shift Forms", desc: "Morph instantly between liquid, vapor, and solid states to solve puzzles." },
+      { tarot: "Nine of Wands", emoji: "🛡️", jam: "Barricade & Shield", desc: "Deploy temporary shields and palisades to withstand intense enemy waves." },
+      { tarot: "Ten of Cups", emoji: "🔔", jam: "Resonate Chimes", desc: "Harmonize acoustic frequencies to activate dormant crystal machinery." },
+      { tarot: "Page of Swords", emoji: "🦅", jam: "Scout Ahead", desc: "Send an airborne familiar ahead to map terrain and spot hidden ambushes." },
+      { tarot: "Four of Wands", emoji: "🤸", jam: "Vault & Leap", desc: "Pole-vault over dangerous abysses and land with explosive ground-pounds." },
+      { tarot: "King of Pentacles", emoji: "⛰️", jam: "Terraform Ground", desc: "Raise earth pillars, open sinkholes, and manipulate terrain elevation." },
+      { tarot: "Five of Swords", emoji: "🪓", jam: "Disarm & Scavenge", desc: "Strip enemy weapons away and repurpose them as fragile makeshift tools." },
+      // Major Arcana Action Verbs
+      { tarot: "I • The Magician", emoji: "🪄", jam: "Transmute & Manifest", desc: "Convert elements, reshape raw materials, and cast elemental alchemy." },
+      { tarot: "VII • The Chariot", emoji: "🏎️", jam: "Charge & Overdrive", desc: "Blast forward at maximum velocity, smashing through barricades and terrain." },
+      { tarot: "VIII • Strength", emoji: "🦁", jam: "Grapple & Tame", desc: "Wrestle ferocious creatures into submission through leverage and calm non-violence." },
+      { tarot: "XI • Justice", emoji: "⚖️", jam: "Balance & Mirror", desc: "Calibrate balance scales, deliver karmic verdicts, and reflect enemy attacks." },
+      { tarot: "XIV • Temperance", emoji: "⚗️", jam: "Distill & Synthesize", desc: "Carefully blend contrasting fluid potions to discover volatile reactions." },
+      { tarot: "XVI • The Tower", emoji: "💥", jam: "Demolish & Shatter", desc: "Trigger tectonic detonations to bring crumbling structures down on hazards." },
+      { tarot: "0 • The Fool", emoji: "🃏", jam: "Leap Blindly", desc: "Dive headfirst into bottomless abysses, trusting sudden gust currents to catch you." },
+      { tarot: "IV • The Emperor", emoji: "🏛️", jam: "Zone & Fortify", desc: "Erect stone ramparts, impose architectural grid boundaries, and tax territory." },
+      { tarot: "XIII • Death", emoji: "💀", jam: "Reap & Resurrect", desc: "Harvest spirits from fallen foes to power necromantic machinery and elevators." },
+      { tarot: "XVIII • The Moon", emoji: "🌙", jam: "Decoy & Distract", desc: "Project phantom shadow duplicates to lead wandering patrols astray." }
+    ];
+
+    const tarotTwists = [
+      // Major Arcana Inversions & Twists
+      { tarot: "II • High Priestess", emoji: "🤫", jam: "Vow of Silence", desc: "100% of narrative and tutorial must be communicated visually and physically." },
+      { tarot: "IX • The Hermit", emoji: "🏮", jam: "Solitary Glow", desc: "Total pitch darkness: the only visible world is inside your tiny lantern cone." },
+      { tarot: "VI • The Lovers", emoji: "🎮", jam: "Shared Pulse", desc: "Co-op game where two players must physically share a single keyboard or controller." },
+      { tarot: "XII • The Hanged Man", emoji: "🔄", jam: "Inverted Gravity", desc: "World gravity flips upside down every single time the player jumps." },
+      { tarot: "0 • The Fool", emoji: "🙈", jam: "Blind Run", desc: "No health bars, mini-maps, or ammo meters; status is purely audio & animation." },
+      { tarot: "XIV • Temperance", emoji: "⏱️", jam: "Stillness Rule", desc: "The entire world freezes in place whenever the player character stops moving." },
+      { tarot: "XVI • The Tower", emoji: "💥", jam: "Fragile Glass", desc: "Everything in the world—player, enemies, obstacles, walls—breaks in one hit." },
+      { tarot: "XVIII • The Moon", emoji: "🌓", jam: "Inverted Shadows", desc: "Directional controls flip 180 degrees whenever stepping into shaded areas." },
+      { tarot: "VIII • Strength", emoji: "🕊️", jam: "Pacifist Path", desc: "Inflicting lethal harm immediately fails the run; win solely by outsmarting." },
+      { tarot: "XIX • The Sun", emoji: "🕯️", jam: "Decaying Aura", desc: "Player emits light that constantly shrinks over time unless fed by fiery sparks." },
+      { tarot: "XX • Judgement", emoji: "👻", jam: "Ghost Replay", desc: "Every previous attempt appears as a physical phantom replaying your exact moves." },
+      { tarot: "IV • The Emperor", emoji: "📐", jam: "Strict Grid", desc: "Movement is locked to an orthogonal grid with zero diagonal angles allowed." },
+      { tarot: "X • Wheel of Fortune", emoji: "🎲", jam: "Periodic Mutation", desc: "A cosmic chime rings every 30 seconds, radically swapping a core physics rule." },
+      { tarot: "XIII • Death", emoji: "🪦", jam: "Fertile Corpse", desc: "Every death leaves your permanent statue or corpse behind to solve the puzzle." },
+      { tarot: "VII • The Chariot", emoji: "🏎️", jam: "No Brakes", desc: "Your avatar accelerates continuously and physically cannot come to a stop." },
+      { tarot: "XVII • The Star", emoji: "🦇", jam: "Acoustic Vision", desc: "The screen is black; geometry flashes visible only when sounds or steps trigger." },
+      // Suit Inversions & Twists
+      { tarot: "Three of Swords", emoji: "💔", jam: "Pain Toll", desc: "Every jump, attack, or dash consumes a visible sliver of your health pool." },
+      { tarot: "Five of Cups", emoji: "➡️", jam: "One-Way Scroll", desc: "Camera scrolls forward relentlessly; the world behind you dissolves into void." },
+      { tarot: "Ten of Wands", emoji: "🎒", jam: "Accumulated Mass", desc: "Every collected token or item adds genuine physics drag, mass, and friction." },
+      { tarot: "Four of Swords", emoji: "💤", jam: "Exhaustion Clock", desc: "Character falls asleep on the spot unless you find safe rest zones every 20 seconds." },
+      { tarot: "Eight of Cups", emoji: "🚪", jam: "Sacrifice to Advance", desc: "Passing through any gate requires permanently discarding your current best tool." },
+      { tarot: "Seven of Swords", emoji: "🥸", jam: "Thief's Disguise", desc: "You have no attacks; you must disguise as environmental props to steal keys." },
+      { tarot: "Ace of Pentacles", emoji: "🪙", jam: "Single Coin Economy", desc: "The player possesses exactly one physical gold coin to purchase all upgrades." },
+      { tarot: "Two of Swords", emoji: "🙈", jam: "Fog of War", desc: "Screen visibility narrows to a 2-meter radius unless navigating by acoustic clues." }
+    ];
+
+    // Tarot State Management
+    // Card states: 0 = Dealt/Unselected (✕), 1 = Selected (Gold ✓), 2 = Locked (Green ✓)
+    const currentDealt = { theme: [], verb: [], twist: [] };
+    const cardStates = { theme: [], verb: [], twist: [] };
+
+    function getCategoryMeta(category) {
+      if (category === 'verb') {
+        return { pool: tarotVerbs, badgeClass: 'badge-cyan', badgeText: 'Action Verb', title: 'Action Verbs' };
+      }
+      if (category === 'twist') {
+        return { pool: tarotTwists, badgeClass: 'badge-magenta', badgeText: 'Diversifier', title: 'Bizarre Twists' };
+      }
+      return { pool: tarotThemes, badgeClass: 'badge-purple', badgeText: 'Theme', title: 'World Themes' };
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function showTarotToast(message) {
+      const toast = document.getElementById('tarot-toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function downloadTextFile(filename, text) {
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function updateDrawButtonState(category) {
+      const btn = document.getElementById(`draw-btn-${category}`);
+      const counter = document.getElementById(`draw-count-${category}`);
+      const count = currentDealt[category] ? currentDealt[category].length : 0;
+      if (counter) counter.textContent = `${count}/3`;
+      if (btn) {
+        if (count >= 3) {
+          btn.classList.add('disabled');
+          btn.title = "3 cards max";
+        } else {
+          btn.classList.remove('disabled');
+          btn.title = "Draw Card";
+        }
+      }
+    }
+
+    function drawAdditionalCard(category) {
+      if (!currentDealt[category]) currentDealt[category] = [];
+      if (!cardStates[category]) cardStates[category] = [];
+
+      if (currentDealt[category].length >= 3) {
+        showTarotToast("⚠️ 3 cards max! Click ✕ on a card to discard.");
+        return;
+      }
+
+      const meta = getCategoryMeta(category);
+      const existingJams = new Set(currentDealt[category].map(c => c.jam));
+      const available = meta.pool.filter(c => !existingJams.has(c.jam));
+      const pickPool = available.length > 0 ? available : meta.pool;
+      const picked = pickPool[Math.floor(Math.random() * pickPool.length)];
+
+      currentDealt[category].push(picked);
+      // New card starts at State 0 (Unselected, showing ✕)
+      cardStates[category].push(0);
+
+      renderTarotCategory(category);
+      updatePitchReadout();
+      updateDrawButtonState(category);
+    }
+
+    function discardCard(category, idx) {
+      if (!currentDealt[category] || currentDealt[category].length <= idx) return;
+      currentDealt[category].splice(idx, 1);
+      cardStates[category].splice(idx, 1);
+
+      // If zero cards remain, auto-draw 1 card so column is never left empty
+      if (currentDealt[category].length === 0) {
+        drawAdditionalCard(category);
+      } else {
+        renderTarotCategory(category);
+        updatePitchReadout();
+        updateDrawButtonState(category);
+      }
+    }
+
+    function handleCardClick(category, idx) {
+      // 0 (Unselected) -> 1 (Selected) -> 2 (Locked) -> 0 (Unselected)
+      const current = cardStates[category][idx] || 0;
+      let next;
+      if (current === 0) next = 1;
+      else if (current === 1) next = 2;
+      else next = 0;
+
+      cardStates[category][idx] = next;
+      renderTarotCategory(category);
+      updatePitchReadout();
+    }
+
+    function handleCornerClick(e, category, idx) {
+      e.stopPropagation();
+      const current = cardStates[category][idx] || 0;
+      if (current === 0) {
+        // Discard card
+        discardCard(category, idx);
+      } else if (current === 1) {
+        // Advance to Locked
+        cardStates[category][idx] = 2;
+        renderTarotCategory(category);
+        updatePitchReadout();
+      } else if (current === 2) {
+        // Advance to Unselected
+        cardStates[category][idx] = 0;
+        renderTarotCategory(category);
+        updatePitchReadout();
+      }
+    }
+
+    function dealCategory(category) {
+      const meta = getCategoryMeta(category);
+      const count = currentDealt[category] && currentDealt[category].length > 0 ? currentDealt[category].length : 1;
+      const newDealt = [];
+      const newStates = [];
+
+      // Preserve locked cards
+      const lockedJams = new Set();
+      if (currentDealt[category]) {
+        currentDealt[category].forEach((c, idx) => {
+          if (cardStates[category][idx] === 2) lockedJams.add(c.jam);
+        });
+      }
+
+      const available = meta.pool.filter(c => !lockedJams.has(c.jam));
+      const shuffled = shuffleArray(available);
+      let ptr = 0;
+
+      for (let i = 0; i < count; i++) {
+        if (currentDealt[category] && cardStates[category][i] === 2) {
+          // Keep locked card in place
+          newDealt.push(currentDealt[category][i]);
+          newStates.push(2);
+        } else {
+          // Draw fresh card
+          const card = ptr < shuffled.length ? shuffled[ptr++] : meta.pool[Math.floor(Math.random() * meta.pool.length)];
+          newDealt.push(card);
+          // If first card and no cards locked, start selected (State 1)
+          newStates.push(i === 0 && lockedJams.size === 0 ? 1 : 0);
+        }
+      }
+
+      currentDealt[category] = newDealt;
+      cardStates[category] = newStates;
+      renderTarotCategory(category);
+      updatePitchReadout();
+      updateDrawButtonState(category);
+    }
+
+    function renderTarotCategory(category) {
+      const container = document.getElementById(`container-${category}`);
+      if (!container) return;
+      container.innerHTML = '';
+
+      const meta = getCategoryMeta(category);
+
+      currentDealt[category].forEach((card, idx) => {
+        const state = cardStates[category][idx] || 0;
+        const cardEl = document.createElement('div');
+        const isSelected = state === 1 || state === 2;
+        const isLocked = state === 2;
+
+        let cardClass = 'tarot-card';
+        if (isLocked) cardClass += ' selected locked';
+        else if (isSelected) cardClass += ' selected';
+
+        cardEl.className = cardClass;
+        cardEl.onclick = () => handleCardClick(category, idx);
+
+        let cornerIcon = '✕';
+        let cornerClass = 'corner-discard';
+        let cornerTitle = 'Discard card';
+        if (state === 1) {
+          cornerIcon = '✓';
+          cornerClass = 'corner-selected';
+          cornerTitle = 'Selected! Click to Lock';
+        } else if (state === 2) {
+          cornerIcon = '✓';
+          cornerClass = 'corner-locked';
+          cornerTitle = 'Locked in place (Reshuffle keeps this). Click to unlock';
+        }
+
+        cardEl.innerHTML = `
+          <button class="tarot-corner-btn ${cornerClass}" title="${cornerTitle}" onclick="handleCornerClick(event, '${category}', ${idx})">
+            ${cornerIcon}
+          </button>
+          <div class="tarot-card-top">
+            <span class="tarot-card-source">${card.emoji} ${card.tarot}</span>
+            <span class="tarot-badge ${meta.badgeClass}">${isLocked ? '🔒 Locked' : meta.badgeText}</span>
+          </div>
+          <div class="tarot-card-content">
+            <div class="tarot-card-emoji-hero">${card.emoji}</div>
+            <div class="tarot-card-text">
+              <div class="tarot-card-name">${card.jam}</div>
+              <div class="tarot-card-flavor">${card.desc}</div>
+            </div>
+          </div>
+        `;
+        container.appendChild(cardEl);
+      });
+      updateDrawButtonState(category);
+    }
+
+    function updatePitchReadout() {
+      const readout = document.getElementById('pitch-readout');
+      if (!readout) return;
+
+      const getSelected = (cat) => {
+        const list = [];
+        if (!currentDealt[cat]) return list;
+        currentDealt[cat].forEach((card, idx) => {
+          if (cardStates[cat][idx] === 1 || cardStates[cat][idx] === 2) {
+            list.push(card);
+          }
+        });
+        return list;
+      };
+
+      const themes = getSelected('theme');
+      const verbs = getSelected('verb');
+      const twists = getSelected('twist');
+
+      if (themes.length === 0 && verbs.length === 0 && twists.length === 0) {
+        readout.innerHTML = `✨ <strong>Pitch:</strong> <span style="color: #94a3b8;">Click cards above to select and combine your 48-hour pitch...</span>`;
+        return;
+      }
+
+      const themeHtml = themes.length > 0 
+        ? themes.map(t => `<span class="pitch-tag pitch-tag-theme">${t.emoji} ${t.jam} <small style="opacity:0.8; font-weight:normal;">[${t.tarot}]</small></span>`).join(' <em>+</em> ') 
+        : '<span style="color:#94a3b8;">[Pick Theme]</span>';
+
+      const verbHtml = verbs.length > 0 
+        ? verbs.map(v => `<span class="pitch-tag pitch-tag-verb">${v.emoji} ${v.jam} <small style="opacity:0.8; font-weight:normal;">[${v.tarot}]</small></span>`).join(' <em>+</em> ') 
+        : '<span style="color:#94a3b8;">[Pick Action]</span>';
+
+      const twistHtml = twists.length > 0 
+        ? twists.map(w => `<span class="pitch-tag pitch-tag-twist">${w.emoji} ${w.jam} <small style="opacity:0.8; font-weight:normal;">[${w.tarot}]</small></span>`).join(' <em>+</em> ') 
+        : '<span style="color:#94a3b8;">[Pick Diversifier]</span>';
+
+      readout.innerHTML = `✨ <strong>Pitch:</strong> A game about ${themeHtml}, where you ${verbHtml} — with ${twistHtml}!`;
+    }
+
+    function dealAllTarot() {
+      dealCategory('theme');
+      dealCategory('verb');
+      dealCategory('twist');
+      showTarotToast("🎴 All decks dealt (Locked cards preserved)!");
+    }
+
+    function rollSparks() {
+      dealAllTarot();
+    }
+
+    function getFileTimestamp() {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      const year = now.getFullYear();
+      const month = pad(now.getMonth() + 1);
+      const day = pad(now.getDate());
+      const hours = pad(now.getHours());
+      const mins = pad(now.getMinutes());
+      const secs = pad(now.getSeconds());
+      return {
+        fileStamp: `${year}-${month}-${day}_${hours}-${mins}-${secs}`,
+        displayStamp: now.toLocaleString(),
+        isoStamp: now.toISOString()
+      };
+    }
+
+    function saveCategoryToDisk(category) {
+      const meta = getCategoryMeta(category);
+      const cards = currentDealt[category] || [];
+      if (cards.length === 0) {
+        showTarotToast("No cards on screen to save!");
+        return;
+      }
+
+      const ts = getFileTimestamp();
+
+      const lines = [
+        "================================================================================",
+        `🎮 GEEKGIRLCON 2026: TAROT MATRIX — ${meta.title.toUpperCase()}`,
+        "Panel: Game Jams: Your Gateway to Fun, Friends, Indie Game Dev Magic, & XR Realities",
+        "Session: Sunday, Oct 25, 2026 @ 1:30 PM • Room 'America'",
+        "Moderator: Larry James (UpLiftVR Studios / Wulf Design Studios)",
+        "Panelists: Tim Cullings, Heather Coles, Renee Gittins, Dr. Evie Powell",
+        "",
+        "🔗 Official Panel Slide Deck & Online Tools:",
+        "   https://wulfdesign.github.io/game-jam-panels/",
+        "",
+        `Exported On: ${ts.displayStamp}`,
+        `ISO Timestamp: ${ts.isoStamp}`,
+        "================================================================================",
+        ""
+      ];
+
+      cards.forEach((card, idx) => {
+        const state = cardStates[category][idx] || 0;
+        let stateLabel = "DEALT (UNSELECTED)";
+        if (state === 2) stateLabel = "SELECTED & LOCKED (🔒)";
+        else if (state === 1) stateLabel = "SELECTED (✓)";
+
+        lines.push(`[Card ${idx + 1}] ${card.emoji} ${card.tarot}`);
+        lines.push(`  Concept Title: ${card.jam}`);
+        lines.push(`  Status: ${stateLabel}`);
+        lines.push(`  Full Description & Mechanics:`);
+        lines.push(`  ${card.desc}`);
+        lines.push("--------------------------------------------------------------------------------");
+      });
+
+      lines.push("");
+      lines.push("GeekGirlCon 2026 • Room 'America' • UpLiftVR Studios & Seattle Indies");
+      lines.push("Explore the full 26-slide interactive deck, pitch matrix & community links:");
+      lines.push("👉 https://wulfdesign.github.io/game-jam-panels/");
+      lines.push("================================================================================");
+
+      const filename = `game_jam_${category}_tarot_cards_${ts.fileStamp}.txt`;
+      downloadTextFile(filename, lines.join("\n"));
+      showTarotToast(`💾 Saved ${meta.title} cards (${ts.fileStamp}) to disk!`);
+    }
+
+    function saveAllTarotToDisk() {
+      const getSelectedNames = (cat) => {
+        const list = [];
+        if (!currentDealt[cat]) return list;
+        currentDealt[cat].forEach((card, idx) => {
+          if (cardStates[cat][idx] === 1 || cardStates[cat][idx] === 2) {
+            list.push(`${card.emoji} ${card.jam} [${card.tarot}]`);
+          }
+        });
+        return list;
+      };
+
+      const themes = getSelectedNames('theme');
+      const verbs = getSelectedNames('verb');
+      const twists = getSelectedNames('twist');
+
+      const pitchText = `A game about ${themes.join(' + ') || '[Theme]'}, where you ${verbs.join(' + ') || '[Action]'} — with ${twists.join(' + ') || '[Diversifier]'}!`;
+      const ts = getFileTimestamp();
+
+      const lines = [
+        "================================================================================",
+        "🎮 GEEKGIRLCON 2026 • 48-HOUR GAME JAM PITCH & TAROT MATRIX",
+        "Session: Sunday, Oct 25, 2026 @ 1:30 PM • Room 'America'",
+        "Panel: Game Jams: Your Gateway to Fun, Friends, Indie Game Dev Magic, & XR Realities",
+        "Moderator: Larry James (UpLiftVR Studios / Wulf Design Studios)",
+        "Panelists: Tim Cullings, Heather Coles, Renee Gittins, Dr. Evie Powell",
+        "",
+        "🔗 Official Panel Slide Deck & Online Tools:",
+        "   https://wulfdesign.github.io/game-jam-panels/",
+        "",
+        `Exported On: ${ts.displayStamp}`,
+        `ISO Timestamp: ${ts.isoStamp}`,
+        "================================================================================",
+        "",
+        "✨ SYNTHESIZED 48-HOUR PITCH:",
+        pitchText,
+        "",
+        "================================================================================"
+      ];
+
+      ['theme', 'verb', 'twist'].forEach(cat => {
+        const meta = getCategoryMeta(cat);
+        lines.push(`>>> ${meta.title.toUpperCase()} <<<`);
+        lines.push("--------------------------------------------------------------------------------");
+        const cards = currentDealt[cat] || [];
+        if (cards.length === 0) {
+          lines.push("  (No cards currently on screen)");
+        } else {
+          cards.forEach((card, idx) => {
+            const state = cardStates[cat][idx] || 0;
+            let stateLabel = "DEALT (UNSELECTED)";
+            if (state === 2) stateLabel = "SELECTED & LOCKED (🔒)";
+            else if (state === 1) stateLabel = "SELECTED (✓)";
+
+            lines.push(`  [Card ${idx + 1}] ${card.emoji} ${card.tarot}`);
+            lines.push(`    Concept: ${card.jam}`);
+            lines.push(`    Status:  ${stateLabel}`);
+            lines.push(`    Full Description / Mechanics:`);
+            lines.push(`    ${card.desc}`);
+            lines.push("");
+          });
+        }
+        lines.push("================================================================================");
+      });
+
+      lines.push("Generated live at GeekGirlCon 2026 Interactive Session Zero.");
+      lines.push("Go forth and build something incredible in 48 hours!");
+      lines.push("");
+      lines.push("Explore the full 26-slide interactive deck, pitch matrix & community links:");
+      lines.push("👉 https://wulfdesign.github.io/game-jam-panels/");
+      lines.push("================================================================================");
+
+      const filename = `geekgirlcon_48hr_game_jam_pitch_${ts.fileStamp}.txt`;
+      downloadTextFile(filename, lines.join("\n"));
+      showTarotToast(`💾 Complete Pitch & Cards saved (${ts.fileStamp}) to disk!`);
+    }
+
+    // Fallback spark roll for compatibility
+    function rollSparks() {
+      dealAllTarot();
+    }
+
+    // Initialize Tarot Deck
+    setTimeout(() => {
+      dealAllTarot();
+    }, 100);
+
+    // Stopwatch Timer
+    let secondsElapsed = 0;
+    setInterval(() => {
+      secondsElapsed++;
+      const mins = Math.floor(secondsElapsed / 60);
+      const secs = secondsElapsed % 60;
+      timerDisplay.textContent = `⏱️ ${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }, 1000);
+
+    // Initial setup with deep link hash support
+    parseHashAndSetSlide();
+    updateDeck(false);
+  </script>
+</body>
+</html>
