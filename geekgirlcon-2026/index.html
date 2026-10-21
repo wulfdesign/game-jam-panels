@@ -503,6 +503,74 @@
       background: radial-gradient(circle at center, rgba(30, 41, 59, 0.55) 0%, rgba(15, 23, 42, 0.75) 100%);
     }
 
+    /* Slide 8 Background with Renee Gittins Potions: A Curious Tale Key Art */
+    #slide-8 {
+      background: url('../assets/games/PotionsACuriousTaleKeyArt.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.25rem 3.25rem 4.5rem 3.25rem;
+    }
+
+    #slide-8 .title-glass-box {
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(168, 85, 247, 0.45);
+      border-radius: 14px;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-8 .title-glass-box .slide-eyebrow {
+      font-size: 0.92rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-8 .title-glass-box .slide-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-8 .title-glass-box .slide-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    #slide-8 .profile-grid {
+      margin-top: auto;
+    }
+
+    #slide-8 .profile-card {
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(168, 85, 247, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    #slide-8 .card {
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(244, 63, 94, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
     /* Slide 15 Background with RPG Jam Overworld Village */
     #slide-15 {
       background: url('../assets/slides/slide_15_bg.png?v=20261014') center/cover no-repeat;
@@ -847,7 +915,7 @@
       max-width: 90%;
       width: auto;
       height: auto;
-      object-fit: contain;
+      object-fit: cover;
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.65));
     }
 
@@ -907,7 +975,7 @@
     .grid-4 .card-banner-bleed {
       width: 100%;
       height: 230px;
-      object-fit: contain;
+      object-fit: cover;
       background: rgba(0, 0, 0, 0.65);
     }
 
@@ -942,11 +1010,12 @@
       flex: 1;
     }
 
-    /* Slide 17 full-width bottom image */
+    /* Slide 17 full-width bottom image - Cropped Letterbox Full Width */
     .card-bleed-bottom-img {
       width: 100%;
-      height: 250px;
-      object-fit: contain;
+      height: 140px;
+      object-position: center 30%;
+      object-fit: cover;
       background: rgba(0, 0, 0, 0.45);
       display: block;
       margin-top: 1rem;
@@ -986,7 +1055,7 @@
       max-width: 95%;
       width: auto;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
     }
 
@@ -1009,7 +1078,52 @@
       text-align: center;
     }
 
-    /* On-Stage Moderator Question Banners (From Intake Form Section 3) */
+    /* On-Stage Moderator Question Banners (From Intake Form Section 3) - Enlarged High-Visibility HUD */
+    .slide-question-banner {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.25) 0%, rgba(30, 41, 59, 0.95) 28%, rgba(15, 23, 42, 0.95) 100%) !important;
+      border-left: 6px solid var(--gold) !important;
+      border-top: 1px solid rgba(245, 158, 11, 0.35) !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5) !important;
+      border-radius: 12px !important;
+      padding: 0.95rem 1.4rem !important;
+      margin-bottom: 1.15rem !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 1.25rem !important;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.2) !important;
+    }
+
+    .slide-question-banner .q-badge {
+      font-size: 1.05rem !important;
+      font-weight: 900 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.38) 0%, rgba(217, 119, 6, 0.28) 100%) !important;
+      color: #fef08a !important;
+      border: 1.5px solid var(--gold) !important;
+      padding: 0.45rem 1.1rem !important;
+      border-radius: 8px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.45) !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      margin-top: 2px !important;
+    }
+
+    .slide-question-banner .q-text {
+      font-size: 1.35rem !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      line-height: 1.35 !important;
+      font-style: normal !important;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95) !important;
+      letter-spacing: -0.01em !important;
+    }
+    /* old banner
     .slide-question-banner {
       background: rgba(30, 41, 59, 0.75);
       border-left: 4px solid var(--gold);
@@ -1043,6 +1157,8 @@
       line-height: 1.4;
       font-style: italic;
     }
+
+    */
 
     /* QR Card Elements (Slide 26) */
     .qr-card {
@@ -1806,6 +1922,49 @@
       padding: 0.25rem 0.6rem;
       border-radius: 6px;
       border: 1px solid rgba(245, 158, 11, 0.3);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.25s ease;
+    }
+
+    /* Chromatic HUD Slide Timer (🟢 / 🟡 / 🔴 / 🚨) */
+    .timer-pill.timer-green {
+      color: #34d399 !important;
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: rgba(16, 185, 129, 0.5) !important;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    .timer-pill.timer-yellow {
+      color: #fbbf24 !important;
+      background: rgba(245, 158, 11, 0.2) !important;
+      border-color: rgba(245, 158, 11, 0.65) !important;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.45);
+    }
+    .timer-pill.timer-red {
+      color: #f87171 !important;
+      background: rgba(244, 63, 94, 0.25) !important;
+      border-color: rgba(244, 63, 94, 0.75) !important;
+      box-shadow: 0 0 16px rgba(244, 63, 94, 0.55);
+    }
+    .timer-pill.timer-blink-red {
+      color: #ffffff !important;
+      background: rgba(225, 29, 72, 0.88) !important;
+      border-color: #ff0055 !important;
+      box-shadow: 0 0 24px rgba(255, 0, 85, 0.95);
+      animation: timerPulse 0.55s infinite alternate ease-in-out;
+    }
+    @keyframes timerPulse {
+      from { transform: scale(1); box-shadow: 0 0 10px rgba(255, 0, 85, 0.6); }
+      to { transform: scale(1.06); box-shadow: 0 0 26px rgba(255, 0, 85, 1); }
+    }
+    .timer-pill-old {
+      font-family: monospace;
+      font-size: 1rem;
+      color: var(--gold);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
     }
 
     /* Speaker Notes Modal */
@@ -2182,9 +2341,11 @@
     <!-- SLIDE 8: Renee Gittins - Profile           -->
     <!-- ========================================== -->
     <div class="slide" id="slide-8" data-notes="Introduce Renee Gittins. Renee leads Stumbling Cat, developers of Potions: A Curious Tale. Former GM of Phoenix Labs Vancouver, former Executive Director of the IGDA, Chair of the IGDA Alumni Board, and author of 'The Bad Boss Witch Guide to Rule Your World'. Hand mic over to Renee.">
-      <div class="slide-eyebrow">Meet Your Panelist • Stumbling Cat</div>
+      <div class="title-glass-box">
+        <div class="slide-eyebrow">Meet Your Panelist • Stumbling Cat</div>
       <h2 class="slide-title">Renee Gittins</h2>
       <p class="slide-subtitle">Studio Head, Stumbling Cat • Former IGDA Executive Director • Author & Advocate</p>
+      </div>
 
       <div class="profile-grid">
         <div class="profile-card">
@@ -2542,8 +2703,8 @@
     <!-- ========================================== -->
     <!-- SLIDE 16: Memory Lane: First Jams          -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-16" data-notes="MODERATOR QUESTION 1 (The Origin Story): 'Take us back to your very first game jam. What did you make, and what was the biggest takeaway? Did that specific weekend help solidify your desire to pursue game dev?' Verified first jams: Larry's SuperChurchFart64 (LD25), Renee's Dryad (LD34), Evie's GGJ Xbox Live Indie Game, Heather's Monsantoware.">
-      <div class="slide-eyebrow">Panelist Origins • Ground-Truth First Jams</div>
+    <div class="slide" id="slide-16" data-notes="MODERATOR QUESTION 1 (The Origin Story • Pacing: 5:00): 'Take us back to your very first game jam. What did you make, and what was the biggest takeaway? Did that specific weekend help solidify your desire to pursue game dev?' Verified first jams: Larry's SuperChurchFart64 (LD25), Renee's Dryad (LD34), Evie's GGJ Xbox Live Indie Game, Heather's Monsantoware. Pacing tip: Larry keeps intro to 30s; panelists get ~1 min each; bank surplus time for Q&A.">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.02rem; letter-spacing: 0.12em;">🎙️ Panel Question 1 • Panelist Origins • Ground-Truth First Jams</div>
       <h2 class="slide-title">Our First Jams: The Beautiful Chaos</h2>
       <p class="slide-subtitle">Before shipped titles and studio leadership, we all started in 48-hour prototype pandemonium.</p>
 
@@ -2603,8 +2764,8 @@
     <!-- ========================================== -->
     <!-- SLIDE 17: Other Jams & The 9th Wall        -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-17" data-notes="MODERATOR QUESTION 2 (The Crucible / Failing Forward): 'We've all had jams where the scope crept, the engine crashed, or the game just wasn't fun. Tell us about your hardest game jam. Was it a glorious failure, and what was the most valuable thing you learned from a jam that didn't go as planned?' Evie's 'Did You Murder Your Wife' UNCC GGJ urban legend; Larry's Tale Spinner / Story Spinner (GGJ 2015) print scramble and LD27 Ten Seconds of Thrust.">
-      <div class="slide-eyebrow">The 9th Wall • When Jams Go Sideways</div>
+    <div class="slide" id="slide-17" data-notes="MODERATOR QUESTION 2 (The Crucible / Failing Forward • Pacing: ~6:00 / 400s): 'We've all had jams where the scope crept, the engine crashed, or the game just wasn't fun. Tell us about your hardest game jam. Was it a glorious failure, and what was the most valuable thing you learned from a jam that didn't go as planned?' Evie's 'Did You Murder Your Wife' UNCC GGJ urban legend; Larry's Tale Spinner / Story Spinner (GGJ 2015) frantic paper card scramble. Pacing tip: Keep moderator intro to 30s, give panelists ~60s each.">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.02rem; letter-spacing: 0.12em;">🎙️ Panel Question 2 • The Crucible • Failing Forward</div>
       <h2 class="slide-title">Other Jams & The 9th Wall: The "Glorious Failure"</h2>
       <p class="slide-subtitle">The greatest lessons in game development come from the catastrophic 2:00 AM disasters.</p>
 
@@ -2619,7 +2780,7 @@
             <span class="badge badge-magenta">Intake Submissions & Lore</span>
             <h3 style="color: var(--rose);">"What is the jam where everything went completely sideways?"</h3>
             <p>• <strong>Dr. Evie Powell (UNCC GGJ):</strong> <em>"Did you murder your wife"</em> — a game where you had to stash a body in a variety of places so the police wouldn't suspect you while you got to a boat (you didn't murder your wife btw). It became a reddit urban legend in their local subreddit when someone saw the postmortem on the projector outside of the venue!<br><br>
-            • <strong>Larry James (GGJ 2015 & LD27):</strong> <em>Tale Spinner</em> — A network multiplayer card game that ran out of runway and turned into a frantic print-and-play paper card scramble 10 minutes before judging! And <em>Ten Seconds of Thrust</em> (LD27 solo gravity simulation).</p>
+            • <strong>Larry James (GGJ 2015):</strong> <em>Tale Spinner</em> — A network multiplayer card game that ran out of runway and turned into a frantic scramble having it ready 10 minutes before judging with a print-and-play paper card as backup!</p>
           </div>
           <img class="card-bleed-bottom-img" src="../assets/games/larry_story_spinner_upload.png" alt="Story Spinner / Tale Spinner Cards">
         </div>
@@ -2634,8 +2795,8 @@
     <!-- ========================================== -->
     <!-- SLIDE 18: The Butterfly Effect & Fellowship -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-18" data-notes="MODERATOR QUESTIONS 3 & 4 (The Fellowship & The Butterfly Effect): 'Game jams are high-pressure, but they also act as amazing networking events. Can you talk about a connection, friendship, or relationship you formed in the trenches of a jam that still impacts your life today? Can you share a serendipitous moment—a surprise job offer, wild collaboration, or random opportunity—purely because of a connection you made at a game jam?' Evie's Seattle VR hackathon career springboard; Larry's Ludum Dare to SIFF VR-Zone and UpLiftVR.">
-      <div class="slide-eyebrow">Career Magic • Section 2 Submissions</div>
+    <div class="slide" id="slide-18" data-notes="MODERATOR QUESTIONS 3 & 4 (The Fellowship & The Butterfly Effect • Pacing: ~6.5m): 'Game jams are high-pressure, but they also act as amazing networking events. Can you talk about a connection, friendship, or relationship you formed in the trenches of a jam that still impacts your life today? Can you share a serendipitous moment—a surprise job offer, wild collaboration, or random opportunity—purely because of a connection you made at a game jam?' Evie's Seattle VR hackathon career springboard; Larry's Ludum Dare to taking dev seriously, SIFF VR-Zone, and UpLiftVR. Larry 30s intro; rapid panel responses to bank time for Q&A.">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.02rem; letter-spacing: 0.12em;">🎙️ Panel Questions 3 & 4 • Career Magic & Serendipity</div>
       <h2 class="slide-title">The Fellowship & The Butterfly Effect: Jam Serendipity</h2>
       <p class="slide-subtitle">How a chaotic 48-hour weekend prototype alters life paths, launches studios, and opens doors.</p>
 
@@ -2646,12 +2807,12 @@
             <div class="emoji-sub" style="color: var(--purple); font-size: 0.78rem;">Bonds Forged in the Crunch</div>
           </div>
           <div class="card-bleed-body">
-            <div class="slide-question-banner" style="margin-bottom: 0.75rem; background: rgba(168, 85, 247, 0.15); border-left-color: var(--purple);">
-              <span class="q-badge" style="background: rgba(168, 85, 247, 0.25); color: #d8b4fe; border-color: var(--purple);">💬 Question 3 • The Fellowship</span>
-              <span class="q-text" style="font-size: 0.88rem;">"Can you talk about a connection, friendship, or relationship you formed in the trenches of a jam that still impacts your life today?"</span>
+            <div class="slide-question-banner" style="margin-bottom: 0.95rem; padding: 0.85rem 1.15rem; background: linear-gradient(90deg, rgba(168, 85, 247, 0.25) 0%, rgba(30, 41, 59, 0.95) 100%); border-left: 5px solid var(--purple); display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem;">
+              <span class="q-badge" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(147, 51, 234, 0.3) 100%); color: #f3e8ff; border: 1.5px solid var(--purple); font-size: 0.95rem; box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);">💬 Question 3 • The Fellowship</span>
+              <span class="q-text" style="font-size: 1.15rem; line-height: 1.35;">"Can you talk about a connection, friendship, or relationship you formed in the trenches of a jam that still impacts your life today?"</span>
             </div>
             <p style="font-size: 0.95rem; line-height: 1.55;">• <strong>Dr. Evie Powell:</strong> <em>"The Seattle VR hackathons were where I made a lot of friends that really helped my career in AR/VR take off! And the connections from those jams are still serving me today!"</em><br><br>
-            • <strong>Larry James:</strong> Prototyping in Ludum Dare and GGJ paved the way to SIFF VR-Zone month-long festival showcases and founding UpLiftVR Studios.<br><br>
+            • <strong>Larry James:</strong> Prototyping in Ludum Dare and GGJ paved the way to taking game dev seriously and eventually SIFF VR-Zone month-long festival showcases and founding UpLiftVR Studios.<br><br>
             • <strong>Tim & Heather:</strong> Meeting lifelong co-creators at 2:00 AM over cold pizza.</p>
           </div>
         </div>
@@ -2661,9 +2822,9 @@
             <div class="emoji-sub" style="color: var(--cyan); font-size: 0.78rem;">Surprise Opportunities & Shipped Games</div>
           </div>
           <div class="card-bleed-body">
-            <div class="slide-question-banner" style="margin-bottom: 0.75rem; background: rgba(56, 189, 248, 0.15); border-left-color: var(--cyan);">
-              <span class="q-badge" style="background: rgba(56, 189, 248, 0.25); color: #7dd3fc; border-color: var(--cyan);">💬 Question 4 • The Butterfly Effect</span>
-              <span class="q-text" style="font-size: 0.88rem;">"Can you share a serendipitous moment—a surprise job offer, wild collaboration, or random opportunity—purely because of a jam connection?"</span>
+            <div class="slide-question-banner" style="margin-bottom: 0.95rem; padding: 0.85rem 1.15rem; background: linear-gradient(90deg, rgba(56, 189, 248, 0.25) 0%, rgba(30, 41, 59, 0.95) 100%); border-left: 5px solid var(--cyan); display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem;">
+              <span class="q-badge" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(2, 132, 199, 0.3) 100%); color: #e0f2fe; border: 1.5px solid var(--cyan); font-size: 0.95rem; box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);">💬 Question 4 • The Butterfly Effect</span>
+              <span class="q-text" style="font-size: 1.15rem; line-height: 1.35;">"Can you share a serendipitous moment—a surprise job offer, wild collaboration, or random opportunity—purely because of a jam connection?"</span>
             </div>
             <h3 style="color: var(--cyan); margin-top: 0.25rem;">The Unspoken Resume</h3>
             <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.4rem;">
@@ -2677,8 +2838,8 @@
     <!-- ========================================== -->
     <!-- SLIDE 19: Let's Shape the Discussion       -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-19" data-notes="MODERATOR QUESTION 5 (The 'Cheat Code'): 'When the clock is ticking and you only have 48 hours to create something, what is your ultimate \'cheat code\' to cross the finish line? Is it specific software, a design trick, or just knowing what features to brutally cut?' Dr. Evie Powell's intake hack: 'Learn something new rather than just win; take breaks and sleep!' Open floor for Larry, Tim, Heather, and Renee.">
-      <div class="slide-eyebrow">Survival Guide • Authentic Panelist Hacks</div>
+    <div class="slide" id="slide-19" data-notes="MODERATOR QUESTION 5 (The 'Cheat Code' • Pacing: ~6.5m): 'When the clock is ticking and you only have 48 hours to create something, what is your ultimate \'cheat code\' to cross the finish line? Is it specific software, a design trick, or just knowing what features to brutally cut?' Dr. Evie Powell's intake hack: 'Learn something new rather than just win; take breaks and sleep!' Open floor for Larry, Tim, Heather, and Renee. Larry 30s intro; rapid tips to bank extra time for Q&A.">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.02rem; letter-spacing: 0.12em;">🎙️ Panel Question 5 • 48-Hour Cheat Codes & Survival Guide</div>
       <h2 class="slide-title">Let's Shape the Discussion: 48-Hour Cheat Codes</h2>
       <p class="slide-subtitle">Tactics and psychological hacks from veteran developers to cross the finish line.</p>
 
@@ -2720,7 +2881,7 @@
                 When Sunday afternoon arrives and the submission clock is ticking down, what is your go-to tool, engine shortcut, or mindset hack to cross the finish line?
               </p>
               <ul style="margin-top: 0.85rem; padding-left: 1.25rem; font-size: 0.9rem; color: #94a3b8; line-height: 1.7;">
-                <li><strong>Larry James</strong> (UpLiftVR Studios: HTML5 Canvas, Three.js, Blueprints)</li>
+                <li><strong>Larry James</strong> (UpLiftVR: <a href="https://www.mapeditor.org/" target="_blank" style="color: var(--cyan); text-decoration: underline;">Tiled Map Editor</a>, <a href="https://inkscape.org/" target="_blank" style="color: var(--cyan); text-decoration: underline;">Inkscape</a> for rapid vector/tile prototyping in solo compo jams with zero premade assets [e.g. <em>Ten Seconds of Thrust</em>], and <a href="https://opengameart.org/" target="_blank" style="color: var(--cyan); text-decoration: underline;">OpenGameArt.org</a>)</li>
                 <li><strong>Tim Cullings</strong> (Seattle Indies: Scope cuts, game feel over complexity)</li>
                 <li><strong>Heather Coles</strong> (Orbicular: Fluid dynamics, simple physical toy feel)</li>
                 <li><strong>Renee Gittins</strong> (Stumbling Cat: Paper prototyping, non-violent core verbs)</li>
@@ -2737,10 +2898,10 @@
     <!-- ========================================== -->
     <!-- SLIDE 20: Session Zero Intermission        -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-20" data-notes="Extra credit time! Replaces the old 22-slide technical XR guide. Run the 5-10 minute Live Game Jam Session Zero experiment. Challenge the audience: If you had 48 hours next weekend, who would you build with? Let's pre-form teams in Room 'America'!">
-      <div class="slide-eyebrow">Extra Credit Interactive • 5-Minute Drill</div>
+    <div class="slide" id="slide-20" data-notes="Session Zero Primer (30-Second Rapid Briefing): Priming the audience for after-session hallway matchmaking! In 30 seconds, review these 3 steps: 1) Claim your crew role card, 2) Spark your 3-card pitch, 3) 60-second hallway match. When we wrap in 2 minutes, meet us outside Room 'America' with your cards to form teams!">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.05rem; letter-spacing: 0.12em;">🚧 Social Highly Experimental SideQuest • Live Hallway Primer 🚧</div>
       <h2 class="slide-title">Intermission: Game Jam Session Zero</h2>
-      <p class="slide-subtitle">What if you walked out of Room 'America' today with your next game jam crew already assembled?</p>
+      <p class="slide-subtitle">🚧 <strong>Social Highly Experimental SideQuest:</strong> What if you walk out into the hallway today with your next game jam crew already assembled?</p>
 
       <div class="grid-3">
         <div class="card card-bleed" style="border-top: 4px solid var(--cyan);">
@@ -2782,8 +2943,8 @@
     <!-- ========================================== -->
     <!-- SLIDE 21: The Proxy Tarot & Jam Crew Roles  -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-21" data-notes="Introduce the Proxy Tarot / Jam Crew Roles. Walk through the 5 archetypes: Code Wizard, Visual Alchemist, Audio Bard, World Architect, Guild Guide. Ask audience members to raise their hands or look at their proxy cards.">
-      <div class="slide-eyebrow">Card Mechanics • Discover Your Superpower</div>
+    <div class="slide" id="slide-21" data-notes="What is Your Jam Card? (30 seconds): Walk through the 5 archetypes quickly: Code Wizard, Visual Alchemist, Audio Bard, World Architect, Guild Guide. Attendees can grab cards and find their archetype outside in the hallway!">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.05rem; letter-spacing: 0.12em;">🚧 Social Highly Experimental SideQuest: Discover Your Superpower 🚧</div>
       <h2 class="slide-title">What is Your Jam Card? The Proxy Tarot</h2>
       <p class="slide-subtitle">Every legendary game jam team needs a balance of archetypes.</p>
 
@@ -2904,8 +3065,8 @@
       <div class="grid-3">
         <div class="card" style="border-top: 4px solid var(--emerald);">
           <span class="badge badge-emerald">Free & Accessible</span>
-          <h3>Basic Tools Are Free</h3>
-          <p>Godot, Twine, Bitsy, Unity, Unreal, and Three.js are free and accessible. You don't need a massive workstation to start building.</p>
+          <h3>Free Engines & Prototyping Tools</h3>
+          <p style="font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;"><strong>Engines:</strong> Godot, Twine, Bitsy, Unity, Unreal, Three.js.<br><strong>Level &amp; Tile Design:</strong> <a href="https://www.mapeditor.org/" target="_blank" style="color: var(--cyan); text-decoration: underline;">Tiled Map Editor</a>.<br><strong>Solo Prototyping:</strong> <a href="https://inkscape.org/" target="_blank" style="color: var(--cyan); text-decoration: underline;">Inkscape</a> for rapid vector sprites &amp; tile creation when no premade assets are allowed.<br><strong>Royalty-Free Assets:</strong> <a href="https://opengameart.org/" target="_blank" style="color: var(--cyan); text-decoration: underline;">OpenGameArt.org</a>.</p>
         </div>
         <div class="card" style="border-top: 4px solid var(--gold);">
           <span class="badge badge-gold">Atomic Scope</span>
@@ -2988,8 +3149,8 @@
     <!-- ========================================== -->
     <!-- SLIDE 25: Your Quest Awaits & Q&A          -->
     <!-- ========================================== -->
-    <div class="slide" id="slide-25" data-notes="MODERATOR QUESTION 6 (The Mindset / Audience Advice) & OPEN Q&A: 'For someone sitting in the audience right now who is terrified they aren't \'skilled enough\' to join a jam team this weekend, what is your advice to them?' Open audience Q&A. Panelist seed topics: Larry's topic on jam brainstorms finished outside the jam; Evie's question on hackathons as part of day jobs; Evie's topic on event execution and taking time to see other people's work.">
-      <div class="slide-eyebrow">Next Steps & Open Floor • Section 3 Vault</div>
+    <div class="slide" id="slide-25" data-notes="MODERATOR QUESTION 6 & OPEN Q&A (Pacing: 5:00 target + banked time): 'For someone in the audience terrified they aren't skilled enough to join a jam team, what is your advice?' Open floor for audience Q&A — take a quick audience question and quick 30-45s answer from 1-2 panelists to fit ~5 Q&As into the slot! Larry's closing challenge: 'Who will make a game in the next year?'">
+      <div class="slide-eyebrow" style="color: var(--gold); font-size: 1.02rem; letter-spacing: 0.12em;">🎙️ Panel Question 6 & Open Floor • Audience Advice & Q&A</div>
       <h2 class="slide-title">Your Quest Awaits: Resources & Q&A</h2>
       <p class="slide-subtitle">Ask our panel anything about game jams, creative tech, team dynamics, or overcoming imposter syndrome.</p>
 
@@ -3008,9 +3169,24 @@
             <p style="font-size: 0.85rem; color: var(--gold);"><strong>Larry's Closing Challenge to the Room:</strong><br><em>"How many of you will come to a Game Jam in the next year and create a game—even if it's a mini-game or outside a jam?"</em></p>
           </div>
         </div>
-        <div class="card" style="border-left: 4px solid var(--magenta);">
-          <span class="badge badge-magenta">Convention Next Stop</span>
-          <p>Visit the <strong>Seattle Indies Gaming Hall</strong> downstairs in the Skagit Lower Level / 3rd Floor!<br><br>Play local Pacific Northwest indie games, meet the developers, and experience <strong>UpLiftVR</strong> firsthand!</p>
+        <div class="card card-bleed" style="border-left: 4px solid var(--magenta); display: flex; flex-direction: column; justify-content: space-between;">
+          <!-- Seattle Indies Gaming Hall Showcase Card -->
+          <img class="card-banner-bleed" src="../assets/games/PotionsACuriousTaleKeyArt.png" alt="Potions: A Curious Tale Key Art" style="width: 100%; height: 165px; object-fit: cover; object-position: center 25%; border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+          <div class="card-bleed-body" style="padding: 1rem 1.25rem 1.15rem 1.25rem; display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                <span class="badge badge-magenta" style="margin-bottom: 0;">Convention Next Stop</span>
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em;">Skagit 3rd Floor</span>
+              </div>
+              <h3 style="color: var(--cyan); margin-bottom: 0.35rem; font-size: 1.25rem;">Seattle Indies Gaming Hall</h3>
+              <p style="font-size: 0.92rem; line-height: 1.5; color: #cbd5e1;">
+                Head downstairs to the <strong>Skagit Lower Level / 3rd Floor</strong> to explore local Pacific Northwest indie games and meet the developers in person!
+              </p>
+            </div>
+            <div style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: rgba(0,0,0,0.35); border-radius: 8px; border-left: 3px solid var(--magenta); font-size: 0.86rem; color: #f1f5f9; line-height: 1.45;">
+              🎮 <strong>Featured Showcases:</strong> Experience <strong>UpLiftVR</strong> (Larry James) and visit <strong>Stumbling Cat Studios</strong> (Renee Gittins, creator of <em>Potions: A Curious Tale</em>)!
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -3107,11 +3283,12 @@
       </div>
 
       <div class="counter-pill">
-        Slide <span id="current-slide-num">1</span> of <span id="total-slides-num">26</span>
+        Slide <span id="current-slide-num">1</span> of <span id="total-slides-num">26</span> <span style="font-size: 0.70rem; color: #64748b; font-family: monospace; margin-left: 0.35rem;">v0.2.7</span>
       </div>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
-        <div class="timer-pill" id="session-timer">⏱️ 00:00</div>
+        <div class="timer-pill timer-green" id="slide-timer" onclick="resetSlideTimer()" title="Slide Clock (Pacing Target). Click or press 'T' to reset slide timer">⏱️ Slide: 01:00</div>
+        <div class="timer-pill" id="session-timer" title="Total Room Clock (45:00 Budget)">⌛ 00:00 / 45:00</div>
         <button class="nav-btn" onclick="toggleNotes()">📝 Notes (N)</button>
       </div>
     </div>
@@ -3128,6 +3305,32 @@
   </div>
 
   <script>
+    // Presentation Sequence Reordering (Calibrated 7-Act Arc)
+    // Presentation Order:
+    // 1-19: #slide-1 to #slide-19
+    // 20:   #slide-25 (Question 6 & Open Floor Q&A)
+    // 21:   #slide-20 (Session Zero Primer: The 3-Step Match)
+    // 22:   #slide-21 (What is Your Jam Card? The 5 Archetypes)
+    // 23:   #slide-22 (Interactive Tarot Generator Demo)
+    // 24:   #slide-23 (We Did It! 3 Jam Teams Formed)
+    // 25:   #slide-24 (Spotlight & Round-Robin: "What's On Your Desk?" Wrap-Up)
+    // 26:   #slide-26 (Thank You & Connect QR)
+    const container = document.getElementById('deck-container');
+    const s20 = document.getElementById('slide-20');
+    const s21 = document.getElementById('slide-21');
+    const s22 = document.getElementById('slide-22');
+    const s23 = document.getElementById('slide-23');
+    const s24 = document.getElementById('slide-24');
+    const s25 = document.getElementById('slide-25');
+    const s26 = document.getElementById('slide-26');
+    if (container && s20 && s21 && s22 && s23 && s24 && s25 && s26) {
+      container.insertBefore(s25, s26);
+      container.insertBefore(s20, s26);
+      container.insertBefore(s21, s26);
+      container.insertBefore(s22, s26);
+      container.insertBefore(s23, s26);
+      container.insertBefore(s24, s26);
+    }
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
     let currentIndex = 0;
@@ -3137,6 +3340,7 @@
     const notesModal = document.getElementById('notes-modal');
     const notesContent = document.getElementById('notes-content');
     const timerDisplay = document.getElementById('session-timer');
+    const slideTimerDisplay = document.getElementById('slide-timer');
 
     totalSlidesNum.textContent = totalSlides;
 
@@ -3180,6 +3384,10 @@
       const activeSlide = slides[currentIndex];
       notesContent.textContent = activeSlide.getAttribute('data-notes') || 'No speaker notes for this slide.';
 
+      if (typeof resetSlideTimer === 'function') {
+        resetSlideTimer();
+      }
+
       if (updateHash && activeSlide && activeSlide.id) {
         if (window.location.hash !== '#' + activeSlide.id) {
           history.replaceState(null, '', '#' + activeSlide.id);
@@ -3222,7 +3430,11 @@
         prevSlide();
       } else if (e.key === 'n' || e.key === 'N') {
         toggleNotes();
-      } else if (e.key === 'Escape') {
+      } else if (e.key === 't' || e.key === 'T') {
+        if (typeof resetSlideTimer === 'function') resetSlideTimer();
+      /*
+        toggleNotes();
+      */ } else if (e.key === 'Escape') {
         notesModal.classList.remove('active');
       } else if (e.key === 'Home') {
         currentIndex = 0;
@@ -3771,7 +3983,84 @@
       dealAllTarot();
     }, 100);
 
-    // Stopwatch Timer
+    // ==========================================
+    // Chromatic Pacing HUD Engine (🟢 / 🟡 / 🔴 / 🚨)
+    // ==========================================
+    // Presentation order duration budget (seconds) — Total: 2,700s = 45:00:
+    // [0] Slide 1 (#slide-1): 60s (Title & Live QR Portal)
+    // [1-10] Slides 2-11 (#slide-2..#slide-11): 30s each (10 slides = 300s / 5:00 total; Larry, Tim, Heather, Renee, Evie profile & body of work)
+    // [11-14] Slides 12-15 (#slide-12..#slide-15): 45s each (4 slides = 180s / 3:00 total; Game Jam Fundamentals & Crew Roles)
+    // [15] Slide 16 (#slide-16): 300s (5:00 total; Question 1 Origin Stories — 1 min per panelist)
+    // [16-18] Slides 17-19 (#slide-17..#slide-19): 400s each (3 slides = 1,200s / 20:00 total; Crucible/Failure, Fellowship/Butterfly Effect, Cheat Codes)
+    // [19] Slide 20 in presentation (#slide-25): 300s (5:00 total; Question 6 & Open Floor Q&A — ~5 rapid Q&As)
+    // [20] Slide 21 in presentation (#slide-20): 30s (0:30; Session Zero Primer: The 3-Step Match)
+    // [21] Slide 22 in presentation (#slide-21): 30s (0:30; What is Your Jam Card? The 5 Archetypes)
+    // [22] Slide 23 in presentation (#slide-22): 30s (0:30; Interactive Tarot Generator 1-click live demo)
+    // [23] Slide 24 in presentation (#slide-23): 30s (0:30; We Did It! 3 Jam Teams Formed wrap)
+    // [24] Slide 25 in presentation (#slide-24): 150s (2:30 total; Spotlight & Round-Robin: "What's On Your Desk?" wrap-up — 30s each)
+    // [25] Slide 26 in presentation (#slide-26): 90s (1:30 total; Thank You & Connect QR + Hallway Matchmaking)
+    const slideAllocations = [
+      60, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      45, 45, 45, 45,
+      300,
+      400, 400, 400,
+      300,
+      30, 30, 30, 30,
+      150,
+      90
+    ];
+
+    let slideSecondsElapsed = 0;
+    let sessionSecondsElapsed = 0;
+
+    function formatMMSS(totalSecs) {
+      const s = Math.max(0, Math.floor(totalSecs));
+      const mins = Math.floor(s / 60);
+      const secs = s % 60;
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function resetSlideTimer() {
+      slideSecondsElapsed = 0;
+      renderTimers();
+    }
+
+    function renderTimers() {
+      const targetSecs = slideAllocations[currentIndex] || 60;
+      const remainingSecs = targetSecs - slideSecondsElapsed;
+      const ratio = targetSecs > 0 ? (slideSecondsElapsed / targetSecs) : 0;
+
+      if (slideTimerDisplay) {
+        slideTimerDisplay.classList.remove('timer-green', 'timer-yellow', 'timer-red', 'timer-blink-red');
+
+        if (ratio <= 0.75) {
+          slideTimerDisplay.classList.add('timer-green');
+          slideTimerDisplay.textContent = `⏱️ ${formatMMSS(remainingSecs)} left`;
+        } else if (ratio <= 1.0) {
+          slideTimerDisplay.classList.add('timer-yellow');
+          slideTimerDisplay.textContent = `⏱️ ${formatMMSS(remainingSecs)} left`;
+        } else if (ratio <= 1.25) {
+          slideTimerDisplay.classList.add('timer-red');
+          slideTimerDisplay.textContent = `⚠️ +${formatMMSS(-remainingSecs)} over`;
+        } else {
+          slideTimerDisplay.classList.add('timer-blink-red');
+          slideTimerDisplay.textContent = `🚨 +${formatMMSS(-remainingSecs)} OVER`;
+        }
+      }
+
+      if (timerDisplay) {
+        timerDisplay.textContent = `⌛ ${formatMMSS(sessionSecondsElapsed)} / 45:00`;
+      }
+    }
+
+    setInterval(() => {
+      slideSecondsElapsed++;
+      sessionSecondsElapsed++;
+      renderTimers();
+    }, 1000);
+
+    /* legacy stopwatch placeholder */
+    function legacyStopwatchDisabled() {
     let secondsElapsed = 0;
     setInterval(() => {
       secondsElapsed++;
@@ -3779,6 +4068,8 @@
       const secs = secondsElapsed % 60;
       timerDisplay.textContent = `⏱️ ${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }, 1000);
+
+    }
 
     // Initial setup with deep link hash support
     parseHashAndSetSlide();
